@@ -1,0 +1,18 @@
+id: math.g6.fractions.add_unlike.module
+subject:
+  id: mathematics
+  title_ru: "Математика"
+grade: 6
+primary_skill:
+  id: math.g6.fractions.add_unlike
+  title_ru: "Сложение дробей с разными знаменателями"
+prerequisites:
+  - math.g6.fractions.equivalent
+  - math.g6.fractions.common_denominator
+goals:
+  - {id: catch_up, title_ru: "Догнать программу"}
+  - {id: deepen, title_ru: "Углубить знания"}
+  - {id: olympiad, title_ru: "Олимпиадный путь"}
+routes:
+  diagnostic: diagnostic_route.yaml
+  remediation: remediation.yaml
