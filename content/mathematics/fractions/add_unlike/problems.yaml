@@ -1,0 +1,114 @@
+problems:
+  - id: frac.add.diag.001
+    primary_skill: math.g6.fractions.add_unlike
+    purpose: diagnostic
+    representation: symbolic
+    transfer: false
+    prompt_ru: "Вычисли: 1/2 + 1/3"
+    verifier:
+      type: rational_equivalence
+      expected: "5/6"
+      require_simplified: true
+    misconception_probes:
+      "2/5": add_denominators
+      "2/6": common_denominator_without_rescaling
+
+  - id: frac.add.probe.add_denominators
+    primary_skill: math.g6.fractions.add_unlike
+    purpose: misconception_probe
+    prompt_ru: "Какой ответ верный для 1/4 + 1/4?"
+    choices: ["2/8", "2/4", "1/8", "1/4"]
+    verifier:
+      type: multiple_choice
+      expected: "2/4"
+    confirms:
+      choice_2_8: add_denominators
+    note: "Probe distinguishes denominator-addition misconception from a one-off arithmetic error."
+
+  - id: frac.add.probe.equivalent
+    primary_skill: math.g6.fractions.equivalent
+    purpose: prerequisite_probe
+    prompt_ru: "Заполни пропуск: 1/3 = ?/6"
+    verifier:
+      type: exact_integer
+      expected: 2
+
+  - id: frac.add.probe.lcm
+    primary_skill: math.prereq.lcm
+    purpose: prerequisite_probe
+    prompt_ru: "Назови наименьшее положительное число, которое делится и на 4, и на 6."
+    verifier:
+      type: exact_integer
+      expected: 12
+
+  - id: frac.add.guided.001
+    primary_skill: math.g6.fractions.add_unlike
+    purpose: guided
+    prompt_ru: "Вычисли: 1/4 + 1/6"
+    verifier:
+      type: rational_equivalence
+      expected: "5/12"
+      require_simplified: true
+    hints:
+      - level: 1
+        kind: socratic
+        text_ru: "Что должно стать одинаковым у дробей перед сложением?"
+      - level: 2
+        kind: subgoal
+        text_ru: "Найди общий знаменатель для 4 и 6."
+      - level: 3
+        kind: step
+        text_ru: "Общий знаменатель 12. Во что превратятся 1/4 и 1/6?"
+      - level: 4
+        kind: worked_step
+        text_ru: "1/4 = 3/12, а 1/6 = 2/12. Теперь сложи числители."
+
+  - id: frac.add.independent.001
+    primary_skill: math.g6.fractions.add_unlike
+    purpose: independent
+    prompt_ru: "Вычисли и сократи: 5/12 + 1/8"
+    verifier:
+      type: rational_equivalence
+      expected: "13/24"
+      require_simplified: true
+
+  - id: frac.add.independent.002
+    primary_skill: math.g6.fractions.add_unlike
+    purpose: independent
+    prompt_ru: "Вычисли и сократи: 7/10 + 3/5"
+    verifier:
+      type: rational_equivalence
+      expected: "13/10"
+      require_simplified: true
+
+  - id: frac.add.transfer.001
+    primary_skill: math.g6.fractions.add_unlike
+    secondary_skills:
+      - math.g6.fractions.word_problem
+    purpose: transfer
+    representation: text
+    transfer: true
+    prompt_ru: "Утром Лена прочитала 2/9 книги, а вечером — ещё 1/6 всей книги. Какую часть книги она прочитала за день?"
+    verifier:
+      type: rational_equivalence
+      expected: "7/18"
+      require_simplified: true
+
+  - id: frac.add.transfer.002
+    primary_skill: math.g6.fractions.add_unlike
+    purpose: reverse_transfer
+    transfer: true
+    prompt_ru: "Найди дробь x: x + 1/4 = 5/6."
+    verifier:
+      type: rational_equivalence
+      expected: "7/12"
+      require_simplified: true
+
+  - id: frac.add.review.001
+    primary_skill: math.g6.fractions.add_unlike
+    purpose: review
+    prompt_ru: "Без подсказки вычисли: 3/8 + 5/12"
+    verifier:
+      type: rational_equivalence
+      expected: "19/24"
+      require_simplified: true
