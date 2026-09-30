@@ -10,6 +10,7 @@ from PySide6.QtWidgets import (
     QMainWindow, QPushButton, QStackedWidget, QVBoxLayout, QWidget,
 )
 
+from repetitor.application.diagnostic import FractionDiagnosticRouter
 from repetitor.application.session import LearningSessionService
 from repetitor.content import load_problems
 from repetitor.domain import KnowledgeState
@@ -37,7 +38,9 @@ class RepetitorWindow(QMainWindow):
         self.profiles.initialize()
 
         self.problems = load_problems(content_dir / "problems.yaml")
-        self.problem = next(p for p in self.problems if p.id == "frac.add.diag.001")
+        self.problem_by_id = {p.id: p for p in self.problems}
+        self.problem = self.problem_by_id["frac.add.diag.001"]
+        self.router = FractionDiagnosticRouter()
         self.session = LearningSessionService(self.learning, {SKILL: PREREQS})
         self.hint_level: int | None = None
 
@@ -142,14 +145,6 @@ class RepetitorWindow(QMainWindow):
             self.grade.currentData(),
             self.goal.currentData(),
         ))
-        # Temporary Stage-5 bootstrap: prerequisites are seeded as known only so
-        # the single reference skill can be exercised end-to-end. Full adaptive
-        # prerequisite diagnostics will replace this bootstrap.
-        for prerequisite in PREREQS:
-            if self.learning.get_state(STUDENT_ID, prerequisite) is None:
-                self.learning.save_state(KnowledgeState(
-                    STUDENT_ID, prerequisite, mastery=0.8, confidence=0.4
-                ))
         self.stack.setCurrentWidget(self.diagnostic)
         self.answer.setFocus()
 
@@ -188,7 +183,27 @@ class RepetitorWindow(QMainWindow):
             )
         else:
             self.feedback.setText("Пока не совпало. Проверим, на каком шаге возникла трудность.")
+        decision = self.router.decide(
+            problem=self.problem,
+            correct=outcome.verification.correct,
+            misconception_hypothesis=outcome.misconception_hypothesis,
+        )
         self._refresh_progress()
+        if decision.next_problem_id:
+            self.problem = self.problem_by_id[decision.next_problem_id]
+            self.problem_label.setText(self.problem.prompt_ru)
+            self.answer.clear()
+            self.hint_level = None
+            self.feedback.setText(self.feedback.text() + "\n\n" + decision.message_ru)
+        elif decision.phase == "remediation":
+            self.answer.setEnabled(False)
+            self.feedback.setText(
+                self.feedback.text() + "\n\n" + decision.message_ru +
+                "\n\nРемедиационный урок для prerequisite будет подключён следующим инкрементом."
+            )
+        else:
+            self.answer.setEnabled(False)
+            self.feedback.setText(self.feedback.text() + "\n\n" + decision.message_ru)
 
     def _refresh_progress(self) -> None:
         state = self.learning.get_state(STUDENT_ID, SKILL)
