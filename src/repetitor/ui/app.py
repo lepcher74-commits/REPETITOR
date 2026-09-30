@@ -156,7 +156,7 @@ class RepetitorWindow(QMainWindow):
         layout.addStretch()
         return page
 
-    def _start_remediation(self, skill_id: str, return_problem_id: str) -> None:
+    def _start_remediation(self, skill_id: str) -> None:
         step = self.remediations.get(skill_id)
         if step is None:
             self.feedback.setText(
@@ -298,7 +298,7 @@ class RepetitorWindow(QMainWindow):
             self.answer.setEnabled(False)
             self.feedback.setText(self.feedback.text() + "\n\n" + decision.message_ru)
             if decision.remediation_skill_id:
-                self._start_remediation(decision.remediation_skill_id, "")
+                self._start_remediation(decision.remediation_skill_id)
         else:
             self.answer.setEnabled(False)
             self.feedback.setText(self.feedback.text() + "\n\n" + decision.message_ru)
