@@ -1,0 +1,28 @@
+misconceptions:
+  - id: add_denominators
+    description_ru: "Ученик складывает числители и знаменатели как независимые целые числа."
+    example:
+      problem: "1/2 + 1/3"
+      observed_answer: "2/5"
+    confirmation:
+      minimum_independent_evidence: 2
+      note: "[ASSUMPTION] Do not diagnose from one response."
+    response_ru:
+      - "Похоже, здесь знаменатели были сложены. Проверим саму идею на более простом примере."
+      - "Если сложить 1/4 + 1/4, две четверти — это 2/4, а не 2/8."
+      - "Знаменатель говорит о размере частей; при сложении одинаковых частей их размер не меняется."
+
+  - id: common_denominator_without_rescaling
+    description_ru: "Ученик меняет знаменатель, но не масштабирует числитель."
+    response_ru:
+      - "Если меняется запись дроби, её значение должно остаться тем же."
+      - "Проверь: действительно ли 1/2 равно 1/6?"
+
+  - id: transform_only_one_fraction
+    description_ru: "К общему знаменателю корректно приведена только одна дробь."
+    response_ru:
+      - "Перед сложением обе дроби должны описывать части одного размера."
+
+  - id: invalid_equivalent_fraction
+    description_ru: "Ошибка в построении эквивалентной дроби."
+    remediation_skill: math.g6.fractions.equivalent
