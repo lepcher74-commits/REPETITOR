@@ -41,8 +41,8 @@ class RepetitorWindow(QMainWindow):
         self.problems = load_problems(content_dir / "problems.yaml")
         self.remediations = load_remediations(content_dir / "remediation.yaml")
         self.problem_by_id = {p.id: p for p in self.problems}
-        self.problem = self.problem_by_id[self.router.start_problem_id]
         self.router = DiagnosticRouter.from_yaml(content_dir / "diagnostic_route.yaml")
+        self.problem = self.problem_by_id[self.router.start_problem_id]
         self.session = LearningSessionService(self.learning, {SKILL: PREREQS})
         self.hint_level: int | None = None
         self.remediation_skill: str | None = None
