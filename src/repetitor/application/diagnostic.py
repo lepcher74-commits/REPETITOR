@@ -14,6 +14,7 @@ class DiagnosticDecision:
     next_problem_id: str | None
     phase: str
     message_ru: str
+    remediation_skill_id: str | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -35,7 +36,7 @@ class DiagnosticRouter:
     def from_yaml(cls, path: Path) -> "DiagnosticRouter":
         data = yaml.safe_load(path.read_text(encoding="utf-8"))
         def decision(raw):
-            return DiagnosticDecision(raw.get("next_problem_id"), str(raw["phase"]), str(raw["message_ru"]))
+            return DiagnosticDecision(\n                raw.get("next_problem_id"), str(raw["phase"]), str(raw["message_ru"]),\n                raw.get("remediation_skill_id"),\n            )
         rules = tuple(
             DiagnosticRule(
                 problem_id=str(raw["problem_id"]),
