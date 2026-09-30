@@ -1,0 +1,14 @@
+package:
+  id: repetitor.math
+  schema_version: "0.1"
+  content_version: "0.1.0"
+  minimum_core_version: "0.1.0"
+  locale_required:
+    - ru
+  trusted: true
+  executable_content: false
+  modules:
+    - id: fractions
+      grade: 6
+      title_ru: "Обыкновенные дроби"
+      status: stage4_reference
