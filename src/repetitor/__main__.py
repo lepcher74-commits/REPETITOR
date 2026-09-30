@@ -1,7 +1,21 @@
+from __future__ import annotations
+
+import argparse
+from pathlib import Path
+
+
 def main() -> int:
-    print("REPETITOR MVP foundation is installed.")
-    print("GUI is introduced in a later Stage 5 increment.")
-    return 0
+    parser = argparse.ArgumentParser(description="REPETITOR adaptive desktop tutor")
+    parser.add_argument("--data-dir", type=Path, default=Path.home() / ".repetitor")
+    parser.add_argument(
+        "--content-dir",
+        type=Path,
+        default=Path("content/mathematics/fractions/add_unlike"),
+    )
+    args = parser.parse_args()
+
+    from repetitor.ui.app import run
+    return run(args.data_dir, args.content_dir)
 
 
 if __name__ == "__main__":
