@@ -309,3 +309,25 @@ Before a content package can ship:
 3. Produce a representative end-to-end content slice: diagnostic → lesson → errors/hints → independent → transfer → review.
 4. Define acceptance checks for content packages.
 5. Controller gate before Stage 5.
+
+
+## Stage 4 finalization
+
+### Machine-readable contract
+The normative proposed contract is documented in `docs/CONTENT_CONTRACT.md`. MVP content is declarative and non-executable. Stable IDs, closed verifier/routing vocabularies, resolvable references and localization requirements are part of the contract.
+
+### Acceptance
+`docs/CONTENT_ACCEPTANCE.md` defines CA-01…CA-20 covering structure, graph integrity, verifier self-checks, diagnostic/independent/review coverage, hint progression, misconception caution, prerequisite remediation, transfer separation, Russian localization and non-executable content.
+
+### End-to-end reference slice
+`content/mathematics/fractions/add_unlike/` contains the Stage 4 executable-data target for one complete skill:
+diagnostic → hypothesis/probe → prerequisite probe → explanation → worked example → guided/fading hints → independent practice → transfer/reverse transfer → review → semantic evidence.
+
+### Stage result
+The content model is now specified sufficiently to implement a parser, validator and reference lesson in Stage 5 without inventing the content semantics during coding.
+
+### Assumptions carried forward
+- Numeric mastery weights are not scientifically fixed; Stage 5 uses transparent configurable heuristics.
+- Exact review intervals are not fixed.
+- Diagnostic stopping thresholds/item counts are not fixed.
+- The fractions graph is the MVP boundary, not a claim of complete grade-6 coverage.
