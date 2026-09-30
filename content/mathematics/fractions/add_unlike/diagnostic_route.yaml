@@ -1,0 +1,96 @@
+start_problem_id: frac.add.diag.001
+default:
+  next_problem_id: null
+  phase: complete
+  message_ru: "Маршрут для этой задачи завершён."
+rules:
+  - problem_id: frac.add.diag.001
+    when: {correct: true}
+    next_problem_id: frac.add.independent.001
+    phase: independent
+    message_ru: "Базовая задача решена. Проверим самостоятельность на другом примере."
+  - problem_id: frac.add.diag.001
+    when: {correct: false, misconception: add_denominators}
+    next_problem_id: frac.add.probe.add_denominators
+    phase: misconception_probe
+    message_ru: "Проверим одну возможную причину ошибки."
+  - problem_id: frac.add.diag.001
+    when: {correct: false}
+    next_problem_id: frac.add.probe.equivalent
+    phase: prerequisite_probe
+    message_ru: "Проверим навык, который нужен для сложения дробей."
+  - problem_id: frac.add.probe.add_denominators
+    when: {correct: true}
+    next_problem_id: frac.add.probe.equivalent
+    phase: prerequisite_probe
+    message_ru: "Хорошо. Теперь проверим эквивалентные дроби."
+  - problem_id: frac.add.probe.add_denominators
+    when: {correct: false}
+    next_problem_id: frac.add.probe.equivalent
+    phase: prerequisite_probe
+    message_ru: "Эта идея требует разбора. Сначала проверим фундаментальный навык."
+  - problem_id: frac.add.probe.equivalent
+    when: {correct: true}
+    next_problem_id: frac.add.probe.lcm
+    phase: prerequisite_probe
+    message_ru: "Эквивалентные дроби понятны. Проверим общий кратный."
+  - problem_id: frac.add.probe.equivalent
+    when: {correct: false}
+    next_problem_id: null
+    phase: remediation
+    message_ru: "Нашли более ранний пробел: сначала восстановим эквивалентные дроби."
+  - problem_id: frac.add.probe.lcm
+    when: {correct: true}
+    next_problem_id: frac.add.guided.001
+    phase: guided
+    message_ru: "Пререквизиты готовы. Разберём сложение с поддержкой."
+  - problem_id: frac.add.probe.lcm
+    when: {correct: false}
+    next_problem_id: null
+    phase: remediation
+    message_ru: "Сначала восстановим поиск общего кратного, затем вернёмся к дробям."
+  - problem_id: frac.add.guided.001
+    when: {}
+    next_problem_id: frac.add.independent.001
+    phase: independent
+    message_ru: "Теперь попробуй похожую задачу самостоятельно."
+  - problem_id: frac.add.independent.001
+    when: {correct: true}
+    next_problem_id: frac.add.independent.002
+    phase: independent
+    message_ru: "Ещё одна самостоятельная задача для устойчивого evidence."
+  - problem_id: frac.add.independent.001
+    when: {correct: false}
+    next_problem_id: frac.add.guided.001
+    phase: guided
+    message_ru: "Вернём немного поддержки и затем попробуем снова."
+  - problem_id: frac.add.independent.002
+    when: {correct: true}
+    next_problem_id: frac.add.transfer.001
+    phase: transfer
+    message_ru: "Вычисления получаются. Проверим применение в новой ситуации."
+  - problem_id: frac.add.independent.002
+    when: {correct: false}
+    next_problem_id: frac.add.guided.001
+    phase: guided
+    message_ru: "Нужна дополнительная практика с поддержкой."
+  - problem_id: frac.add.transfer.001
+    when: {correct: true}
+    next_problem_id: frac.add.transfer.002
+    phase: reverse_transfer
+    message_ru: "Перенос получился. Теперь обратная задача."
+  - problem_id: frac.add.transfer.001
+    when: {correct: false}
+    next_problem_id: frac.add.independent.002
+    phase: independent
+    message_ru: "Вернёмся на один шаг и укрепим выбор способа."
+  - problem_id: frac.add.transfer.002
+    when: {correct: true}
+    next_problem_id: null
+    phase: complete
+    message_ru: "Диагностический маршрут завершён."
+  - problem_id: frac.add.transfer.002
+    when: {correct: false}
+    next_problem_id: null
+    phase: transfer
+    message_ru: "Обратные задачи пока требуют отдельной тренировки."
