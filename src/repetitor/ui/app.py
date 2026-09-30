@@ -14,6 +14,7 @@ from repetitor.application.diagnostic import DiagnosticRouter
 from repetitor.application.remediation import load_remediations
 from repetitor.application.session import LearningSessionService
 from repetitor.content import load_problems
+from repetitor.content.module import load_module_manifest
 from repetitor.domain import KnowledgeState
 from repetitor.persistence import (
     SQLiteLearningRepository, SQLiteProfileRepository, StudentProfile,
@@ -21,8 +22,6 @@ from repetitor.persistence import (
 
 
 STUDENT_ID = "local-student"
-SKILL = "math.g6.fractions.add_unlike"
-PREREQS = ("math.g6.fractions.equivalent", "math.g6.fractions.common_denominator")
 
 
 class RepetitorWindow(QMainWindow):
@@ -38,12 +37,15 @@ class RepetitorWindow(QMainWindow):
         self.profiles = SQLiteProfileRepository(db)
         self.profiles.initialize()
 
+        self.module = load_module_manifest(content_dir / "module.yaml")
         self.problems = load_problems(content_dir / "problems.yaml")
-        self.remediations = load_remediations(content_dir / "remediation.yaml")
+        self.remediations = load_remediations(content_dir / self.module.remediation_route)
         self.problem_by_id = {p.id: p for p in self.problems}
-        self.router = DiagnosticRouter.from_yaml(content_dir / "diagnostic_route.yaml")
+        self.router = DiagnosticRouter.from_yaml(content_dir / self.module.diagnostic_route)
         self.problem = self.problem_by_id[self.router.start_problem_id]
-        self.session = LearningSessionService(self.learning, {SKILL: PREREQS})
+        self.session = LearningSessionService(
+            self.learning, {self.module.primary_skill.id: self.module.prerequisites}
+        )
         self.hint_level: int | None = None
         self.remediation_skill: str | None = None
         self.return_problem_id: str | None = None
@@ -80,12 +82,11 @@ class RepetitorWindow(QMainWindow):
             "Начнём учиться",
             "Три решения — и сразу короткая диагностика. Настройки можно уточнить позже.",
         )
-        self.subject = QComboBox(); self.subject.addItem("Математика", "mathematics")
-        self.grade = QComboBox(); self.grade.addItem("6 класс", 6)
+        self.subject = QComboBox(); self.subject.addItem(self.module.subject.title_ru, self.module.subject.id)
+        self.grade = QComboBox(); self.grade.addItem(f"{self.module.grade} класс", self.module.grade)
         self.goal = QComboBox()
-        self.goal.addItem("Догнать программу", "catch_up")
-        self.goal.addItem("Углубить знания", "deepen")
-        self.goal.addItem("Олимпиадный путь", "olympiad")
+        for goal in self.module.goals:
+            self.goal.addItem(goal.title_ru, goal.id)
         for label, widget in (
             ("Предмет", self.subject), ("Класс", self.grade), ("Цель", self.goal)
         ):
@@ -311,12 +312,12 @@ class RepetitorWindow(QMainWindow):
             self.feedback.setText(self.feedback.text() + "\n\n" + decision.message_ru)
 
     def _refresh_progress(self) -> None:
-        state = self.learning.get_state(STUDENT_ID, SKILL)
+        state = self.learning.get_state(STUDENT_ID, self.module.primary_skill.id)
         if state is None:
             self.progress_text.setText("Пока недостаточно данных.")
             return
         self.progress_text.setText(
-            f"Навык: сложение дробей с разными знаменателями\n\n"
+            f"Навык: {self.module.primary_skill.title_ru}\n\n"
             f"Освоение: {state.mastery:.0%}\n"
             f"Самостоятельность: {state.independence:.0%}\n"
             f"Перенос: {state.transfer:.0%}\n"
