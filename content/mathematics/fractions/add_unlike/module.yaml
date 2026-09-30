@@ -8,7 +8,7 @@ primary_skill:
   title_ru: "Сложение дробей с разными знаменателями"
 prerequisites:
   - math.g6.fractions.equivalent
-  - math.g6.fractions.common_denominator
+  - math.prereq.lcm
 goals:
   - {id: catch_up, title_ru: "Догнать программу"}
   - {id: deepen, title_ru: "Углубить знания"}
