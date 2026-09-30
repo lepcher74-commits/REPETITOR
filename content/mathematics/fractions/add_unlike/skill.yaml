@@ -1,0 +1,21 @@
+id: math.g6.fractions.add_unlike
+subject: mathematics
+grade_band: middle
+module: fractions
+title_ru: "Сложение дробей с разными знаменателями"
+objectives:
+  - "Находить подходящий общий знаменатель."
+  - "Получать эквивалентные дроби с общим знаменателем."
+  - "Складывать дроби и при необходимости сокращать результат."
+  - "Объяснять, почему знаменатели нельзя складывать напрямую."
+prerequisites:
+  - math.g6.fractions.equivalent
+  - math.g6.fractions.common_denominator
+secondary_prerequisites:
+  - math.prereq.lcm
+mastery_policy: fraction_standard_v0
+misconceptions:
+  - add_denominators
+  - transform_only_one_fraction
+  - invalid_equivalent_fraction
+  - common_denominator_without_rescaling
