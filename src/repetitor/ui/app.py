@@ -200,7 +200,7 @@ class RepetitorWindow(QMainWindow):
         self.answer.setEnabled(True)
         self.hint_level = None
         self.stack.setCurrentWidget(self.diagnostic)
-        self.feedback.setText(step.success_message_ru)
+        self.feedback.setText("Prerequisite проверен на этой задаче. Продолжаем основной маршрут.")
 
     def _build_progress(self) -> QWidget:
         page, layout = self._page(
