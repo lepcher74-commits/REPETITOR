@@ -47,6 +47,7 @@ class RepetitorWindow(QMainWindow):
         self.hint_level: int | None = None
         self.remediation_skill: str | None = None
         self.return_problem_id: str | None = None
+        self.remediation_index = 0
 
         self.stack = QStackedWidget()
         self.setCentralWidget(self.stack)
@@ -162,10 +163,11 @@ class RepetitorWindow(QMainWindow):
             )
             return
         self.remediation_skill = skill_id
-        self.return_problem_id = return_problem_id
+        self.return_problem_id = step.return_problem_id
+        self.remediation_index = 0
         self.remediation_title.setText(step.title_ru)
         self.remediation_explanation.setText(step.explanation_ru)
-        self.remediation_prompt.setText(step.problem.prompt_ru)
+        self.remediation_prompt.setText(step.problems[0].prompt_ru)
         self.remediation_answer.clear()
         self.remediation_feedback.clear()
         self.stack.setCurrentWidget(self.remediation)
@@ -178,7 +180,7 @@ class RepetitorWindow(QMainWindow):
         raw = self.remediation_answer.text().strip()
         outcome = self.session.submit(
             student_id=STUDENT_ID,
-            problem=step.problem,
+            problem=step.problems[self.remediation_index],
             answer=raw,
             occurred_at=datetime.now(timezone.utc),
         )
@@ -189,9 +191,24 @@ class RepetitorWindow(QMainWindow):
             )
             return
 
-        self.remediation_feedback.setText(
-            "Верно. Навык подтверждён проверяемым evidence; возвращаемся к основному маршруту."
-        )
+        state = self.learning.get_state(STUDENT_ID, step.skill_id)
+        self.remediation_index += 1
+        if self.remediation_index < len(step.problems):
+            self.remediation_answer.clear()
+            self.remediation_prompt.setText(step.problems[self.remediation_index].prompt_ru)
+            self.remediation_feedback.setText(
+                "Верно. Это одно evidence; нужна ещё проверка, прежде чем возвращаться."
+            )
+            return
+
+        if state is None or state.mastery < step.exit_mastery:
+            self.remediation_index = max(1, len(step.problems) - 1)
+            self.remediation_answer.clear()
+            self.remediation_prompt.setText(step.problems[self.remediation_index].prompt_ru)
+            self.remediation_feedback.setText(
+                "Ответы улучшаются, но evidence пока недостаточно. Повторим независимую проверку."
+            )
+            return
 
         if self.return_problem_id:
             self.problem = self.problem_by_id[self.return_problem_id]
@@ -200,7 +217,9 @@ class RepetitorWindow(QMainWindow):
         self.answer.setEnabled(True)
         self.hint_level = None
         self.stack.setCurrentWidget(self.diagnostic)
-        self.feedback.setText("Prerequisite проверен на этой задаче. Продолжаем основной маршрут.")
+        self.feedback.setText(
+            "Prerequisite восстановлен по нескольким проверяемым evidence. Продолжаем основной маршрут."
+        )
 
     def _build_progress(self) -> QWidget:
         page, layout = self._page(
