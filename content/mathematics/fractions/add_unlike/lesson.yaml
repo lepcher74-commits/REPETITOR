@@ -1,0 +1,51 @@
+lesson:
+  id: lesson.frac.add_unlike.reference
+  skill: math.g6.fractions.add_unlike
+  entry:
+    diagnostic_problem: frac.add.diag.001
+
+  branches:
+    - when: correct_independent
+      next: frac.add.independent.001
+
+    - when: answer_matches_misconception:add_denominators
+      next: frac.add.probe.add_denominators
+
+    - when: suspected_prerequisite:equivalent_fractions
+      next: frac.add.probe.equivalent
+
+    - when: suspected_prerequisite:lcm
+      next: frac.add.probe.lcm
+
+    - when: uncertain
+      next: explanation.visual_common_parts
+
+  explanations:
+    - id: explanation.visual_common_parts
+      mode: cpa
+      text_ru:
+        - "Складывать можно части одинакового размера."
+        - "Половина и треть — части разного размера, поэтому сначала переименуем их в одинаковые доли."
+        - "1/2 = 3/6, 1/3 = 2/6, поэтому 1/2 + 1/3 = 5/6."
+      next: worked.frac.add.001
+
+  worked_examples:
+    - id: worked.frac.add.001
+      prompt_ru: "Разберём 1/4 + 1/6."
+      steps_ru:
+        - "Наименьший общий знаменатель для 4 и 6 — 12."
+        - "1/4 = 3/12."
+        - "1/6 = 2/12."
+        - "3/12 + 2/12 = 5/12."
+      next: frac.add.guided.001
+
+  progression:
+    - frac.add.guided.001
+    - frac.add.independent.001
+    - frac.add.independent.002
+    - frac.add.transfer.001
+    - frac.add.transfer.002
+
+  exit:
+    schedule_review_problem: frac.add.review.001
+    note: "Exact mastery/review thresholds are [ASSUMPTION] and belong to the learning engine, not content."
