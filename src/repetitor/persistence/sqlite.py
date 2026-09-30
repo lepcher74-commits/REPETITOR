@@ -1,0 +1,157 @@
+from __future__ import annotations
+
+import sqlite3
+from datetime import datetime
+from pathlib import Path
+
+from repetitor.domain import AttemptEvidence, KnowledgeState, ReviewItem
+
+
+SCHEMA = """
+PRAGMA foreign_keys = ON;
+
+CREATE TABLE IF NOT EXISTS attempts (
+    id TEXT PRIMARY KEY,
+    student_id TEXT NOT NULL,
+    problem_id TEXT NOT NULL,
+    skill_id TEXT NOT NULL,
+    occurred_at TEXT NOT NULL,
+    correct INTEGER NOT NULL CHECK(correct IN (0, 1)),
+    purpose TEXT NOT NULL,
+    hint_level INTEGER,
+    answer_revealing_hint INTEGER NOT NULL DEFAULT 0 CHECK(answer_revealing_hint IN (0, 1)),
+    transfer INTEGER NOT NULL DEFAULT 0 CHECK(transfer IN (0, 1)),
+    misconception TEXT,
+    prerequisite_failure INTEGER NOT NULL DEFAULT 0 CHECK(prerequisite_failure IN (0, 1))
+);
+
+CREATE TABLE IF NOT EXISTS knowledge_states (
+    student_id TEXT NOT NULL,
+    skill_id TEXT NOT NULL,
+    mastery REAL NOT NULL,
+    confidence REAL NOT NULL,
+    independence REAL NOT NULL,
+    transfer REAL NOT NULL,
+    retention REAL NOT NULL,
+    evidence_count INTEGER NOT NULL,
+    updated_at TEXT,
+    PRIMARY KEY(student_id, skill_id)
+);
+
+CREATE TABLE IF NOT EXISTS review_queue (
+    student_id TEXT NOT NULL,
+    skill_id TEXT NOT NULL,
+    due_at TEXT NOT NULL,
+    reason TEXT NOT NULL,
+    PRIMARY KEY(student_id, skill_id)
+);
+"""
+
+
+class SQLiteLearningRepository:
+    def __init__(self, path: str | Path) -> None:
+        self.path = str(path)
+
+    def connect(self) -> sqlite3.Connection:
+        connection = sqlite3.connect(self.path)
+        connection.row_factory = sqlite3.Row
+        connection.execute("PRAGMA foreign_keys = ON")
+        return connection
+
+    def initialize(self) -> None:
+        with self.connect() as connection:
+            connection.executescript(SCHEMA)
+
+    def add_attempt(self, evidence: AttemptEvidence) -> None:
+        with self.connect() as connection:
+            connection.execute(
+                """INSERT INTO attempts
+                (id, student_id, problem_id, skill_id, occurred_at, correct, purpose,
+                 hint_level, answer_revealing_hint, transfer, misconception, prerequisite_failure)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                (
+                    evidence.id,
+                    evidence.student_id,
+                    evidence.problem_id,
+                    evidence.skill_id,
+                    evidence.occurred_at.isoformat(),
+                    int(evidence.correct),
+                    evidence.purpose,
+                    evidence.hint_level,
+                    int(evidence.answer_revealing_hint),
+                    int(evidence.transfer),
+                    evidence.misconception,
+                    int(evidence.prerequisite_failure),
+                ),
+            )
+
+    def save_state(self, state: KnowledgeState) -> None:
+        with self.connect() as connection:
+            connection.execute(
+                """INSERT INTO knowledge_states
+                (student_id, skill_id, mastery, confidence, independence, transfer,
+                 retention, evidence_count, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(student_id, skill_id) DO UPDATE SET
+                    mastery=excluded.mastery,
+                    confidence=excluded.confidence,
+                    independence=excluded.independence,
+                    transfer=excluded.transfer,
+                    retention=excluded.retention,
+                    evidence_count=excluded.evidence_count,
+                    updated_at=excluded.updated_at""",
+                (
+                    state.student_id, state.skill_id, state.mastery, state.confidence,
+                    state.independence, state.transfer, state.retention,
+                    state.evidence_count,
+                    state.updated_at.isoformat() if state.updated_at else None,
+                ),
+            )
+
+    def get_state(self, student_id: str, skill_id: str) -> KnowledgeState | None:
+        with self.connect() as connection:
+            row = connection.execute(
+                "SELECT * FROM knowledge_states WHERE student_id=? AND skill_id=?",
+                (student_id, skill_id),
+            ).fetchone()
+        if row is None:
+            return None
+        return KnowledgeState(
+            student_id=row["student_id"],
+            skill_id=row["skill_id"],
+            mastery=row["mastery"],
+            confidence=row["confidence"],
+            independence=row["independence"],
+            transfer=row["transfer"],
+            retention=row["retention"],
+            evidence_count=row["evidence_count"],
+            updated_at=datetime.fromisoformat(row["updated_at"]) if row["updated_at"] else None,
+        )
+
+    def save_review(self, item: ReviewItem) -> None:
+        with self.connect() as connection:
+            connection.execute(
+                """INSERT INTO review_queue (student_id, skill_id, due_at, reason)
+                VALUES (?, ?, ?, ?)
+                ON CONFLICT(student_id, skill_id) DO UPDATE SET
+                    due_at=excluded.due_at, reason=excluded.reason""",
+                (item.student_id, item.skill_id, item.due_at.isoformat(), item.reason),
+            )
+
+    def due_reviews(self, student_id: str, now: datetime) -> list[ReviewItem]:
+        with self.connect() as connection:
+            rows = connection.execute(
+                """SELECT * FROM review_queue
+                   WHERE student_id=? AND due_at<=?
+                   ORDER BY due_at""",
+                (student_id, now.isoformat()),
+            ).fetchall()
+        return [
+            ReviewItem(
+                student_id=row["student_id"],
+                skill_id=row["skill_id"],
+                due_at=datetime.fromisoformat(row["due_at"]),
+                reason=row["reason"],
+            )
+            for row in rows
+        ]
