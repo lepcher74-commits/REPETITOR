@@ -4,17 +4,17 @@ from pathlib import Path
 from repetitor.ai import SafeAIProvider
 from repetitor.application.session import LearningSessionService
 from repetitor.content import load_problems
+from repetitor.content.module import load_module_manifest
 from repetitor.domain import KnowledgeState
 from repetitor.persistence import SQLiteLearningRepository
 
 
 NOW = datetime(2026, 9, 30, 12, 0, tzinfo=timezone.utc)
-CONTENT = Path("content/mathematics/fractions/add_unlike/problems.yaml")
-SKILL = "math.g6.fractions.add_unlike"
-PREREQS = (
-    "math.g6.fractions.equivalent",
-    "math.g6.fractions.common_denominator",
-)
+BASE = Path("content/mathematics/fractions/add_unlike")
+MODULE = load_module_manifest(BASE / "module.yaml")
+CONTENT = BASE / "problems.yaml"
+SKILL = MODULE.primary_skill.id
+PREREQS = MODULE.prerequisites
 
 
 class BrokenProvider:
