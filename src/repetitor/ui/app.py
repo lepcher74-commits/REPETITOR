@@ -297,16 +297,8 @@ class RepetitorWindow(QMainWindow):
         elif decision.phase == "remediation":
             self.answer.setEnabled(False)
             self.feedback.setText(self.feedback.text() + "\n\n" + decision.message_ru)
-            if self.problem.id == "frac.add.probe.equivalent":
-                self._start_remediation(
-                    "math.g6.fractions.equivalent",
-                    "frac.add.probe.lcm",
-                )
-            elif self.problem.id == "frac.add.probe.lcm":
-                self._start_remediation(
-                    "math.prereq.lcm",
-                    "frac.add.guided.001",
-                )
+            if decision.remediation_skill_id:
+                self._start_remediation(decision.remediation_skill_id, "")
         else:
             self.answer.setEnabled(False)
             self.feedback.setText(self.feedback.text() + "\n\n" + decision.message_ru)
