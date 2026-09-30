@@ -11,9 +11,11 @@ from PySide6.QtWidgets import (
 )
 
 from repetitor.application.diagnostic import FractionDiagnosticRouter
+from repetitor.application.remediation import REMEDIATIONS
 from repetitor.application.session import LearningSessionService
 from repetitor.content import load_problems
 from repetitor.domain import KnowledgeState
+from repetitor.verification import verify_answer
 from repetitor.persistence import (
     SQLiteLearningRepository, SQLiteProfileRepository, StudentProfile,
 )
@@ -43,13 +45,16 @@ class RepetitorWindow(QMainWindow):
         self.router = FractionDiagnosticRouter()
         self.session = LearningSessionService(self.learning, {SKILL: PREREQS})
         self.hint_level: int | None = None
+        self.remediation_skill: str | None = None
+        self.return_problem_id: str | None = None
 
         self.stack = QStackedWidget()
         self.setCentralWidget(self.stack)
         self.onboarding = self._build_onboarding()
         self.diagnostic = self._build_diagnostic()
         self.progress = self._build_progress()
-        for page in (self.onboarding, self.diagnostic, self.progress):
+        self.remediation = self._build_remediation()
+        for page in (self.onboarding, self.diagnostic, self.remediation, self.progress):
             self.stack.addWidget(page)
 
         if self.profiles.get(STUDENT_ID):
@@ -122,6 +127,89 @@ class RepetitorWindow(QMainWindow):
         layout.addWidget(progress)
         layout.addStretch()
         return page
+
+    def _build_remediation(self) -> QWidget:
+        page, layout = self._page(
+            "Восстановим фундамент",
+            "Коротко разберём навык, который мешает двигаться дальше.",
+        )
+        self.remediation_title = QLabel()
+        self.remediation_title.setObjectName("problem")
+        self.remediation_explanation = QLabel()
+        self.remediation_explanation.setWordWrap(True)
+        self.remediation_prompt = QLabel()
+        self.remediation_prompt.setWordWrap(True)
+        self.remediation_answer = QLineEdit()
+        self.remediation_answer.returnPressed.connect(self._submit_remediation)
+        self.remediation_feedback = QLabel()
+        self.remediation_feedback.setWordWrap(True)
+        check = QPushButton("Проверить и вернуться")
+        check.clicked.connect(self._submit_remediation)
+        for widget in (
+            self.remediation_title, self.remediation_explanation,
+            self.remediation_prompt, self.remediation_answer,
+            self.remediation_feedback, check,
+        ):
+            layout.addWidget(widget)
+        layout.addStretch()
+        return page
+
+    def _start_remediation(self, skill_id: str, return_problem_id: str) -> None:
+        step = REMEDIATIONS.get(skill_id)
+        if step is None:
+            self.feedback.setText(
+                self.feedback.text() + "\n\nДля этого prerequisite контент remediation ещё не создан."
+            )
+            return
+        self.remediation_skill = skill_id
+        self.return_problem_id = return_problem_id
+        self.remediation_title.setText(step.title_ru)
+        self.remediation_explanation.setText(step.explanation_ru)
+        self.remediation_prompt.setText(step.prompt_ru)
+        self.remediation_answer.clear()
+        self.remediation_feedback.clear()
+        self.stack.setCurrentWidget(self.remediation)
+        self.remediation_answer.setFocus()
+
+    def _submit_remediation(self) -> None:
+        if not self.remediation_skill:
+            return
+        step = REMEDIATIONS[self.remediation_skill]
+        raw = self.remediation_answer.text().strip()
+        result = verify_answer(step.verifier, raw)
+        if not result.correct:
+            self.remediation_feedback.setText(
+                "Пока не получилось. Перечитай объяснение и попробуй ещё раз."
+            )
+            return
+
+        previous = self.learning.get_state(STUDENT_ID, step.skill_id)
+        if previous is None:
+            previous = KnowledgeState(STUDENT_ID, step.skill_id)
+        # A successful verified remediation exit is explicit evidence that the
+        # prerequisite is usable. [ASSUMPTION] MVP threshold/bootstrap value.
+        repaired = KnowledgeState(
+            student_id=previous.student_id,
+            skill_id=previous.skill_id,
+            mastery=max(previous.mastery, 0.55),
+            confidence=max(previous.confidence, 0.35),
+            independence=max(previous.independence, 0.25),
+            transfer=previous.transfer,
+            retention=previous.retention,
+            evidence_count=previous.evidence_count + 1,
+            updated_at=datetime.now(timezone.utc),
+        )
+        self.learning.save_state(repaired)
+        self.remediation_feedback.setText(step.success_message_ru)
+
+        if self.return_problem_id:
+            self.problem = self.problem_by_id[self.return_problem_id]
+            self.problem_label.setText(self.problem.prompt_ru)
+        self.answer.clear()
+        self.answer.setEnabled(True)
+        self.hint_level = None
+        self.stack.setCurrentWidget(self.diagnostic)
+        self.feedback.setText(step.success_message_ru)
 
     def _build_progress(self) -> QWidget:
         page, layout = self._page(
@@ -197,10 +285,17 @@ class RepetitorWindow(QMainWindow):
             self.feedback.setText(self.feedback.text() + "\n\n" + decision.message_ru)
         elif decision.phase == "remediation":
             self.answer.setEnabled(False)
-            self.feedback.setText(
-                self.feedback.text() + "\n\n" + decision.message_ru +
-                "\n\nРемедиационный урок для prerequisite будет подключён следующим инкрементом."
-            )
+            self.feedback.setText(self.feedback.text() + "\n\n" + decision.message_ru)
+            if self.problem.id == "frac.add.probe.equivalent":
+                self._start_remediation(
+                    "math.g6.fractions.equivalent",
+                    "frac.add.probe.lcm",
+                )
+            elif self.problem.id == "frac.add.probe.lcm":
+                self._start_remediation(
+                    "math.prereq.lcm",
+                    "frac.add.guided.001",
+                )
         else:
             self.answer.setEnabled(False)
             self.feedback.setText(self.feedback.text() + "\n\n" + decision.message_ru)
