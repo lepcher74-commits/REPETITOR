@@ -1,6 +1,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
+from typing import Any
+
+import yaml
 
 from repetitor.domain import Problem
 
@@ -12,115 +16,41 @@ class DiagnosticDecision:
     message_ru: str
 
 
-class FractionDiagnosticRouter:
-    """Deterministic reference router for the Stage-5 fractions slice.
+@dataclass(frozen=True, slots=True)
+class DiagnosticRule:
+    problem_id: str
+    when: dict[str, Any]
+    decision: DiagnosticDecision
 
-    It does not change KnowledgeState itself. Submitted problems still flow
-    through LearningSessionService; this router only chooses the next probe.
-    """
 
-    def decide(
-        self,
-        *,
-        problem: Problem,
-        correct: bool,
-        misconception_hypothesis: str | None,
-    ) -> DiagnosticDecision:
-        pid = problem.id
+class DiagnosticRouter:
+    """Generic declarative router. Subject-specific IDs live in content only."""
 
-        if pid == "frac.add.diag.001":
-            if correct:
-                return DiagnosticDecision(
-                    "frac.add.independent.001", "independent",
-                    "Базовая задача решена. Проверим самостоятельность на другом примере.",
-                )
-            if misconception_hypothesis == "add_denominators":
-                return DiagnosticDecision(
-                    "frac.add.probe.add_denominators", "misconception_probe",
-                    "Проверим одну возможную причину ошибки.",
-                )
-            return DiagnosticDecision(
-                "frac.add.probe.equivalent", "prerequisite_probe",
-                "Проверим навык, который нужен для сложения дробей.",
+    def __init__(self, rules: tuple[DiagnosticRule, ...], default: DiagnosticDecision, start_problem_id: str):
+        self.rules = rules
+        self.default = default
+        self.start_problem_id = start_problem_id
+
+    @classmethod
+    def from_yaml(cls, path: Path) -> "DiagnosticRouter":
+        data = yaml.safe_load(path.read_text(encoding="utf-8"))
+        def decision(raw):
+            return DiagnosticDecision(raw.get("next_problem_id"), str(raw["phase"]), str(raw["message_ru"]))
+        rules = tuple(
+            DiagnosticRule(
+                problem_id=str(raw["problem_id"]),
+                when=dict(raw.get("when", {})),
+                decision=decision(raw),
             )
+            for raw in data["rules"]
+        )
+        return cls(rules, decision(data["default"]), str(data["start_problem_id"]))
 
-        if pid == "frac.add.probe.add_denominators":
-            if correct:
-                return DiagnosticDecision(
-                    "frac.add.probe.equivalent", "prerequisite_probe",
-                    "Хорошо. Теперь проверим эквивалентные дроби.",
-                )
-            return DiagnosticDecision(
-                "frac.add.probe.equivalent", "prerequisite_probe",
-                "Эта идея требует разбора. Сначала проверим фундаментальный навык.",
-            )
-
-        if pid == "frac.add.probe.equivalent":
-            if correct:
-                return DiagnosticDecision(
-                    "frac.add.probe.lcm", "prerequisite_probe",
-                    "Эквивалентные дроби понятны. Проверим общий кратный.",
-                )
-            return DiagnosticDecision(
-                None, "remediation",
-                "Нашли более ранний пробел: сначала восстановим эквивалентные дроби.",
-            )
-
-        if pid == "frac.add.probe.lcm":
-            if correct:
-                return DiagnosticDecision(
-                    "frac.add.guided.001", "guided",
-                    "Пререквизиты готовы. Разберём сложение с поддержкой.",
-                )
-            return DiagnosticDecision(
-                None, "remediation",
-                "Сначала восстановим поиск общего кратного, затем вернёмся к дробям.",
-            )
-
-        if pid == "frac.add.guided.001":
-            return DiagnosticDecision(
-                "frac.add.independent.001", "independent",
-                "Теперь попробуй похожую задачу самостоятельно.",
-            )
-
-        if pid == "frac.add.independent.001":
-            if correct:
-                return DiagnosticDecision(
-                    "frac.add.independent.002", "independent",
-                    "Ещё одна самостоятельная задача для устойчивого evidence.",
-                )
-            return DiagnosticDecision(
-                "frac.add.guided.001", "guided",
-                "Вернём немного поддержки и затем попробуем снова.",
-            )
-
-        if pid == "frac.add.independent.002":
-            if correct:
-                return DiagnosticDecision(
-                    "frac.add.transfer.001", "transfer",
-                    "Вычисления получаются. Проверим применение в новой ситуации.",
-                )
-            return DiagnosticDecision(
-                "frac.add.guided.001", "guided",
-                "Нужна дополнительная практика с поддержкой.",
-            )
-
-        if pid == "frac.add.transfer.001":
-            if correct:
-                return DiagnosticDecision(
-                    "frac.add.transfer.002", "reverse_transfer",
-                    "Перенос получился. Теперь обратная задача.",
-                )
-            return DiagnosticDecision(
-                "frac.add.independent.002", "independent",
-                "Вернёмся на один шаг и укрепим выбор способа.",
-            )
-
-        if pid == "frac.add.transfer.002":
-            return DiagnosticDecision(
-                None, "complete" if correct else "transfer",
-                "Диагностический маршрут завершён." if correct
-                else "Обратные задачи пока требуют отдельной тренировки.",
-            )
-
-        return DiagnosticDecision(None, "complete", "Маршрут для этой задачи завершён.")
+    def decide(self, *, problem: Problem, correct: bool, misconception_hypothesis: str | None) -> DiagnosticDecision:
+        facts = {"correct": correct, "misconception": misconception_hypothesis}
+        for rule in self.rules:
+            if rule.problem_id != problem.id:
+                continue
+            if all(facts.get(key) == value for key, value in rule.when.items()):
+                return rule.decision
+        return self.default
