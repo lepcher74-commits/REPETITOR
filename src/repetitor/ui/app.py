@@ -11,11 +11,10 @@ from PySide6.QtWidgets import (
 )
 
 from repetitor.application.diagnostic import FractionDiagnosticRouter
-from repetitor.application.remediation import REMEDIATIONS
+from repetitor.application.remediation import load_remediations
 from repetitor.application.session import LearningSessionService
 from repetitor.content import load_problems
 from repetitor.domain import KnowledgeState
-from repetitor.verification import verify_answer
 from repetitor.persistence import (
     SQLiteLearningRepository, SQLiteProfileRepository, StudentProfile,
 )
@@ -40,6 +39,7 @@ class RepetitorWindow(QMainWindow):
         self.profiles.initialize()
 
         self.problems = load_problems(content_dir / "problems.yaml")
+        self.remediations = load_remediations(content_dir / "remediation.yaml")
         self.problem_by_id = {p.id: p for p in self.problems}
         self.problem = self.problem_by_id["frac.add.diag.001"]
         self.router = FractionDiagnosticRouter()
@@ -155,7 +155,7 @@ class RepetitorWindow(QMainWindow):
         return page
 
     def _start_remediation(self, skill_id: str, return_problem_id: str) -> None:
-        step = REMEDIATIONS.get(skill_id)
+        step = self.remediations.get(skill_id)
         if step is None:
             self.feedback.setText(
                 self.feedback.text() + "\n\nДля этого prerequisite контент remediation ещё не создан."
@@ -165,7 +165,7 @@ class RepetitorWindow(QMainWindow):
         self.return_problem_id = return_problem_id
         self.remediation_title.setText(step.title_ru)
         self.remediation_explanation.setText(step.explanation_ru)
-        self.remediation_prompt.setText(step.prompt_ru)
+        self.remediation_prompt.setText(step.problem.prompt_ru)
         self.remediation_answer.clear()
         self.remediation_feedback.clear()
         self.stack.setCurrentWidget(self.remediation)
@@ -174,33 +174,24 @@ class RepetitorWindow(QMainWindow):
     def _submit_remediation(self) -> None:
         if not self.remediation_skill:
             return
-        step = REMEDIATIONS[self.remediation_skill]
+        step = self.remediations[self.remediation_skill]
         raw = self.remediation_answer.text().strip()
-        result = verify_answer(step.verifier, raw)
+        outcome = self.session.submit(
+            student_id=STUDENT_ID,
+            problem=step.problem,
+            answer=raw,
+            occurred_at=datetime.now(timezone.utc),
+        )
+        result = outcome.verification
         if not result.correct:
             self.remediation_feedback.setText(
                 "Пока не получилось. Перечитай объяснение и попробуй ещё раз."
             )
             return
 
-        previous = self.learning.get_state(STUDENT_ID, step.skill_id)
-        if previous is None:
-            previous = KnowledgeState(STUDENT_ID, step.skill_id)
-        # A successful verified remediation exit is explicit evidence that the
-        # prerequisite is usable. [ASSUMPTION] MVP threshold/bootstrap value.
-        repaired = KnowledgeState(
-            student_id=previous.student_id,
-            skill_id=previous.skill_id,
-            mastery=max(previous.mastery, 0.55),
-            confidence=max(previous.confidence, 0.35),
-            independence=max(previous.independence, 0.25),
-            transfer=previous.transfer,
-            retention=previous.retention,
-            evidence_count=previous.evidence_count + 1,
-            updated_at=datetime.now(timezone.utc),
+        self.remediation_feedback.setText(
+            "Верно. Навык подтверждён проверяемым evidence; возвращаемся к основному маршруту."
         )
-        self.learning.save_state(repaired)
-        self.remediation_feedback.setText(step.success_message_ru)
 
         if self.return_problem_id:
             self.problem = self.problem_by_id[self.return_problem_id]
