@@ -1,0 +1,39 @@
+policy: fraction_standard_v0
+status: assumption_until_tested
+
+events:
+  diagnostic_correct_no_hint:
+    mastery: strong_positive
+    independence: strong_positive
+    confidence: positive
+
+  guided_correct_after_hint_1:
+    mastery: positive
+    independence: neutral
+
+  correct_after_worked_step:
+    mastery: weak_positive
+    independence: negative
+
+  independent_correct:
+    mastery: strong_positive
+    independence: strong_positive
+
+  transfer_correct:
+    mastery: positive
+    transfer: strong_positive
+
+  confirmed_misconception:
+    mastery: negative
+    confidence: positive
+    attach_error_pattern: true
+
+  prerequisite_failure:
+    target_current_skill: no_direct_penalty
+    route_to_prerequisite: true
+
+rules:
+  - "Response duration alone never lowers mastery."
+  - "A single wrong answer does not establish a misconception."
+  - "Answer-revealing help prevents independent-mastery evidence for that attempt."
+  - "Transfer evidence is recorded separately from routine mastery."
