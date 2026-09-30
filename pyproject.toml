@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "repetitor"
+version = "0.1.0"
+description = "Offline-first adaptive desktop tutor"
+requires-python = ">=3.12"
+dependencies = [
+  "PySide6>=6.7,<7",
+  "PyYAML>=6.0,<7",
+  "sympy>=1.13,<2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<9",
+]
+
+[project.scripts]
+repetitor = "repetitor.__main__:main"
+repetitor-validate-content = "repetitor.content.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
