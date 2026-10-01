@@ -288,7 +288,18 @@ class RepetitorWindow(QMainWindow):
             misconception_hypothesis=outcome.misconception_hypothesis,
         )
         self._refresh_progress()
-        if decision.next_problem_id:
+        review_problem_id = self.module.review_problem_by_skill.get(
+            outcome.next_activity.skill_id
+        )
+        if outcome.next_activity.kind == "review" and review_problem_id:
+            self.problem = self.problem_by_id[review_problem_id]
+            self.problem_label.setText(self.problem.prompt_ru)
+            self.answer.clear()
+            self.hint_level = None
+            self.feedback.setText(
+                self.feedback.text() + "\n\nПора коротко повторить этот навык."
+            )
+        elif decision.next_problem_id:
             self.problem = self.problem_by_id[decision.next_problem_id]
             self.problem_label.setText(self.problem.prompt_ru)
             self.answer.clear()
