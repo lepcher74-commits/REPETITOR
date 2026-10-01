@@ -10,9 +10,8 @@ objectives:
   - "Объяснять, почему знаменатели нельзя складывать напрямую."
 prerequisites:
   - math.g6.fractions.equivalent
-  - math.g6.fractions.common_denominator
-secondary_prerequisites:
   - math.prereq.lcm
+secondary_prerequisites: []
 mastery_policy: fraction_standard_v0
 misconceptions:
   - add_denominators
