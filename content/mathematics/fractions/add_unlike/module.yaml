@@ -16,5 +16,8 @@ goals:
 routes:
   diagnostic: diagnostic_route.yaml
   remediation: remediation.yaml
-review_problem_by_skill:
-  math.g6.fractions.add_unlike: frac.add.review.001
+review_problems_by_skill:
+  math.g6.fractions.add_unlike:
+    - frac.add.review.001
+    - frac.add.review.002
+    - frac.add.review.003
