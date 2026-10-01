@@ -63,3 +63,21 @@ problems:
       type: rational_equivalence
       expected: "2/3"
       require_simplified: true
+
+  - id: frac.simplify.review.002
+    primary_skill: math.g6.fractions.simplify
+    purpose: review
+    prompt_ru: "Без подсказки сократи 36/54 до несократимой."
+    verifier:
+      type: rational_equivalence
+      expected: "2/3"
+      require_simplified: true
+
+  - id: frac.simplify.review.003
+    primary_skill: math.g6.fractions.simplify
+    purpose: review
+    prompt_ru: "Без подсказки сократи 45/60 до несократимой."
+    verifier:
+      type: rational_equivalence
+      expected: "3/4"
+      require_simplified: true
