@@ -3,6 +3,7 @@ from pathlib import Path
 
 from PySide6.QtWidgets import QApplication
 
+from repetitor.persistence import StudentProfile
 from repetitor.ui.app import RepetitorWindow
 
 
