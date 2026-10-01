@@ -94,10 +94,12 @@ def test_ca11_ca12_ca16_ca17_evidence_and_progression():
     assert "review" in purposes
     assert any(p.transfer for p in problems)
     assert "guided" in purposes and "independent" in purposes
-    for skill_id, problem_id in module.review_problem_by_skill.items():
-        p = next(p for p in problems if p.id == problem_id)
-        assert p.primary_skill == skill_id
-        assert p.purpose == "review"
+    for skill_id, problem_ids in module.review_problems_by_skill.items():
+        assert problem_ids
+        for problem_id in problem_ids:
+            p = next(p for p in problems if p.id == problem_id)
+            assert p.primary_skill == skill_id
+            assert p.purpose == "review"
 
 
 def test_ca13_hints_progress_and_ca14_misconceptions_require_confirmation():
