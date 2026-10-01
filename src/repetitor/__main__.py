@@ -3,6 +3,8 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
+from repetitor.runtime_paths import default_content_dir
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="REPETITOR adaptive desktop tutor")
@@ -10,7 +12,7 @@ def main() -> int:
     parser.add_argument(
         "--content-dir",
         type=Path,
-        default=Path("content/mathematics/fractions/add_unlike"),
+        default=default_content_dir(),
     )
     args = parser.parse_args()
 
