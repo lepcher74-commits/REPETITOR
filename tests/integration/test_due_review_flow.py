@@ -42,8 +42,8 @@ def test_ac08_due_review_is_selected_completed_and_rescheduled(tmp_path):
     assert trigger.next_activity.kind == "review"
     assert trigger.next_activity.skill_id == module.primary_skill.id
 
-    review_id = module.review_problem_by_skill[trigger.next_activity.skill_id]
-    review = problems[review_id]
+    review_ids = module.review_problems_by_skill[trigger.next_activity.skill_id]
+    review = problems[review_ids[0]]
     assert review.purpose == "review"
 
     before = repo.get_state("student", module.primary_skill.id)
