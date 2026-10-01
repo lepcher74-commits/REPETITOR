@@ -6,7 +6,7 @@ import yaml
 from repetitor.application.diagnostic import DiagnosticRouter
 from repetitor.application.remediation import load_remediations
 from repetitor.content import load_problems, load_skill
-from repetitor.content.module import load_module_manifest
+from repetitor.content.module import load_module_manifest, load_sequence_problems
 from repetitor.verification import verify_answer
 
 
@@ -88,16 +88,23 @@ def test_ca05_ca06_ca07_ca08_ca09_schema_and_verification_integrity():
 
 def test_ca11_ca12_ca16_ca17_evidence_and_progression():
     module = load_module_manifest(BASE / "module.yaml")
-    problems = load_problems(BASE / "problems.yaml")
-    purposes = {p.purpose for p in problems}
+    primary_problems = load_problems(BASE / "problems.yaml")
+    purposes = {p.purpose for p in primary_problems}
     assert "independent" in purposes
     assert "review" in purposes
-    assert any(p.transfer for p in problems)
+    assert any(p.transfer for p in primary_problems)
     assert "guided" in purposes and "independent" in purposes
+
+    sequence_pools = load_sequence_problems(module, Path("content"))
+    sequence_problems = {
+        p.id: p
+        for pool in sequence_pools.values()
+        for p in pool
+    }
     for skill_id, problem_ids in module.review_problems_by_skill.items():
         assert problem_ids
         for problem_id in problem_ids:
-            p = next(p for p in problems if p.id == problem_id)
+            p = sequence_problems[problem_id]
             assert p.primary_skill == skill_id
             assert p.purpose == "review"
 
