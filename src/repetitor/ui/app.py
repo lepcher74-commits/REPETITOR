@@ -166,10 +166,21 @@ class RepetitorWindow(QMainWindow):
             return
         self.remediation_skill = skill_id
         self.return_problem_id = step.return_problem_id
-        self.remediation_index = 0
+        attempted = self.learning.attempted_problem_ids(STUDENT_ID, skill_id)
+        fresh = select_fresh_problem(step.problems, attempted)
+        if fresh is None:
+            self.remediation_answer.setEnabled(False)
+            self.remediation_feedback.setText(
+                "Все подготовленные варианты этого навыка уже использованы. "
+                "Не будем повтором повышать оценку; нужен новый вариант."
+            )
+            self.stack.setCurrentWidget(self.remediation)
+            return
+        self.remediation_index = step.problems.index(fresh)
+        self.remediation_answer.setEnabled(True)
         self.remediation_title.setText(step.title_ru)
         self.remediation_explanation.setText(step.explanation_ru)
-        self.remediation_prompt.setText(step.problems[0].prompt_ru)
+        self.remediation_prompt.setText(fresh.prompt_ru)
         self.remediation_answer.clear()
         self.remediation_feedback.clear()
         self.stack.setCurrentWidget(self.remediation)
@@ -194,12 +205,14 @@ class RepetitorWindow(QMainWindow):
             return
 
         state = self.learning.get_state(STUDENT_ID, step.skill_id)
-        self.remediation_index += 1
-        if self.remediation_index < len(step.problems):
+        attempted = self.learning.attempted_problem_ids(STUDENT_ID, step.skill_id)
+        fresh = select_fresh_problem(step.problems, attempted)
+        if fresh is not None:
+            self.remediation_index = step.problems.index(fresh)
             self.remediation_answer.clear()
-            self.remediation_prompt.setText(step.problems[self.remediation_index].prompt_ru)
+            self.remediation_prompt.setText(fresh.prompt_ru)
             self.remediation_feedback.setText(
-                "Верно. Это одно evidence; нужна ещё проверка, прежде чем возвращаться."
+                "Верно. Это одно evidence; следующая проверка будет на новом варианте."
             )
             return
 
