@@ -1,9 +1,21 @@
 from __future__ import annotations
 
 import argparse
+import os
+from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 
 from repetitor.runtime_paths import default_content_dir
+
+
+
+def build_info() -> str:
+    try:
+        app_version = version("repetitor")
+    except PackageNotFoundError:
+        app_version = "0+unknown"
+    build_sha = os.environ.get("REPETITOR_BUILD_SHA", "development")
+    return f"REPETITOR {app_version} build {build_sha}"
 
 
 def smoke_test(content_dir: Path) -> int:
@@ -30,7 +42,13 @@ def main() -> int:
         default=default_content_dir(),
     )
     parser.add_argument("--smoke-test", action="store_true")
+    parser.add_argument("--version", action="store_true")
+    parser.add_argument("--build-info", action="store_true")
     args = parser.parse_args()
+
+    if args.version or args.build_info:
+        print(build_info())
+        return 0
 
     if args.smoke_test:
         return smoke_test(args.content_dir)
