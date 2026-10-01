@@ -17,6 +17,7 @@ from repetitor.application.session import LearningSessionService
 from repetitor.content import load_problems
 from repetitor.content.module import load_module_manifest
 from repetitor.domain import KnowledgeState
+from repetitor.diagnostics import record_startup_failure
 from repetitor.persistence import (
     SQLiteLearningRepository, SQLiteProfileRepository, StudentProfile,
 )
@@ -416,7 +417,8 @@ def run(data_dir: Path, content_dir: Path) -> int:
     """)
     try:
         window = create_window(data_dir, content_dir)
-    except Exception:
+    except Exception as exc:
+        record_startup_failure(data_dir, exc)
         QMessageBox.critical(
             None,
             "REPETITOR — ошибка запуска",
