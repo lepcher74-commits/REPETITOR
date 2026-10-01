@@ -1,0 +1,56 @@
+name: Pilot Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "content/**"
+      - "pyproject.toml"
+      - ".github/workflows/pilot-build.yml"
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            artifact: repetitor-windows
+            sep: ";"
+          - os: macos-latest
+            artifact: repetitor-macos
+            sep: ":"
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install . pyinstaller
+
+      - name: Build pilot bundle
+        shell: bash
+        run: |
+          pyinstaller --noconfirm --clean --onedir --name REPETITOR --add-data "content${{ matrix.sep }}content" src/repetitor/__main__.py
+
+      - name: Verify bundled offline content
+        shell: bash
+        run: |
+          test -d dist/REPETITOR
+          test -f dist/REPETITOR/_internal/content/mathematics/fractions/add_unlike/module.yaml || test -f dist/REPETITOR/content/mathematics/fractions/add_unlike/module.yaml
+          test -f dist/REPETITOR/_internal/content/mathematics/fractions/add_unlike/problems.yaml || test -f dist/REPETITOR/content/mathematics/fractions/add_unlike/problems.yaml
+
+      - name: Upload unsigned pilot artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: dist/REPETITOR
+          if-no-files-found: error
+          retention-days: 14
