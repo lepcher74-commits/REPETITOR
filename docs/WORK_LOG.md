@@ -47,12 +47,13 @@
 12. После расширения review manifest старый CA acceptance test искал все review IDs только в add_unlike/problems.yaml и падал StopIteration (1 failed, 104 passed). Это test defect: multi-skill manifest должен разрешаться по full sequence pools. Исправлено commit ba57526... через load_sequence_problems(module, Path("content")).
 13. PR-13 подтверждён свежим полным CI 36859274736 SUCCESS после bundled provenance, review pools и acceptance-test fix. Старый regression evidence больше не используется.
 14. Packaged smoke ранее проверял только historical add_unlike slice. Исправлено commit 7c7e661...: smoke загружает всю learning_sequence и declared prerequisite DAG; commit cadf1dd... добавляет fail-closed regression при отсутствующем sequence content. Новый CI/Pilot Build ожидается; прежний artifact PASS не переносится автоматически на этот HEAD.
+15. Повторная архитектурная проверка выявила production defect: DiagnosticRouter default применялся к sequence problems вне исходного diagnostic route и мог преждевременно отключить ввод. Исправлено commits 8140dca.../986c03a...: router exposes handles(problem_id), а sequence-only tasks остаются под Next-Step Engine. Regression test 09161c4.... Из-за production code change PR-13 и PR-14 требуют нового CI; прежний green regression не переносится.
 
 ### Текущая работа
 
 **Build provenance / E8.1 / PR-01, PR-02, PR-14**
 
-Provenance: PASS — Pilot Build 36858892837. PR-13 regressions: PASS — CI 36859274736. Автоматические технические критерии PR-01–07, PR-09, PR-11–13 имеют evidence; PR-08/PR-10 остаются ручными/операционными, PR-14 финальным gate.
+Provenance mechanism previously PASS — Pilot Build 36858892837. После runtime fix 986c03a... текущий HEAD требует нового CI/Pilot Build; PR-13 временно IN PROGRESS. PR-08/PR-10 остаются ручными/операционными, PR-14 финальным gate.
 
 Нужно:
 1. Дождаться CI contract test review pools на 8051be7... или новее.
