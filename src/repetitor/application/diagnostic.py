@@ -59,6 +59,10 @@ class DiagnosticRouter:
         )
         return cls(rules, decision(data["default"]), str(data["start_problem_id"]))
 
+    def handles(self, problem_id: str) -> bool:
+        """Return whether this declarative diagnostic route owns the problem."""
+        return any(rule.problem_id == problem_id for rule in self.rules)
+
     def decide(
         self,
         *,
