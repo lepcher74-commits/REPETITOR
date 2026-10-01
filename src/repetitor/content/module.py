@@ -67,3 +67,13 @@ def load_sequence_problems(module: ModuleManifest, content_root: Path):
             raise ValueError(f"Learning sequence references unknown skill: {skill_id}")
         pools[skill_id] = load_problems(directories[skill_id] / "problems.yaml")
     return pools
+
+
+def next_sequence_skill(module: ModuleManifest, current_skill_id: str) -> str | None:
+    """Return the next declared learner skill, if the current one is in the sequence."""
+    try:
+        index = module.learning_sequence.index(current_skill_id)
+    except ValueError:
+        return None
+    next_index = index + 1
+    return module.learning_sequence[next_index] if next_index < len(module.learning_sequence) else None
