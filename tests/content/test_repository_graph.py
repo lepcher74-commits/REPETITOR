@@ -13,7 +13,7 @@ def write_skill(root: Path, folder: str, skill_id: str, prerequisites=()):
         "subject": "mathematics",
         "grade_band": "middle",
         "module": "test",
-        "title": skill_id,
+        "title_ru": skill_id,
         "objectives": ["test objective"],
         "prerequisites": list(prerequisites),
         "mastery_policy": "fraction_standard",
