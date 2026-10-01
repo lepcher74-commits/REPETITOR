@@ -38,6 +38,15 @@ CREATE TABLE IF NOT EXISTS knowledge_states (
     PRIMARY KEY(student_id, skill_id)
 );
 
+CREATE TABLE IF NOT EXISTS session_state (
+    student_id TEXT PRIMARY KEY,
+    module_id TEXT NOT NULL,
+    problem_id TEXT,
+    phase TEXT NOT NULL,
+    remediation_skill_id TEXT,
+    updated_at TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS review_queue (
     student_id TEXT NOT NULL,
     skill_id TEXT NOT NULL,
@@ -172,6 +181,35 @@ class SQLiteLearningRepository:
             updated_at=datetime.fromisoformat(row["updated_at"]) if row["updated_at"] else None,
         )
 
+
+
+    def save_session_state(
+        self,
+        student_id: str,
+        module_id: str,
+        problem_id: str | None,
+        phase: str,
+        remediation_skill_id: str | None,
+        updated_at: datetime,
+    ) -> None:
+        with self.connect() as connection:
+            connection.execute(
+                """INSERT INTO session_state
+                (student_id, module_id, problem_id, phase, remediation_skill_id, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?)
+                ON CONFLICT(student_id) DO UPDATE SET
+                    module_id=excluded.module_id, problem_id=excluded.problem_id,
+                    phase=excluded.phase, remediation_skill_id=excluded.remediation_skill_id,
+                    updated_at=excluded.updated_at""",
+                (student_id, module_id, problem_id, phase, remediation_skill_id, updated_at.isoformat()),
+            )
+
+    def get_session_state(self, student_id: str) -> dict[str, str | None] | None:
+        with self.connect() as connection:
+            row = connection.execute(
+                "SELECT * FROM session_state WHERE student_id=?", (student_id,)
+            ).fetchone()
+        return dict(row) if row is not None else None
 
     def attempted_problem_ids(self, student_id: str, skill_id: str | None = None) -> set[str]:
         query = "SELECT DISTINCT problem_id FROM attempts WHERE student_id=?"
