@@ -107,9 +107,9 @@ class RepetitorWindow(QMainWindow):
             "Начнём учиться",
             "Три решения — и сразу короткая диагностика. Настройки можно уточнить позже.",
         )
-        self.subject = QComboBox(); self.subject.addItem(self.module.subject.title_ru, self.module.subject.id)
-        self.grade = QComboBox(); self.grade.addItem(f"{self.module.grade} класс", self.module.grade)
-        self.goal = QComboBox()
+        self.subject = QComboBox(); self.subject.setAccessibleName("Предмет"); self.subject.addItem(self.module.subject.title_ru, self.module.subject.id)
+        self.grade = QComboBox(); self.grade.setAccessibleName("Класс"); self.grade.addItem(f"{self.module.grade} класс", self.module.grade)
+        self.goal = QComboBox(); self.goal.setAccessibleName("Цель обучения")
         for goal in self.module.goals:
             self.goal.addItem(goal.title_ru, goal.id)
         for label, widget in (
@@ -132,6 +132,7 @@ class RepetitorWindow(QMainWindow):
         self.problem_label = QLabel(self.problem.prompt_ru)
         self.problem_label.setObjectName("problem")
         self.answer = QLineEdit()
+        self.answer.setAccessibleName("Ответ на текущую задачу")
         self.answer.setPlaceholderText("Например: 5/6")
         self.answer.returnPressed.connect(self._submit)
         self.feedback = QLabel("")
@@ -167,6 +168,7 @@ class RepetitorWindow(QMainWindow):
         self.remediation_prompt = QLabel()
         self.remediation_prompt.setWordWrap(True)
         self.remediation_answer = QLineEdit()
+        self.remediation_answer.setAccessibleName("Ответ на восстановительную задачу")
         self.remediation_answer.returnPressed.connect(self._submit_remediation)
         self.remediation_feedback = QLabel()
         self.remediation_feedback.setWordWrap(True)
