@@ -1,0 +1,13 @@
+id: math.g6.fractions.simplify
+subject: mathematics
+grade_band: middle
+module: fractions
+title_ru: "Сокращение дробей"
+objectives:
+  - "сокращать числитель и знаменатель на общий делитель, сохраняя значение дроби"
+  - "получать несократимую форму дроби"
+prerequisites:
+  - math.g6.fractions.equivalent
+mastery_policy: fraction_standard
+misconceptions: []
+tags: [fractions, reduction]
