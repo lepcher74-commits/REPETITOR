@@ -269,7 +269,10 @@ class RepetitorWindow(QMainWindow):
             answer=raw,
             occurred_at=datetime.now(timezone.utc),
             hint_level=self.hint_level,
-            answer_revealing_hint=False,
+            answer_revealing_hint=any(
+                hint.level == self.hint_level and hint.answer_revealing
+                for hint in self.problem.hints
+            ),
         )
         if outcome.verification.correct:
             self.feedback.setText("Верно. Я учту, что ты решил эту задачу самостоятельно.")
