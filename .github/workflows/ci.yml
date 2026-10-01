@@ -31,6 +31,9 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install PyYAML sympy pytest PySide6
 
+      - name: Compile Python sources
+        run: python -m compileall -q src tests
+
       - name: Run tests
         env:
           PYTHONPATH: src
