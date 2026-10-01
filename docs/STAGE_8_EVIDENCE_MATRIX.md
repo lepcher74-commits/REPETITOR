@@ -20,7 +20,7 @@ Status vocabulary:
 | PR-08 automated accessibility green; manual results/limits recorded | BLOCKED | automated checks green; `ACCESSIBILITY_PILOT_AUDIT_RECORD.md` explicitly leaves target OS/AT manual checks NOT TESTED |
 | PR-09 privacy/data-flow inventory documented/checked | PASS | `PRIVACY_CHILD_SAFETY_REVIEW.md`; current default core has no required production network AI provider |
 | PR-10 child-safety release checklist documented | PASS (documentation) / BLOCKED (pilot operation) | checklist exists; guardian/consent, retention/deletion and manual content/accessibility items remain operator gates |
-| PR-11 pilot curriculum multiple connected grade-6 fraction skills through generic architecture | PASS | equivalent fractions, simplification, addition unlike denominators, subtraction unlike denominators; generic loaders/verifiers/tests |
+| PR-11 pilot curriculum multiple connected grade-6 fraction skills through generic architecture | BLOCKED | multiple connected skills exist and are graph/content validated, but the current learner-facing module/diagnostic route still drives only the add-unlike slice; new skills are not yet reachable as a coherent pilot route |
 | PR-12 pilot protocol/measurement plan before real-user pilot | PASS | `PILOT_PROTOCOL.md`; measures, minimization, incidents, stop conditions and interpretation limits pre-defined |
 | PR-13 all Stage 5–7 regressions green | PASS | current CI run 36854206168 success after all Stage 8 changes |
 | PR-14 final pilot candidate commit passes supported CI/release matrix | BLOCKED | baseline CI is green, but a final candidate cannot be declared until PR-08 and operational PR-10 blockers are resolved and the resulting final SHA is re-run |
@@ -29,7 +29,7 @@ Status vocabulary:
 
 Stage 8 is **not closed**.
 
-Repository/automation evidence is strong enough for PR-01–07, PR-09, PR-11–13. The remaining release blockers are deliberately human/operational:
+Repository/automation evidence is strong enough for PR-01–07, PR-09, PR-12–13. PR-11 remains blocked until the expanded skills are learner-reachable through the generic module/routing architecture. The remaining release blockers are deliberately human/operational:
 1. complete `PILOT_MANUAL_GATE_RECORD.md` for the intended Windows/macOS environment and assistive technology;
 2. resolve pilot jurisdiction/operator/participant authorization and guardian/consent requirements in that record;
 3. complete `PILOT_DATA_OPERATIONS_TEMPLATE.md` with actual retention/deletion procedure and support contact;
