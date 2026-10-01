@@ -23,6 +23,7 @@ class ModuleManifest:
     diagnostic_route: str
     remediation_route: str
     review_problems_by_skill: dict[str, tuple[str, ...]]
+    learning_sequence: tuple[str, ...]
 
 
 def load_module_manifest(path: Path) -> ModuleManifest:
@@ -40,4 +41,5 @@ def load_module_manifest(path: Path) -> ModuleManifest:
             str(k): tuple(str(problem_id) for problem_id in v)
             for k, v in raw.get("review_problems_by_skill", {}).items()
         },
+        learning_sequence=tuple(str(x) for x in raw.get("learning_sequence", ())),
     )
