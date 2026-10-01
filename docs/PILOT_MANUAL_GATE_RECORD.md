@@ -1,7 +1,7 @@
 # Pilot manual gate record
 
-Candidate SHA: [FILL BEFORE TEST]
-Date: [YYYY-MM-DD]
+Candidate SHA: `87eceb5ca1e48bdd52943f65b594495d25af6998`
+Date: 2026-10-01
 Reviewer/operator: [ROLE OR IDENTIFIER]
 Pilot jurisdiction: [FILL]
 Intended participant age range: [FILL]
@@ -44,7 +44,7 @@ Reviewer reads every learner-visible prompt, hint, explanation and feedback in t
 | Support contact defined | NOT TESTED | [FILL] |
 | Local-data retention period defined | NOT TESTED | [FILL] |
 | Withdrawal/deletion procedure defined | NOT TESTED | [FILL] |
-| No unreviewed production network AI provider enabled | NOT TESTED | [FILL] |
+| No unreviewed production network AI provider enabled | PASS | Candidate 87eceb5... configures no production network AI provider; default core is offline |
 
 ## Release decision
 
