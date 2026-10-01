@@ -1,0 +1,53 @@
+# Pilot manual gate record
+
+Candidate SHA: [FILL BEFORE TEST]
+Date: [YYYY-MM-DD]
+Reviewer/operator: [ROLE OR IDENTIFIER]
+Pilot jurisdiction: [FILL]
+Intended participant age range: [FILL]
+
+Use PASS, FAIL, or NOT TESTED. A NOT TESTED or FAIL required row blocks pilot release.
+
+## Accessibility
+
+| Check | Windows result | macOS result | Notes / reproduction |
+|---|---|---|---|
+| Keyboard-only onboarding → diagnostic → answer → progress | NOT TESTED | NOT TESTED | |
+| Narrator / VoiceOver announces actionable control names | NOT TESTED | NOT TESTED | |
+| Focus order is understandable | NOT TESTED | NOT TESTED | |
+| Feedback is discoverable without relying on color alone | NOT TESTED | NOT TESTED | |
+| 200% text scaling remains operable/readable | NOT TESTED | NOT TESTED | |
+| Visible keyboard focus is sufficient | NOT TESTED | NOT TESTED | |
+
+Record OS version and AT/version used:
+- Windows: [FILL]
+- macOS: [FILL]
+
+## Complete pilot-content age review
+
+Reviewer reads every learner-visible prompt, hint, explanation and feedback in the pilot content/build.
+
+| Check | Result | Notes |
+|---|---|---|
+| Language is understandable for intended grade/age | NOT TESTED | |
+| No unsafe, humiliating, manipulative or age-inappropriate wording | NOT TESTED | |
+| Hints do not falsely present unsupported claims as facts | NOT TESTED | |
+| Mathematical authored answers were already formally checked; reviewer found no semantic ambiguity that makes a task unfair | NOT TESTED | |
+| No engagement mechanic pressures the child to continue | NOT TESTED | |
+
+## Authorization and privacy operations
+
+| Requirement | Result | Recorded decision |
+|---|---|---|
+| Operator/controller role identified | NOT TESTED | [FILL] |
+| Applicable participant/guardian authorization process defined | NOT TESTED | [FILL] |
+| Support contact defined | NOT TESTED | [FILL] |
+| Local-data retention period defined | NOT TESTED | [FILL] |
+| Withdrawal/deletion procedure defined | NOT TESTED | [FILL] |
+| No unreviewed production network AI provider enabled | NOT TESTED | [FILL] |
+
+## Release decision
+
+Manual gate: [BLOCKED / PASS]
+
+A PASS here is an operational pilot decision for the stated environment only. It is not a legal-compliance, accessibility-conformance, educational-efficacy, signing or notarization certification.
