@@ -2,6 +2,8 @@ import sqlite3
 
 import pytest
 
+from repetitor.persistence import SQLiteLearningRepository, SQLiteProfileRepository
+
 from repetitor.persistence.backup import (
     BackupError,
     RestoreConflictError,
@@ -11,14 +13,16 @@ from repetitor.persistence.backup import (
 
 
 def make_db(path, value="original"):
+    SQLiteLearningRepository(path).initialize()
+    SQLiteProfileRepository(path).initialize()
     with sqlite3.connect(path) as connection:
-        connection.execute("CREATE TABLE sample (value TEXT NOT NULL)")
-        connection.execute("INSERT INTO sample VALUES (?)", (value,))
+        connection.execute("CREATE TABLE backup_probe (value TEXT NOT NULL)")
+        connection.execute("INSERT INTO backup_probe VALUES (?)", (value,))
 
 
 def read_value(path):
     with sqlite3.connect(path) as connection:
-        return connection.execute("SELECT value FROM sample").fetchone()[0]
+        return connection.execute("SELECT value FROM backup_probe").fetchone()[0]
 
 
 def test_backup_and_restore_round_trip(tmp_path):
@@ -77,3 +81,16 @@ def test_restore_leaves_no_temporary_database(tmp_path):
     restore_backup(backup, destination)
 
     assert not destination.with_name(destination.name + ".restore.tmp").exists()
+
+
+def test_restore_rejects_healthy_unrelated_sqlite_database(tmp_path):
+    backup = tmp_path / "unrelated.sqlite3"
+    destination = tmp_path / "live.sqlite3"
+    with sqlite3.connect(backup) as connection:
+        connection.execute("CREATE TABLE unrelated (value TEXT)")
+    make_db(destination, "safe")
+
+    with pytest.raises(BackupError, match="not a REPETITOR learner database"):
+        restore_backup(backup, destination, allow_overwrite=True)
+
+    assert read_value(destination) == "safe"
