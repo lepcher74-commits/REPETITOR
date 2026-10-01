@@ -32,3 +32,23 @@ def test_pilot_sequence_uses_declared_prerequisite_dag():
     assert prerequisites["math.g6.fractions.simplify"] == ("math.g6.fractions.equivalent",)
     assert "math.g6.fractions.simplify" not in prerequisites["math.g6.fractions.add_unlike"]
     assert "math.g6.fractions.simplify" in prerequisites["math.g6.fractions.subtract_unlike"]
+
+
+def test_every_pilot_sequence_skill_has_fresh_review_pool():
+    module = load_module_manifest(MODULE_DIR / "module.yaml")
+    pools = load_sequence_problems(module, CONTENT_ROOT)
+    problem_by_id = {
+        problem.id: problem
+        for problems in pools.values()
+        for problem in problems
+    }
+
+    assert set(module.review_problems_by_skill) == set(module.learning_sequence)
+    for skill_id in module.learning_sequence:
+        review_ids = module.review_problems_by_skill[skill_id]
+        assert len(review_ids) >= 3
+        assert len(review_ids) == len(set(review_ids))
+        for problem_id in review_ids:
+            problem = problem_by_id[problem_id]
+            assert problem.primary_skill == skill_id
+            assert problem.purpose == "review"
