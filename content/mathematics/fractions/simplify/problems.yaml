@@ -1,0 +1,65 @@
+problems:
+  - id: frac.simplify.diag.001
+    primary_skill: math.g6.fractions.simplify
+    purpose: diagnostic
+    prompt_ru: "Сократи дробь 12/18 до несократимой."
+    verifier:
+      type: rational_equivalence
+      expected: "2/3"
+      require_simplified: true
+
+  - id: frac.simplify.guided.001
+    primary_skill: math.g6.fractions.simplify
+    purpose: guided
+    prompt_ru: "Сократи дробь 15/25 до несократимой."
+    verifier:
+      type: rational_equivalence
+      expected: "3/5"
+      require_simplified: true
+    hints:
+      - level: 1
+        kind: socratic
+        text_ru: "Какой общий делитель есть у 15 и 25?"
+      - level: 2
+        kind: subgoal
+        text_ru: "Раздели числитель и знаменатель на один и тот же общий делитель."
+      - level: 3
+        kind: worked_step
+        text_ru: "15 и 25 делятся на 5: раздели обе части дроби на 5."
+
+  - id: frac.simplify.independent.001
+    primary_skill: math.g6.fractions.simplify
+    purpose: independent
+    prompt_ru: "Сократи дробь 21/49 до несократимой."
+    verifier:
+      type: rational_equivalence
+      expected: "3/7"
+      require_simplified: true
+
+  - id: frac.simplify.independent.002
+    primary_skill: math.g6.fractions.simplify
+    purpose: independent
+    prompt_ru: "Сократи дробь 32/48 до несократимой."
+    verifier:
+      type: rational_equivalence
+      expected: "2/3"
+      require_simplified: true
+
+  - id: frac.simplify.transfer.001
+    primary_skill: math.g6.fractions.simplify
+    purpose: transfer
+    transfer: true
+    prompt_ru: "После вычисления получилось 18/30. Запиши результат в несократимой форме."
+    verifier:
+      type: rational_equivalence
+      expected: "3/5"
+      require_simplified: true
+
+  - id: frac.simplify.review.001
+    primary_skill: math.g6.fractions.simplify
+    purpose: review
+    prompt_ru: "Без подсказки сократи 28/42 до несократимой."
+    verifier:
+      type: rational_equivalence
+      expected: "2/3"
+      require_simplified: true
