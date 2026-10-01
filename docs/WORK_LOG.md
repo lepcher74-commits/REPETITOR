@@ -46,6 +46,7 @@
 11. Provenance module-resolution approach заменён, а не повторён: commits c9f7cca.../e525fcb.../fb69fcb... читают SHA из bundled build-info.txt через application_root(). Generated Python module/hidden-import больше не являются частью решения. Pilot Build 36858892837 на e525fcb... SUCCESS Windows/macOS: frozen smoke + exact github.sha grep прошли.
 12. После расширения review manifest старый CA acceptance test искал все review IDs только в add_unlike/problems.yaml и падал StopIteration (1 failed, 104 passed). Это test defect: multi-skill manifest должен разрешаться по full sequence pools. Исправлено commit ba57526... через load_sequence_problems(module, Path("content")).
 13. PR-13 подтверждён свежим полным CI 36859274736 SUCCESS после bundled provenance, review pools и acceptance-test fix. Старый regression evidence больше не используется.
+14. Packaged smoke ранее проверял только historical add_unlike slice. Исправлено commit 7c7e661...: smoke загружает всю learning_sequence и declared prerequisite DAG; commit cadf1dd... добавляет fail-closed regression при отсутствующем sequence content. Новый CI/Pilot Build ожидается; прежний artifact PASS не переносится автоматически на этот HEAD.
 
 ### Текущая работа
 
