@@ -1,0 +1,60 @@
+problems:
+  - id: frac.eq.diag.001
+    primary_skill: math.g6.fractions.equivalent
+    purpose: diagnostic
+    prompt_ru: "Заполни пропуск: 3/5 = ?/20"
+    verifier:
+      type: exact_integer
+      expected: 12
+
+  - id: frac.eq.guided.001
+    primary_skill: math.g6.fractions.equivalent
+    purpose: guided
+    prompt_ru: "Заполни пропуск: 2/3 = ?/12"
+    verifier:
+      type: exact_integer
+      expected: 8
+    hints:
+      - level: 1
+        kind: socratic
+        text_ru: "Во сколько раз увеличился знаменатель?"
+      - level: 2
+        kind: subgoal
+        text_ru: "Применяй один и тот же множитель к числителю и знаменателю."
+      - level: 3
+        kind: worked_step
+        text_ru: "3 умножили на 4, значит 2 тоже умножаем на 4."
+
+  - id: frac.eq.independent.001
+    primary_skill: math.g6.fractions.equivalent
+    purpose: independent
+    prompt_ru: "Заполни пропуск: 7/9 = ?/36"
+    verifier:
+      type: exact_integer
+      expected: 28
+
+  - id: frac.eq.independent.002
+    primary_skill: math.g6.fractions.equivalent
+    purpose: independent
+    prompt_ru: "Заполни пропуск: ?/35 = 3/5"
+    verifier:
+      type: exact_integer
+      expected: 21
+
+  - id: frac.eq.transfer.001
+    primary_skill: math.g6.fractions.equivalent
+    purpose: transfer
+    transfer: true
+    prompt_ru: "Какая сокращённая дробь равна 18/24?"
+    verifier:
+      type: rational_equivalence
+      expected: "3/4"
+      require_simplified: true
+
+  - id: frac.eq.review.001
+    primary_skill: math.g6.fractions.equivalent
+    purpose: review
+    prompt_ru: "Заполни пропуск без подсказки: 5/8 = ?/40"
+    verifier:
+      type: exact_integer
+      expected: 25
