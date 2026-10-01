@@ -1,0 +1,16 @@
+id: math.g6.fractions.subtract_unlike
+subject: mathematics
+grade_band: middle
+module: fractions
+title_ru: "Вычитание дробей с разными знаменателями"
+objectives:
+  - "приводить дроби к общему знаменателю перед вычитанием"
+  - "вычитать числители при общем знаменателе"
+  - "сокращать результат до несократимой формы"
+prerequisites:
+  - math.g6.fractions.equivalent
+  - math.prereq.lcm
+  - math.g6.fractions.simplify
+mastery_policy: fraction_standard
+misconceptions: []
+tags: [fractions, subtraction]
