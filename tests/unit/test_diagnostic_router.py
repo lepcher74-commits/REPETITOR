@@ -31,3 +31,17 @@ def test_failed_equivalent_fraction_probe_stops_for_remediation():
 def test_successful_standard_work_routes_to_transfer():
     result = ROUTER.decide(problem=PROBLEMS["frac.add.independent.002"], correct=True, misconception_hypothesis=None)
     assert result.next_problem_id == "frac.add.transfer.001"
+
+
+def test_remediation_decisions_declare_target_skill():
+    router = DiagnosticRouter.from_yaml(BASE / "diagnostic_route.yaml")
+    problems = {p.id: p for p in load_problems(BASE / "problems.yaml")}
+    for problem_id in ("frac.add.probe.equivalent", "frac.add.probe.lcm"):
+        problem = problems[problem_id]
+        decision = router.decide(
+            problem=problem,
+            correct=False,
+            misconception_hypothesis=None,
+        )
+        assert decision.phase == "remediation"
+        assert decision.remediation_skill_id == problem.primary_skill
