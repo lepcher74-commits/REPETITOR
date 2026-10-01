@@ -13,16 +13,33 @@ class RestoreConflictError(BackupError):
     pass
 
 
+REQUIRED_TABLES = frozenset({
+    "attempts", "knowledge_states", "session_state", "review_queue", "students",
+})
+
+
 def _require_healthy_database(path: Path) -> None:
     if not path.is_file():
         raise BackupError(f"Database does not exist: {path}")
     try:
         with closing(sqlite3.connect(path)) as connection:
             row = connection.execute("PRAGMA integrity_check").fetchone()
+            tables = {
+                str(item[0])
+                for item in connection.execute(
+                    "SELECT name FROM sqlite_master WHERE type='table'"
+                ).fetchall()
+            }
     except sqlite3.DatabaseError as exc:
         raise BackupError("Database is unreadable or corrupt") from exc
     if row is None or row[0] != "ok":
         raise BackupError("Database integrity check failed")
+    missing = REQUIRED_TABLES - tables
+    if missing:
+        raise BackupError(
+            "Database is not a REPETITOR learner database; missing required tables: "
+            + ", ".join(sorted(missing))
+        )
 
 
 def create_backup(source: str | Path, destination: str | Path) -> Path:
