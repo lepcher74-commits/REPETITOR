@@ -347,10 +347,14 @@ class RepetitorWindow(QMainWindow):
             )
         else:
             self.feedback.setText("Пока не совпало. Проверим, на каком шаге возникла трудность.")
-        decision = self.router.decide(
-            problem=self.problem,
-            correct=outcome.verification.correct,
-            misconception_hypothesis=outcome.misconception_hypothesis,
+        decision = (
+            self.router.decide(
+                problem=self.problem,
+                correct=outcome.verification.correct,
+                misconception_hypothesis=outcome.misconception_hypothesis,
+            )
+            if self.router.handles(self.problem.id)
+            else None
         )
         self._refresh_progress()
         review_problem_ids = self.module.review_problems_by_skill.get(
@@ -389,20 +393,24 @@ class RepetitorWindow(QMainWindow):
             else:
                 self.answer.setEnabled(False)
                 self.feedback.setText(self.feedback.text() + "\n\n" + decision.message_ru)
-        elif decision.next_problem_id:
+        elif decision is not None and decision.next_problem_id:
             self.problem = self.problem_by_id[decision.next_problem_id]
             self.problem_label.setText(self.problem.prompt_ru)
             self.answer.clear()
             self.hint_level = None
             self.feedback.setText(self.feedback.text() + "\n\n" + decision.message_ru)
-        elif decision.phase == "remediation":
+        elif decision is not None and decision.phase == "remediation":
             self.answer.setEnabled(False)
             self.feedback.setText(self.feedback.text() + "\n\n" + decision.message_ru)
             if decision.remediation_skill_id:
                 self._start_remediation(decision.remediation_skill_id)
-        else:
+        elif decision is not None:
             self.answer.setEnabled(False)
             self.feedback.setText(self.feedback.text() + "\n\n" + decision.message_ru)
+        else:
+            self.answer.clear()
+            self.hint_level = None
+            self._save_session(phase="learning", problem_id=self.problem.id)
 
     def _refresh_progress(self) -> None:
         state = self.learning.get_state(STUDENT_ID, self.module.primary_skill.id)
