@@ -47,7 +47,7 @@ def test_failed_prerequisite_probe_remediates_persists_and_returns(tmp_path):
     assert step.skill_id == probe.primary_skill
 
     for index, problem in enumerate(step.problems):
-        expected = str(problem.verifier.expected)
+        expected = str(problem.verifier["expected"])
         outcome = service.submit(
             student_id="student",
             problem=problem,
