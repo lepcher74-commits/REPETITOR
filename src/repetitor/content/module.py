@@ -77,3 +77,17 @@ def next_sequence_skill(module: ModuleManifest, current_skill_id: str) -> str | 
         return None
     next_index = index + 1
     return module.learning_sequence[next_index] if next_index < len(module.learning_sequence) else None
+
+
+def load_sequence_prerequisites(module: ModuleManifest, content_root: Path) -> dict[str, tuple[str, ...]]:
+    """Load each learner-reachable skill's declared prerequisite DAG edges."""
+    from repetitor.content.loader import load_skill
+
+    directories = discover_skill_directories(content_root)
+    prerequisites: dict[str, tuple[str, ...]] = {}
+    for skill_id in module.learning_sequence:
+        if skill_id not in directories:
+            raise ValueError(f"Learning sequence references unknown skill: {skill_id}")
+        skill = load_skill(directories[skill_id] / "skill.yaml")
+        prerequisites[skill_id] = tuple(skill.prerequisites)
+    return prerequisites
