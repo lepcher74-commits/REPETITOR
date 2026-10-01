@@ -43,12 +43,13 @@
 8. Unit test build-info ошибочно предполагал installed package metadata в обычном CI. Исправлен test contract commit 3aa5321....
 9. После stamping-before-install Pilot Build a84292a... всё ещё падал: PyInstaller не включал repetitor.build_metadata при script entrypoint. Попытка commit 4bf3799... с explicit --hidden-import НЕ закрыла проблему: Pilot Build 36858330679 красный. Provenance остаётся BLOCKED; следующая проверка должна анализировать PyInstaller module resolution, а не повторять прежние варианты.
 10. E8.7 review gap: manifest подключал review pool только для add_unlike. Добавлены review.002/.003 для equivalent/simplify/subtract_unlike, подключены 4×3 pools и добавлен contract test commit 8051be7....
+11. Provenance module-resolution approach заменён, а не повторён: commits c9f7cca.../e525fcb.../fb69fcb... читают SHA из bundled build-info.txt через application_root(). Generated Python module/hidden-import больше не являются частью решения.
 
 ### Текущая работа
 
 **Build provenance / E8.1 / PR-01, PR-02, PR-14**
 
-Текущий provenance статус: BLOCKED после Pilot Build 36858330679. Content HEAD дополнительно содержит E8.7 review-pool изменения до `8051be7...`; их CI ожидается.
+Текущий provenance статус: IN PROGRESS на новом bundled-data подходе до `fb69fcb...`. Предыдущий module/hidden-import подход признан неудачным и не используется.
 
 Нужно:
 1. Дождаться CI contract test review pools на 8051be7... или новее.
