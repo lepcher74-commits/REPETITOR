@@ -86,3 +86,13 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 
 ### СЛЕДУЮЩИЙ ШАГ
 Проверить CI + Pilot Build для актуальной реализации provenance.
+
+
+## 2026-10-01 — same-SHA technical candidate verified
+- Production/runtime SHA `87eceb5ca1e48bdd52943f65b594495d25af6998`.
+- CI run `36862547259`: SUCCESS.
+- Pilot Build run `36862547237`: SUCCESS on Windows/macOS, including frozen full-sequence smoke and build provenance.
+- PR-13 restored to PASS on current technical candidate.
+- PR-14 remains BLOCKED by policy of this stage until manual PR-08 and operational PR-10/data-operations records are completed; after those record commits, final candidate must run CI + Pilot Build again.
+- Do not reopen syntax/import/route-ownership work unless new evidence fails.
+- Next: manual PR-08 accessibility audit + PR-10 operational/child-safety/data-operations inputs.
