@@ -62,14 +62,11 @@ class LearningSessionService:
             misconception=misconception,
             prerequisite_failure=prerequisite_failure,
         )
-        self.repository.add_attempt(evidence)
-
         previous = self.repository.get_state(student_id, problem.primary_skill)
         if previous is None:
             previous = KnowledgeState(student_id=student_id, skill_id=problem.primary_skill)
 
         updated = apply_evidence(previous, evidence)
-        self.repository.save_state(updated)
         due = self.repository.due_reviews(student_id, occurred_at)
 
         states: dict[str, KnowledgeState] = {problem.primary_skill: updated}
@@ -85,7 +82,9 @@ class LearningSessionService:
             due_reviews=due,
             now=occurred_at,
         )
-        self.repository.save_review(schedule_review(updated, evidence))
+        self.repository.save_submission(
+            evidence, updated, schedule_review(updated, evidence)
+        )
         return SubmissionOutcome(
             verification=verification,
             misconception_hypothesis=misconception,
