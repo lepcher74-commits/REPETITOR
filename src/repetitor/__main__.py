@@ -22,7 +22,11 @@ def smoke_test(content_dir: Path) -> int:
     from repetitor.application.diagnostic import DiagnosticRouter
     from repetitor.application.remediation import load_remediations
     from repetitor.content import load_problems
-    from repetitor.content.module import (\n        load_module_manifest,\n        load_sequence_prerequisites,\n        load_sequence_problems,\n    )
+    from repetitor.content.module import (
+        load_module_manifest,
+        load_sequence_prerequisites,
+        load_sequence_problems,
+    )
 
     module = load_module_manifest(content_dir / "module.yaml")
     problems = load_problems(content_dir / "problems.yaml")
