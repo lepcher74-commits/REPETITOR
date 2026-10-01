@@ -203,11 +203,11 @@ class RepetitorWindow(QMainWindow):
             return
 
         if state is None or state.mastery < step.exit_mastery:
-            self.remediation_index = max(1, len(step.problems) - 1)
-            self.remediation_answer.clear()
-            self.remediation_prompt.setText(step.problems[self.remediation_index].prompt_ru)
+            self.remediation_answer.setEnabled(False)
             self.remediation_feedback.setText(
-                "Ответы улучшаются, но evidence пока недостаточно. Повторим независимую проверку."
+                "Проверок пока недостаточно для подтверждения навыка. "
+                "Не будем повышать оценку повторением той же задачи; "
+                "нужен дополнительный вариант."
             )
             return
 
