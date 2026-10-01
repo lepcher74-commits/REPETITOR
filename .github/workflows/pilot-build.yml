@@ -32,11 +32,6 @@ jobs:
           python-version: "3.12"
           cache: pip
 
-      - name: Stamp build provenance
-        shell: bash
-        run: |
-          printf 'BUILD_SHA = "%s"\\n' "${{ github.sha }}" > src/repetitor/build_metadata.py
-
       - name: Install build dependencies
         run: |
           python -m pip install --upgrade pip
@@ -45,7 +40,8 @@ jobs:
       - name: Build pilot bundle
         shell: bash
         run: |
-          pyinstaller --noconfirm --clean --onedir --paths src --hidden-import repetitor.build_metadata --name REPETITOR --add-data "content${{ matrix.sep }}content" src/repetitor/__main__.py
+          printf '%s\\n' "${{ github.sha }}" > build-info.txt
+          pyinstaller --noconfirm --clean --onedir --paths src --name REPETITOR --add-data "content${{ matrix.sep }}content" --add-data "build-info.txt${{ matrix.sep }}." src/repetitor/__main__.py
 
       - name: Verify bundled offline content
         shell: bash
