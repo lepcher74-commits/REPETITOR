@@ -4,7 +4,7 @@ Offline-first desktop platform of AI tutors for school students (grades 1–11).
 
 ## Current status
 
-Project process: Constitution v1.0. Stages 0–3 approved. Stage 4 (content model) is in progress.
+Project process: Constitution v1.0. Stages 0–4 approved. Stage 5 (working MVP) is in final acceptance.
 
 ### MVP
 - Audience: grades 5–8; first content: mathematics, grade 6.
