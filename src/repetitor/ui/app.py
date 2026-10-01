@@ -12,6 +12,7 @@ from PySide6.QtWidgets import (
 
 from repetitor.application.diagnostic import DiagnosticRouter
 from repetitor.application.remediation import load_remediations
+from repetitor.application.problem_selection import select_fresh_problem
 from repetitor.application.session import LearningSessionService
 from repetitor.content import load_problems
 from repetitor.content.module import load_module_manifest
@@ -291,11 +292,20 @@ class RepetitorWindow(QMainWindow):
             misconception_hypothesis=outcome.misconception_hypothesis,
         )
         self._refresh_progress()
-        review_problem_id = self.module.review_problem_by_skill.get(
-            outcome.next_activity.skill_id
+        review_problem_ids = self.module.review_problems_by_skill.get(
+            outcome.next_activity.skill_id, ()
         )
-        if outcome.next_activity.kind == "review" and review_problem_id:
-            self.problem = self.problem_by_id[review_problem_id]
+        review_candidates = [
+            self.problem_by_id[problem_id]
+            for problem_id in review_problem_ids
+            if problem_id in self.problem_by_id
+        ]
+        attempted = self.learning.attempted_problem_ids(
+            STUDENT_ID, outcome.next_activity.skill_id
+        )
+        review_problem = select_fresh_problem(review_candidates, attempted)
+        if outcome.next_activity.kind == "review" and review_problem:
+            self.problem = review_problem
             self.problem_label.setText(self.problem.prompt_ru)
             self.answer.clear()
             self.hint_level = None
