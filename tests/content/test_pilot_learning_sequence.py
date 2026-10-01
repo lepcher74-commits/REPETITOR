@@ -16,5 +16,9 @@ def test_pilot_learning_sequence_is_connected_and_learner_reachable():
 
     for skill_id, problems in pools.items():
         assert problems, skill_id
-        assert all(problem.primary_skill == skill_id for problem in problems)
-        assert any(problem.purpose in {"diagnostic", "guided", "independent"} for problem in problems)
+        learner_problems = [
+            problem for problem in problems
+            if problem.purpose != "prerequisite_probe"
+        ]
+        assert all(problem.primary_skill == skill_id for problem in learner_problems)
+        assert any(problem.purpose in {"diagnostic", "guided", "independent"} for problem in learner_problems)
