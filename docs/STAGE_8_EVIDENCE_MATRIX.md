@@ -14,8 +14,8 @@ Status vocabulary:
 | PR-02 macOS pilot artifact builds reproducibly in CI | PASS | Pilot Build run 36862547237 on 87eceb5...; macOS frozen build/full-sequence smoke/provenance verification success |
 | PR-03 packaged app contains required trusted offline content | PASS | Pilot Build 36862547237 verifies embedded content; frozen smoke loads the full declared learning sequence and prerequisite DAG |
 | PR-04 packaged startup smoke automated where runner constraints permit | PASS | Pilot Build 36862547237 executes frozen Windows/macOS binaries with `--smoke-test` and verifies exact build SHA |
-| PR-05 local DB backup/restore documented/tested | PASS | `persistence/backup.py`, persistence tests, `DATA_BACKUP_RECOVERY.md`; CI green after Windows handle fix |
-| PR-06 corrupt/conflicting restore fails safely | PASS | corrupt backup and overwrite-conflict tests; Windows atomic-replace regression fixed and green |
+| PR-05 local DB backup/restore documented/tested | PASS | `persistence/backup.py`, schema-aware persistence tests, `DATA_BACKUP_RECOVERY.md`; schema hardening `c82c5d7...`, CI 36856369288 success |
+| PR-06 corrupt/conflicting restore fails safely | PASS | corrupt backup, healthy-unrelated-SQLite rejection and overwrite-conflict tests; schema hardening `c82c5d7...`, CI 36856369288 success |
 | PR-07 critical runtime failures explicit user-facing paths | PASS | fail-closed startup boundary + integration test; minimal local startup diagnostics |
 | PR-08 automated accessibility green; manual results/limits recorded | BLOCKED | automated checks green; `ACCESSIBILITY_PILOT_AUDIT_RECORD.md` explicitly leaves target OS/AT manual checks NOT TESTED |
 | PR-09 privacy/data-flow inventory documented/checked | PASS | `PRIVACY_CHILD_SAFETY_REVIEW.md`; current default core has no required production network AI provider |
