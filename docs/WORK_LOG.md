@@ -48,6 +48,7 @@
 13. PR-13 подтверждён свежим полным CI 36859274736 SUCCESS после bundled provenance, review pools и acceptance-test fix. Старый regression evidence больше не используется.
 14. Packaged smoke ранее проверял только historical add_unlike slice. Исправлено commit 7c7e661...: smoke загружает всю learning_sequence и declared prerequisite DAG; commit cadf1dd... добавляет fail-closed regression при отсутствующем sequence content. Новый CI/Pilot Build ожидается; прежний artifact PASS не переносится автоматически на этот HEAD.
 15. Повторная архитектурная проверка выявила production defect: DiagnosticRouter default применялся к sequence problems вне исходного diagnostic route и мог преждевременно отключить ввод. Исправлено commits 8140dca.../986c03a...: router exposes handles(problem_id), а sequence-only tasks остаются под Next-Step Engine. Regression test 09161c4.... Из-за production code change PR-13 и PR-14 требуют нового CI; прежний green regression не переносится.
+16. CI/Pilot Build после full-sequence smoke/runtime fix упали до исполнения логики из-за механической patch-ошибки: в __main__.py import содержал literal `\\n`, SyntaxError на всех OS. Исправлено 41a033b.... Чтобы этот класс ошибок ловился раньше, CI теперь выполняет `python -m compileall -q src tests` перед pytest (a351316...).
 
 ### Текущая работа
 
