@@ -36,3 +36,24 @@ def test_revealing_hint_is_recorded_as_non_independent_evidence(tmp_path):
     assert state is not None
     assert state.independence == 0.0
     w.close()
+
+
+def test_remediation_resumes_with_first_unattempted_problem(tmp_path):
+    from datetime import datetime, timezone
+    from repetitor.domain import AttemptEvidence
+
+    w = window(tmp_path)
+    step = w.remediations["math.prereq.lcm"]
+    first = step.problems[0]
+    w.learning.add_attempt(AttemptEvidence(
+        id="seen-lcm-guided",
+        student_id="local-student",
+        problem_id=first.id,
+        skill_id=first.primary_skill,
+        occurred_at=datetime.now(timezone.utc),
+        correct=True,
+        purpose=first.purpose,
+    ))
+    w._start_remediation("math.prereq.lcm")
+    assert w.remediation_prompt.text() == step.problems[1].prompt_ru
+    w.close()
