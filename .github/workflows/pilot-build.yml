@@ -19,9 +19,11 @@ jobs:
           - os: windows-latest
             artifact: repetitor-windows
             sep: ";"
+            executable: "dist/REPETITOR/REPETITOR.exe"
           - os: macos-latest
             artifact: repetitor-macos
             sep: ":"
+            executable: "dist/REPETITOR/REPETITOR"
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -46,6 +48,11 @@ jobs:
           test -d dist/REPETITOR
           test -f dist/REPETITOR/_internal/content/mathematics/fractions/add_unlike/module.yaml || test -f dist/REPETITOR/content/mathematics/fractions/add_unlike/module.yaml
           test -f dist/REPETITOR/_internal/content/mathematics/fractions/add_unlike/problems.yaml || test -f dist/REPETITOR/content/mathematics/fractions/add_unlike/problems.yaml
+
+      - name: Smoke-test packaged executable
+        shell: bash
+        run: |
+          "${{ matrix.executable }}" --smoke-test
 
       - name: Upload unsigned pilot artifact
         uses: actions/upload-artifact@v4
