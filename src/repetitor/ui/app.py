@@ -62,7 +62,31 @@ class RepetitorWindow(QMainWindow):
             self.stack.addWidget(page)
 
         if self.profiles.get(STUDENT_ID):
+            self._restore_session()
+
+    def _save_session(self, *, phase: str, problem_id: str | None, remediation_skill_id: str | None = None) -> None:
+        self.learning.save_session_state(
+            STUDENT_ID,
+            self.module.id,
+            problem_id,
+            phase,
+            remediation_skill_id,
+            datetime.now(timezone.utc),
+        )
+
+    def _restore_session(self) -> None:
+        state = self.learning.get_session_state(STUDENT_ID)
+        if not state or state["module_id"] != self.module.id:
             self.stack.setCurrentWidget(self.diagnostic)
+            return
+        problem_id = state["problem_id"]
+        if state["phase"] == "remediation" and state["remediation_skill_id"] in self.remediations:
+            self._start_remediation(str(state["remediation_skill_id"]))
+            return
+        if problem_id in self.problem_by_id:
+            self.problem = self.problem_by_id[str(problem_id)]
+            self.problem_label.setText(self.problem.prompt_ru)
+        self.stack.setCurrentWidget(self.diagnostic)
 
     def _page(self, title: str, subtitle: str) -> tuple[QWidget, QVBoxLayout]:
         page = QWidget()
@@ -184,6 +208,11 @@ class RepetitorWindow(QMainWindow):
         self.remediation_answer.clear()
         self.remediation_feedback.clear()
         self.stack.setCurrentWidget(self.remediation)
+        self._save_session(
+            phase="remediation",
+            problem_id=fresh.id,
+            remediation_skill_id=skill_id,
+        )
         self.remediation_answer.setFocus()
 
     def _submit_remediation(self) -> None:
@@ -211,6 +240,11 @@ class RepetitorWindow(QMainWindow):
             self.remediation_index = step.problems.index(fresh)
             self.remediation_answer.clear()
             self.remediation_prompt.setText(fresh.prompt_ru)
+            self._save_session(
+                phase="remediation",
+                problem_id=fresh.id,
+                remediation_skill_id=step.skill_id,
+            )
             self.remediation_feedback.setText(
                 "Верно. Это одно evidence; следующая проверка будет на новом варианте."
             )
@@ -228,6 +262,7 @@ class RepetitorWindow(QMainWindow):
         if self.return_problem_id:
             self.problem = self.problem_by_id[self.return_problem_id]
             self.problem_label.setText(self.problem.prompt_ru)
+            self._save_session(phase="learning", problem_id=self.problem.id)
         self.answer.clear()
         self.answer.setEnabled(True)
         self.hint_level = None
@@ -259,6 +294,7 @@ class RepetitorWindow(QMainWindow):
             self.goal.currentData(),
         ))
         self.stack.setCurrentWidget(self.diagnostic)
+        self._save_session(phase="learning", problem_id=self.problem.id)
         self.answer.setFocus()
 
     def _hint(self) -> None:
