@@ -13,3 +13,9 @@ def test_reference_module_manifest_loads():
     assert module.primary_skill.id
     assert len(module.prerequisites) == 2
     assert {goal.id for goal in module.goals} == {"catch_up", "deepen", "olympiad"}
+    assert module.learning_sequence == (
+        "math.g6.fractions.equivalent",
+        "math.g6.fractions.simplify",
+        "math.g6.fractions.add_unlike",
+        "math.g6.fractions.subtract_unlike",
+    )
