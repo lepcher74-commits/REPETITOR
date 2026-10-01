@@ -41,18 +41,19 @@
 6. Build provenance через environment variable не переживал freezing. Переведено на build_metadata.py.
 7. Первый build_metadata workflow штамповал файл после pip install ., поэтому frozen app мог брать установленную unstamped копию. Исправление: commit a84292a... — stamping до install + PyInstaller --paths src.
 8. Unit test build-info ошибочно предполагал installed package metadata в обычном CI. Исправлен test contract commit 3aa5321....
-9. После stamping-before-install Pilot Build a84292a... всё ещё падал: PyInstaller не включал repetitor.build_metadata при script entrypoint. Исправление commit 4bf3799...: explicit --hidden-import repetitor.build_metadata.
+9. После stamping-before-install Pilot Build a84292a... всё ещё падал: PyInstaller не включал repetitor.build_metadata при script entrypoint. Попытка commit 4bf3799... с explicit --hidden-import НЕ закрыла проблему: Pilot Build 36858330679 красный. Provenance остаётся BLOCKED; следующая проверка должна анализировать PyInstaller module resolution, а не повторять прежние варианты.
+10. E8.7 review gap: manifest подключал review pool только для add_unlike. Добавлены review.002/.003 для equivalent/simplify/subtract_unlike, подключены 4×3 pools и добавлен contract test commit 8051be7....
 
 ### Текущая работа
 
 **Build provenance / E8.1 / PR-01, PR-02, PR-14**
 
-Текущий исправляющий commit: `4bf3799399a210a70eb6213867b141581afaf679` (поверх a84292a...).
+Текущий provenance статус: BLOCKED после Pilot Build 36858330679. Content HEAD дополнительно содержит E8.7 review-pool изменения до `8051be7...`; их CI ожидается.
 
 Нужно:
-1. Проверить CI для актуального HEAD (4bf3799... или новее).
-2. Проверить Pilot Build Windows/macOS для 4bf3799... или более нового HEAD с тем же исправлением.
-3. Убедиться, что frozen `--build-info` содержит точный `github.sha`.
+1. Дождаться CI contract test review pools на 8051be7... или новее.
+2. Для provenance исследовать PyInstaller module resolution по свежему failure; не повторять env/stamp-order/hidden-import гипотезы без новых данных.
+3. Добиться frozen `--build-info` с точным `github.sha` на Windows/macOS.
 4. Только после этого обновить evidence matrix и технический baseline.
 
 ### Ручные / внешние gates, которые нельзя закрыть кодом
