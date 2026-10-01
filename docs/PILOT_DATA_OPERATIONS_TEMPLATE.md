@@ -2,13 +2,13 @@
 
 Complete before real-user enrollment.
 
-Candidate SHA: [FILL]
+Candidate SHA: `87eceb5ca1e48bdd52943f65b594495d25af6998`
 Pilot operator: [FILL]
 Jurisdiction: [FILL]
 
 ## Local data
-Storage location used by deployment: [FILL]
-Backup owner/process: [FILL]
+Storage location used by deployment: default `~/.repetitor` unless the operator explicitly launches with `--data-dir`; primary DB is `repetitor.sqlite3`, startup diagnostic log is `startup-errors.log`.
+Backup owner/process: [OPERATOR TO ASSIGN]; use the tested SQLite backup path described in `DATA_BACKUP_RECOVERY.md`; do not copy/replace a live database ad hoc.
 Retention period: [FILL]
 Deletion trigger/process: [FILL]
 Withdrawal request route: [FILL]
@@ -17,12 +17,12 @@ Support contact: [FILL]
 ## Data transfer
 Default candidate: local/offline core.
 
-Any external transfer enabled? [NO / YES]
+Any external transfer enabled? **NO for candidate 87eceb5...**. Default core is local/offline and no production network AI provider is configured.
 If YES, pilot is blocked until the destination, exact fields, purpose, authorization, retention, deletion path, security/authentication and child-safety review are documented and approved.
 
 ## Incident handling
-Person/role receiving incident reports: [FILL]
-How affected local data is preserved without unnecessary copying: [FILL]
-How participant/guardian communication is handled when required: [FILL]
+Person/role receiving incident reports: [OPERATOR TO ASSIGN]
+How affected local data is preserved without unnecessary copying: stop the affected session; preserve the original `~/.repetitor` data directory (or configured `--data-dir`) in place where feasible; use the tested backup procedure when a recovery copy is required; do not paste learner data into issue text.
+How participant/guardian communication is handled when required: [OPERATOR TO DEFINE FOR JURISDICTION/SETTING]
 
 Status: [BLOCKED / APPROVED FOR STATED PILOT]
