@@ -15,7 +15,7 @@ from repetitor.application.remediation import load_remediations
 from repetitor.application.problem_selection import select_fresh_problem
 from repetitor.application.session import LearningSessionService
 from repetitor.content import load_problems
-from repetitor.content.module import load_module_manifest
+from repetitor.content.module import load_module_manifest, load_sequence_problems, next_sequence_skill
 from repetitor.domain import KnowledgeState
 from repetitor.diagnostics import record_startup_failure
 from repetitor.persistence import (
@@ -41,13 +41,27 @@ class RepetitorWindow(QMainWindow):
 
         self.module = load_module_manifest(content_dir / "module.yaml")
         self.problems = load_problems(content_dir / "problems.yaml")
+        self.sequence_pools = load_sequence_problems(self.module, content_dir.parents[3])
         self.remediations = load_remediations(content_dir / self.module.remediation_route)
-        self.problem_by_id = {p.id: p for p in self.problems}
+        self.problem_by_id = {
+            problem.id: problem
+            for pool in self.sequence_pools.values()
+            for problem in pool
+        }
+        self.problem_by_id.update({p.id: p for p in self.problems})
         self.router = DiagnosticRouter.from_yaml(content_dir / self.module.diagnostic_route)
         self.problem = self.problem_by_id[self.router.start_problem_id]
-        self.session = LearningSessionService(
-            self.learning, {self.module.primary_skill.id: self.module.prerequisites}
-        )
+        sequence_prerequisites = {
+            skill_id: tuple(
+                prerequisite
+                for prerequisite in self.module.learning_sequence
+                if prerequisite != skill_id
+                and prerequisite in self.module.learning_sequence[:self.module.learning_sequence.index(skill_id)]
+            )
+            for skill_id in self.module.learning_sequence
+        }
+        sequence_prerequisites[self.module.primary_skill.id] = self.module.prerequisites
+        self.session = LearningSessionService(self.learning, sequence_prerequisites)
         self.hint_level: int | None = None
         self.remediation_skill: str | None = None
         self.return_problem_id: str | None = None
@@ -364,6 +378,22 @@ class RepetitorWindow(QMainWindow):
             self.feedback.setText(
                 self.feedback.text() + "\n\nПора коротко повторить этот навык."
             )
+        elif outcome.next_activity.kind == "enrichment":
+            next_skill_id = next_sequence_skill(self.module, self.problem.primary_skill)
+            next_pool = self.sequence_pools.get(next_skill_id, ()) if next_skill_id else ()
+            entry = next((p for p in next_pool if p.purpose == "diagnostic"), None)
+            if entry is not None:
+                self.problem = entry
+                self.problem_label.setText(self.problem.prompt_ru)
+                self.answer.clear()
+                self.hint_level = None
+                self.feedback.setText(
+                    self.feedback.text() + "\n\nТекущий навык устойчив. Переходим к следующему связанному навыку."
+                )
+                self._save_session(phase="learning", problem_id=self.problem.id)
+            else:
+                self.answer.setEnabled(False)
+                self.feedback.setText(self.feedback.text() + "\n\n" + decision.message_ru)
         elif decision.next_problem_id:
             self.problem = self.problem_by_id[decision.next_problem_id]
             self.problem_label.setText(self.problem.prompt_ru)
