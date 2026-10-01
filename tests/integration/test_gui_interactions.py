@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from pathlib import Path
 
 from PySide6.QtWidgets import QApplication
@@ -61,6 +62,7 @@ def test_remediation_resumes_with_first_unattempted_problem(tmp_path):
 
 def test_gui_restores_saved_learning_problem_after_restart(tmp_path):
     first = window(tmp_path)
+    first.profiles.save(StudentProfile("local-student", "mathematics", 6, "catch_up"))
     target = first.problem_by_id["frac.add.independent.002"]
     first._save_session(phase="learning", problem_id=target.id)
     first.close()
@@ -73,6 +75,7 @@ def test_gui_restores_saved_learning_problem_after_restart(tmp_path):
 
 def test_gui_ignores_stale_session_problem_after_restart(tmp_path):
     first = window(tmp_path)
+    first.profiles.save(StudentProfile("local-student", "mathematics", 6, "catch_up"))
     first.learning.save_session_state(
         "local-student",
         first.module.id,
