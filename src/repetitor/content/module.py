@@ -43,3 +43,27 @@ def load_module_manifest(path: Path) -> ModuleManifest:
         },
         learning_sequence=tuple(str(x) for x in raw.get("learning_sequence", ())),
     )
+
+
+def discover_skill_directories(content_root: Path) -> dict[str, Path]:
+    """Map stable skill IDs to their content directories without subject-specific code."""
+    from repetitor.content.loader import load_skill
+
+    directories: dict[str, Path] = {}
+    for skill_path in content_root.rglob("skill.yaml"):
+        skill = load_skill(skill_path)
+        directories[skill.id] = skill_path.parent
+    return directories
+
+
+def load_sequence_problems(module: ModuleManifest, content_root: Path):
+    """Load problem pools for every skill declared learner-reachable by the module."""
+    from repetitor.content.loader import load_problems
+
+    directories = discover_skill_directories(content_root)
+    pools = {}
+    for skill_id in module.learning_sequence:
+        if skill_id not in directories:
+            raise ValueError(f"Learning sequence references unknown skill: {skill_id}")
+        pools[skill_id] = load_problems(directories[skill_id] / "problems.yaml")
+    return pools
