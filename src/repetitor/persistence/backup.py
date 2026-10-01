@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sqlite3
+from contextlib import closing
 from pathlib import Path
 
 
@@ -16,7 +17,7 @@ def _require_healthy_database(path: Path) -> None:
     if not path.is_file():
         raise BackupError(f"Database does not exist: {path}")
     try:
-        with sqlite3.connect(path) as connection:
+        with closing(sqlite3.connect(path)) as connection:
             row = connection.execute("PRAGMA integrity_check").fetchone()
     except sqlite3.DatabaseError as exc:
         raise BackupError("Database is unreadable or corrupt") from exc
@@ -32,7 +33,7 @@ def create_backup(source: str | Path, destination: str | Path) -> Path:
     if destination_path.exists():
         raise RestoreConflictError(f"Backup destination already exists: {destination_path}")
     try:
-        with sqlite3.connect(source_path) as source_db, sqlite3.connect(destination_path) as backup_db:
+        with closing(sqlite3.connect(source_path)) as source_db, closing(sqlite3.connect(destination_path)) as backup_db:
             source_db.backup(backup_db)
         _require_healthy_database(destination_path)
     except Exception:
@@ -58,7 +59,7 @@ def restore_backup(
     temporary_path = destination_path.with_name(destination_path.name + ".restore.tmp")
     temporary_path.unlink(missing_ok=True)
     try:
-        with sqlite3.connect(backup_path) as backup_db, sqlite3.connect(temporary_path) as restored_db:
+        with closing(sqlite3.connect(backup_path)) as backup_db, closing(sqlite3.connect(temporary_path)) as restored_db:
             backup_db.backup(restored_db)
         _require_healthy_database(temporary_path)
         temporary_path.replace(destination_path)
