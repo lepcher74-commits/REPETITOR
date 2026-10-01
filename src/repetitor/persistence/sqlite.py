@@ -172,6 +172,17 @@ class SQLiteLearningRepository:
             updated_at=datetime.fromisoformat(row["updated_at"]) if row["updated_at"] else None,
         )
 
+
+    def attempted_problem_ids(self, student_id: str, skill_id: str | None = None) -> set[str]:
+        query = "SELECT DISTINCT problem_id FROM attempts WHERE student_id=?"
+        params: tuple[str, ...] = (student_id,)
+        if skill_id is not None:
+            query += " AND skill_id=?"
+            params = (student_id, skill_id)
+        with self.connect() as connection:
+            rows = connection.execute(query, params).fetchall()
+        return {str(row["problem_id"]) for row in rows}
+
     def save_review(self, item: ReviewItem) -> None:
         with self.connect() as connection:
             connection.execute(
