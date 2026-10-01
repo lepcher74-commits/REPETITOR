@@ -22,14 +22,14 @@ Status vocabulary:
 | PR-10 child-safety release checklist documented | PASS (documentation) / BLOCKED (pilot operation) | checklist exists; guardian/consent, retention/deletion and manual content/accessibility items remain operator gates |
 | PR-11 pilot curriculum multiple connected grade-6 fraction skills through generic architecture | PASS | declarative sequence equivalent → simplify → add_unlike → subtract_unlike; real prerequisite DAG loaded from skill metadata; generic runtime progression; each sequence skill now has 3 unique declarative review problems; regression/contract tests included |
 | PR-12 pilot protocol/measurement plan before real-user pilot | PASS | `PILOT_PROTOCOL.md`; measures, minimization, incidents, stop conditions and interpretation limits pre-defined |
-| PR-13 all Stage 5–7 regressions green | BLOCKED | latest full CI after multi-skill review-pool acceptance-test correction is still running; old green CI is not carried forward to current HEAD |
+| PR-13 all Stage 5–7 regressions green | PASS | CI run 36859274736 success after bundled provenance, 4×3 review pools and multi-skill acceptance-test correction |
 | PR-14 final pilot candidate commit passes supported CI/release matrix | BLOCKED | baseline CI is green, but a final candidate cannot be declared until PR-08 and operational PR-10 blockers are resolved and the resulting final SHA is re-run |
 
 ## Current Stage 8 gate
 
 Stage 8 is **not closed**.
 
-Repository/automation evidence is strong enough for PR-01–07, PR-09 and PR-11–12. PR-13 awaits a current full regression run after the latest test-contract correction. PR-11 is a technical reachability result only and is not evidence of learning efficacy. The remaining release blockers are deliberately human/operational:
+Repository/automation evidence is strong enough for PR-01–07, PR-09 and PR-11–13. PR-13 is backed by current full regression CI 36859274736 after the latest code/content/test changes. PR-11 is a technical reachability result only and is not evidence of learning efficacy. The remaining release blockers are deliberately human/operational:
 1. complete `PILOT_MANUAL_GATE_RECORD.md` for the intended Windows/macOS environment and assistive technology;
 2. resolve pilot jurisdiction/operator/participant authorization and guardian/consent requirements in that record;
 3. complete `PILOT_DATA_OPERATIONS_TEMPLATE.md` with actual retention/deletion procedure and support contact;
