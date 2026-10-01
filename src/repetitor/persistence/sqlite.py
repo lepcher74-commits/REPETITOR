@@ -62,6 +62,50 @@ class SQLiteLearningRepository:
         with self.connect() as connection:
             connection.executescript(SCHEMA)
 
+    def save_submission(
+        self,
+        evidence: AttemptEvidence,
+        state: KnowledgeState,
+        review: ReviewItem,
+    ) -> None:
+        """Persist one learning submission atomically."""
+        with self.connect() as connection:
+            connection.execute(
+                """INSERT INTO attempts
+                (id, student_id, problem_id, skill_id, occurred_at, correct, purpose,
+                 hint_level, answer_revealing_hint, transfer, misconception, prerequisite_failure)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                (
+                    evidence.id, evidence.student_id, evidence.problem_id, evidence.skill_id,
+                    evidence.occurred_at.isoformat(), int(evidence.correct), evidence.purpose,
+                    evidence.hint_level, int(evidence.answer_revealing_hint), int(evidence.transfer),
+                    evidence.misconception, int(evidence.prerequisite_failure),
+                ),
+            )
+            connection.execute(
+                """INSERT INTO knowledge_states
+                (student_id, skill_id, mastery, confidence, independence, transfer,
+                 retention, evidence_count, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(student_id, skill_id) DO UPDATE SET
+                    mastery=excluded.mastery, confidence=excluded.confidence,
+                    independence=excluded.independence, transfer=excluded.transfer,
+                    retention=excluded.retention, evidence_count=excluded.evidence_count,
+                    updated_at=excluded.updated_at""",
+                (
+                    state.student_id, state.skill_id, state.mastery, state.confidence,
+                    state.independence, state.transfer, state.retention, state.evidence_count,
+                    state.updated_at.isoformat() if state.updated_at else None,
+                ),
+            )
+            connection.execute(
+                """INSERT INTO review_queue (student_id, skill_id, due_at, reason)
+                VALUES (?, ?, ?, ?)
+                ON CONFLICT(student_id, skill_id) DO UPDATE SET
+                    due_at=excluded.due_at, reason=excluded.reason""",
+                (review.student_id, review.skill_id, review.due_at.isoformat(), review.reason),
+            )
+
     def add_attempt(self, evidence: AttemptEvidence) -> None:
         with self.connect() as connection:
             connection.execute(
