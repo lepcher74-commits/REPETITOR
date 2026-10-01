@@ -70,7 +70,7 @@ class LearningSessionService:
 
         updated = apply_evidence(previous, evidence)
         self.repository.save_state(updated)
-        self.repository.save_review(schedule_review(updated, evidence))
+        due = self.repository.due_reviews(student_id, occurred_at)
 
         states: dict[str, KnowledgeState] = {problem.primary_skill: updated}
         for prerequisite_id in self.prerequisites.get(problem.primary_skill, ()):
@@ -78,7 +78,6 @@ class LearningSessionService:
             if state is not None:
                 states[prerequisite_id] = state
 
-        due = self.repository.due_reviews(student_id, occurred_at)
         next_activity = select_next_activity(
             current_skill_id=problem.primary_skill,
             states=states,
@@ -86,6 +85,7 @@ class LearningSessionService:
             due_reviews=due,
             now=occurred_at,
         )
+        self.repository.save_review(schedule_review(updated, evidence))
         return SubmissionOutcome(
             verification=verification,
             misconception_hypothesis=misconception,
