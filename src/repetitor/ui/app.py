@@ -15,7 +15,10 @@ from repetitor.application.remediation import load_remediations
 from repetitor.application.problem_selection import select_fresh_problem
 from repetitor.application.session import LearningSessionService
 from repetitor.content import load_problems
-from repetitor.content.module import load_module_manifest, load_sequence_problems, next_sequence_skill
+from repetitor.content.module import (
+    load_module_manifest, load_sequence_prerequisites, load_sequence_problems,
+    next_sequence_skill,
+)
 from repetitor.domain import KnowledgeState
 from repetitor.diagnostics import record_startup_failure
 from repetitor.persistence import (
@@ -41,7 +44,8 @@ class RepetitorWindow(QMainWindow):
 
         self.module = load_module_manifest(content_dir / "module.yaml")
         self.problems = load_problems(content_dir / "problems.yaml")
-        self.sequence_pools = load_sequence_problems(self.module, content_dir.parents[3])
+        content_root = content_dir.parents[2]
+        self.sequence_pools = load_sequence_problems(self.module, content_root)
         self.remediations = load_remediations(content_dir / self.module.remediation_route)
         self.problem_by_id = {
             problem.id: problem
@@ -51,16 +55,7 @@ class RepetitorWindow(QMainWindow):
         self.problem_by_id.update({p.id: p for p in self.problems})
         self.router = DiagnosticRouter.from_yaml(content_dir / self.module.diagnostic_route)
         self.problem = self.problem_by_id[self.router.start_problem_id]
-        sequence_prerequisites = {
-            skill_id: tuple(
-                prerequisite
-                for prerequisite in self.module.learning_sequence
-                if prerequisite != skill_id
-                and prerequisite in self.module.learning_sequence[:self.module.learning_sequence.index(skill_id)]
-            )
-            for skill_id in self.module.learning_sequence
-        }
-        sequence_prerequisites[self.module.primary_skill.id] = self.module.prerequisites
+        sequence_prerequisites = load_sequence_prerequisites(self.module, content_root)
         self.session = LearningSessionService(self.learning, sequence_prerequisites)
         self.hint_level: int | None = None
         self.remediation_skill: str | None = None
