@@ -96,3 +96,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - PR-14 remains BLOCKED by policy of this stage until manual PR-08 and operational PR-10/data-operations records are completed; after those record commits, final candidate must run CI + Pilot Build again.
 - Do not reopen syntax/import/route-ownership work unless new evidence fails.
 - Next: manual PR-08 accessibility audit + PR-10 operational/child-safety/data-operations inputs.
+
+
+## 2026-10-01 — manual gate prefill
+- Prefilled only repository-verifiable operational facts for candidate 87eceb5...; no manual PASS invented.
+- Data operations now records default `~/.repetitor`, SQLite/log files, tested backup requirement, NO external transfer for this candidate, and minimal incident-preservation procedure.
+- Manual gate now records candidate/date and PASS only for the objectively verifiable no-production-network-AI item.
+- Remaining human inputs: (1) jurisdiction + operator/controller role + participant age range/guardian authorization; (2) retention/deletion/support/incident owner; (3) actual Windows/macOS accessibility results and complete content age review.
