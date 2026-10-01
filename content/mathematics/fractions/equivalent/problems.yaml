@@ -58,3 +58,19 @@ problems:
     verifier:
       type: exact_integer
       expected: 25
+
+  - id: frac.eq.review.002
+    primary_skill: math.g6.fractions.equivalent
+    purpose: review
+    prompt_ru: "Без подсказки заполни пропуск: 4/7 = ?/35"
+    verifier:
+      type: exact_integer
+      expected: 20
+
+  - id: frac.eq.review.003
+    primary_skill: math.g6.fractions.equivalent
+    purpose: review
+    prompt_ru: "Без подсказки заполни пропуск: ?/27 = 2/3"
+    verifier:
+      type: exact_integer
+      expected: 18
