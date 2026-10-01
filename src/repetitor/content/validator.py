@@ -62,3 +62,50 @@ def validate_reference_slice(directory: Path) -> list[ValidationIssue]:
         issues.append(ValidationIssue("coverage", "Missing transfer evidence item"))
 
     return issues
+
+
+def validate_content_graph(content_root: Path) -> list[ValidationIssue]:
+    """Validate skill prerequisites across every skill.yaml under content_root."""
+    issues: list[ValidationIssue] = []
+    skills = {}
+    for path in sorted(content_root.rglob("skill.yaml")):
+        try:
+            skill = load_skill(path)
+        except ContentLoadError as exc:
+            issues.append(ValidationIssue("schema", f"{path}: {exc}"))
+            continue
+        if skill.id in skills:
+            issues.append(ValidationIssue("duplicate_skill_id", f"Duplicate skill id: {skill.id}"))
+        else:
+            skills[skill.id] = skill
+
+    for skill in skills.values():
+        for prerequisite in skill.prerequisites:
+            if prerequisite not in skills:
+                issues.append(ValidationIssue(
+                    "unknown_prerequisite",
+                    f"{skill.id} references unknown prerequisite {prerequisite}",
+                ))
+
+    visiting: set[str] = set()
+    visited: set[str] = set()
+
+    def visit(skill_id: str, path: tuple[str, ...]) -> None:
+        if skill_id in visited:
+            return
+        if skill_id in visiting:
+            start = path.index(skill_id) if skill_id in path else 0
+            cycle = path[start:] + (skill_id,)
+            issues.append(ValidationIssue("prerequisite_cycle", " -> ".join(cycle)))
+            return
+        visiting.add(skill_id)
+        skill = skills[skill_id]
+        for prerequisite in skill.prerequisites:
+            if prerequisite in skills:
+                visit(prerequisite, path + (skill_id,))
+        visiting.remove(skill_id)
+        visited.add(skill_id)
+
+    for skill_id in sorted(skills):
+        visit(skill_id, ())
+    return issues
