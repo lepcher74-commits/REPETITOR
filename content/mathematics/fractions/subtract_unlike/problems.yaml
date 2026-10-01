@@ -63,3 +63,21 @@ problems:
       type: rational_equivalence
       expected: "17/24"
       require_simplified: true
+
+  - id: frac.sub.review.002
+    primary_skill: math.g6.fractions.subtract_unlike
+    purpose: review
+    prompt_ru: "Без подсказки вычисли и сократи: 5/6 - 1/8."
+    verifier:
+      type: rational_equivalence
+      expected: "17/24"
+      require_simplified: true
+
+  - id: frac.sub.review.003
+    primary_skill: math.g6.fractions.subtract_unlike
+    purpose: review
+    prompt_ru: "Без подсказки вычисли и сократи: 9/10 - 1/6."
+    verifier:
+      type: rational_equivalence
+      expected: "11/15"
+      require_simplified: true
