@@ -41,16 +41,17 @@
 6. Build provenance через environment variable не переживал freezing. Переведено на build_metadata.py.
 7. Первый build_metadata workflow штамповал файл после pip install ., поэтому frozen app мог брать установленную unstamped копию. Исправление: commit a84292a... — stamping до install + PyInstaller --paths src.
 8. Unit test build-info ошибочно предполагал installed package metadata в обычном CI. Исправлен test contract commit 3aa5321....
+9. После stamping-before-install Pilot Build a84292a... всё ещё падал: PyInstaller не включал repetitor.build_metadata при script entrypoint. Исправление commit 4bf3799...: explicit --hidden-import repetitor.build_metadata.
 
 ### Текущая работа
 
 **Build provenance / E8.1 / PR-01, PR-02, PR-14**
 
-Текущий исправляющий commit: `a84292addfef9715ef7b312f710ef7dbd7e9aade`.
+Текущий исправляющий commit: `4bf3799399a210a70eb6213867b141581afaf679` (поверх a84292a...).
 
 Нужно:
-1. Проверить CI для актуального HEAD.
-2. Проверить Pilot Build Windows/macOS для a84292a... или более нового HEAD с тем же исправлением.
+1. Проверить CI для актуального HEAD (4bf3799... или новее).
+2. Проверить Pilot Build Windows/macOS для 4bf3799... или более нового HEAD с тем же исправлением.
 3. Убедиться, что frozen `--build-info` содержит точный `github.sha`.
 4. Только после этого обновить evidence matrix и технический baseline.
 
