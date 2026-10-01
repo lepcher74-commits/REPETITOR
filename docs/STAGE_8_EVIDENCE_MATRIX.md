@@ -30,10 +30,10 @@ Status vocabulary:
 Stage 8 is **not closed**.
 
 Repository/automation evidence is strong enough for PR-01–07, PR-09, PR-11–13. The remaining release blockers are deliberately human/operational:
-1. execute and record the intended Windows/macOS accessibility checks with the relevant assistive technology;
-2. resolve pilot jurisdiction/operator/participant authorization and guardian/consent requirements;
-3. define the actual pilot retention/deletion procedure and support contact;
-4. complete manual age-appropriateness review of the complete pilot content;
+1. complete `PILOT_MANUAL_GATE_RECORD.md` for the intended Windows/macOS environment and assistive technology;
+2. resolve pilot jurisdiction/operator/participant authorization and guardian/consent requirements in that record;
+3. complete `PILOT_DATA_OPERATIONS_TEMPLATE.md` with actual retention/deletion procedure and support contact;
+4. complete the age-appropriateness section of `PILOT_MANUAL_GATE_RECORD.md` for the complete pilot content;
 5. after those records are committed, designate one final candidate SHA and require both CI and Pilot Build to pass again.
 
 No efficacy, WCAG conformance, legal compliance, code-signing or notarization claim is made.
