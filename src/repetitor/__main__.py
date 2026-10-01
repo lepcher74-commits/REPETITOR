@@ -22,14 +22,25 @@ def smoke_test(content_dir: Path) -> int:
     from repetitor.application.diagnostic import DiagnosticRouter
     from repetitor.application.remediation import load_remediations
     from repetitor.content import load_problems
-    from repetitor.content.module import load_module_manifest
+    from repetitor.content.module import (\n        load_module_manifest,\n        load_sequence_prerequisites,\n        load_sequence_problems,\n    )
 
     module = load_module_manifest(content_dir / "module.yaml")
     problems = load_problems(content_dir / "problems.yaml")
     DiagnosticRouter.from_yaml(content_dir / module.diagnostic_route)
     load_remediations(content_dir / module.remediation_route)
+
+    content_root = content_dir.parents[2]
+    sequence_pools = load_sequence_problems(module, content_root)
+    sequence_prerequisites = load_sequence_prerequisites(module, content_root)
+
     if not problems:
         raise RuntimeError("Pilot content contains no problems")
+    if set(sequence_pools) != set(module.learning_sequence):
+        raise RuntimeError("Pilot learning sequence is incomplete")
+    if set(sequence_prerequisites) != set(module.learning_sequence):
+        raise RuntimeError("Pilot prerequisite graph is incomplete")
+    if any(not pool for pool in sequence_pools.values()):
+        raise RuntimeError("Pilot learning sequence contains an empty problem pool")
     return 0
 
 
