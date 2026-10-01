@@ -67,3 +67,13 @@ def test_backup_refuses_existing_destination(tmp_path):
         create_backup(source, backup)
 
     assert read_value(backup) == "keep"
+
+
+def test_restore_leaves_no_temporary_database(tmp_path):
+    backup = tmp_path / "backup.sqlite3"
+    destination = tmp_path / "live.sqlite3"
+    make_db(backup)
+
+    restore_backup(backup, destination)
+
+    assert not destination.with_name(destination.name + ".restore.tmp").exists()
