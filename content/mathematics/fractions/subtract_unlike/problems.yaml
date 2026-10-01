@@ -1,0 +1,65 @@
+problems:
+  - id: frac.sub.diag.001
+    primary_skill: math.g6.fractions.subtract_unlike
+    purpose: diagnostic
+    prompt_ru: "Вычисли и сократи: 5/6 - 1/4."
+    verifier:
+      type: rational_equivalence
+      expected: "7/12"
+      require_simplified: true
+
+  - id: frac.sub.guided.001
+    primary_skill: math.g6.fractions.subtract_unlike
+    purpose: guided
+    prompt_ru: "Вычисли и сократи: 3/4 - 1/6."
+    verifier:
+      type: rational_equivalence
+      expected: "7/12"
+      require_simplified: true
+    hints:
+      - level: 1
+        kind: socratic
+        text_ru: "Какой общий знаменатель подойдёт для 4 и 6?"
+      - level: 2
+        kind: subgoal
+        text_ru: "Приведи обе дроби к знаменателю 12, затем вычти числители."
+      - level: 3
+        kind: worked_step
+        text_ru: "3/4 = 9/12, а 1/6 = 2/12. Осталось вычесть числители."
+
+  - id: frac.sub.independent.001
+    primary_skill: math.g6.fractions.subtract_unlike
+    purpose: independent
+    prompt_ru: "Вычисли и сократи: 7/10 - 1/4."
+    verifier:
+      type: rational_equivalence
+      expected: "9/20"
+      require_simplified: true
+
+  - id: frac.sub.independent.002
+    primary_skill: math.g6.fractions.subtract_unlike
+    purpose: independent
+    prompt_ru: "Вычисли и сократи: 11/12 - 2/9."
+    verifier:
+      type: rational_equivalence
+      expected: "25/36"
+      require_simplified: true
+
+  - id: frac.sub.transfer.001
+    primary_skill: math.g6.fractions.subtract_unlike
+    purpose: transfer
+    transfer: true
+    prompt_ru: "От ленты длиной 5/6 м отрезали 3/10 м. Сколько метров осталось? Ответ сократи."
+    verifier:
+      type: rational_equivalence
+      expected: "8/15"
+      require_simplified: true
+
+  - id: frac.sub.review.001
+    primary_skill: math.g6.fractions.subtract_unlike
+    purpose: review
+    prompt_ru: "Без подсказки вычисли и сократи: 7/8 - 1/6."
+    verifier:
+      type: rational_equivalence
+      expected: "17/24"
+      require_simplified: true
