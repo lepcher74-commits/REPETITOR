@@ -1,0 +1,11 @@
+id: math.prereq.lcm
+subject: mathematics
+grade_band: middle
+module: whole_number_prerequisites
+title_ru: "Наименьшее общее кратное"
+objectives:
+  - "находить наименьшее положительное общее кратное двух натуральных чисел"
+prerequisites: []
+mastery_policy: fraction_standard
+misconceptions: []
+tags: [arithmetic, prerequisite, lcm]
