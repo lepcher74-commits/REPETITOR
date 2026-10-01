@@ -112,3 +112,21 @@ problems:
       type: rational_equivalence
       expected: "19/24"
       require_simplified: true
+
+  - id: frac.add.review.002
+    primary_skill: math.g6.fractions.add_unlike
+    purpose: review
+    prompt_ru: "Без подсказки вычисли: 5/6 + 1/9"
+    verifier:
+      type: rational_equivalence
+      expected: "17/18"
+      require_simplified: true
+
+  - id: frac.add.review.003
+    primary_skill: math.g6.fractions.add_unlike
+    purpose: review
+    prompt_ru: "Без подсказки вычисли: 7/15 + 1/6"
+    verifier:
+      type: rational_equivalence
+      expected: "19/30"
+      require_simplified: true
