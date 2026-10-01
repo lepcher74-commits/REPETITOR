@@ -103,3 +103,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Data operations now records default `~/.repetitor`, SQLite/log files, tested backup requirement, NO external transfer for this candidate, and minimal incident-preservation procedure.
 - Manual gate now records candidate/date and PASS only for the objectively verifiable no-production-network-AI item.
 - Remaining human inputs: (1) jurisdiction + operator/controller role + participant age range/guardian authorization; (2) retention/deletion/support/incident owner; (3) actual Windows/macOS accessibility results and complete content age review.
+
+
+## 2026-10-01 — backup documentation debt closed
+- `DATA_BACKUP_RECOVERY.md` now documents both SQLite integrity and required REPETITOR schema validation; healthy unrelated SQLite is explicitly rejected (c40f433...).
+- Stage 8 evidence PR-05/PR-06 now points to schema hardening `c82c5d7...` and CI `36856369288` (00d8745...).
+- No runtime code changed; technical candidate evidence 87eceb5... remains the last runtime same-SHA CI/Pilot Build proof.
+- Remaining blockers are manual/operational only: PR-08 accessibility, PR-10 authorization/content review/data operations, then final PR-14 rerun.
