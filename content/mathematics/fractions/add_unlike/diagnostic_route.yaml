@@ -38,6 +38,7 @@ rules:
     when: {correct: false}
     next_problem_id: null
     phase: remediation
+    remediation_skill_id: math.g6.fractions.equivalent
     message_ru: "Нашли более ранний пробел: сначала восстановим эквивалентные дроби."
   - problem_id: frac.add.probe.lcm
     when: {correct: true}
@@ -48,6 +49,7 @@ rules:
     when: {correct: false}
     next_problem_id: null
     phase: remediation
+    remediation_skill_id: math.prereq.lcm
     message_ru: "Сначала восстановим поиск общего кратного, затем вернёмся к дробям."
   - problem_id: frac.add.guided.001
     when: {}
