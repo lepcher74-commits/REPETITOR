@@ -16,6 +16,11 @@ goals:
 routes:
   diagnostic: diagnostic_route.yaml
   remediation: remediation.yaml
+learning_sequence:
+  - math.g6.fractions.equivalent
+  - math.g6.fractions.simplify
+  - math.g6.fractions.add_unlike
+  - math.g6.fractions.subtract_unlike
 review_problems_by_skill:
   math.g6.fractions.add_unlike:
     - frac.add.review.001
