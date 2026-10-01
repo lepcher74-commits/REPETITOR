@@ -49,3 +49,26 @@ Only after E1–E5 are stable, extend the grade-6 fractions graph/content beyond
 - all prior Stage 5/6 acceptance tests remain green.
 
 Transition beyond Stage 7 requires the Controller gate defined by Constitution v1.0.
+
+
+## Implementation status
+
+- E1 — repository-wide prerequisite graph validation: implemented and regression-tested.
+- E2 — fresh review/remediation evidence pools: implemented; attempted problem history prevents identical authored evidence from being the sole mastery mechanism.
+- E3 — session continuity: implemented separately from KnowledgeState; restart and stale-position fallback are tested.
+- E4 — desktop CI: Linux, Windows, and macOS matrix implemented. Final Stage 7 head must be green before closure.
+- E5 — accessibility baseline: automated accessible-name/focus checks implemented; manual Narrator/VoiceOver/WCAG audit remains a release limitation, documented in ACCESSIBILITY_AUDIT.md.
+- E6 — curriculum breadth: equivalent fractions is a second declarative grade-6 mathematics skill with diagnostic, guided, independent, transfer, review, formal verification, and generic LearningSessionService coverage.
+
+## Residual risks at final gate
+
+1. [ДОПУЩЕНИЕ] Mastery coefficients, thresholds, and review intervals remain heuristic and are not empirically calibrated.
+2. Manual screen-reader and formal WCAG audit has not been executed.
+3. CI proves automated runtime/tests on hosted Linux, Windows, and macOS runners; it is not a substitute for packaged installer testing on representative user machines.
+4. Content breadth is still deliberately narrow: grade-6 fractions, not a complete grade-6 curriculum.
+5. Production AI provider remains optional; offline formal learning core is authoritative.
+6. Fresh evidence pools are finite. When exhausted, the application fails safely rather than recycling identical evidence to inflate mastery.
+
+## Final gate rule
+
+Stage 7 is technically complete only after the final three-platform CI head succeeds. Constitutional closure still requires explicit Controller approval.
