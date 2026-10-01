@@ -45,3 +45,9 @@ def test_remediation_decisions_declare_target_skill():
         )
         assert decision.phase == "remediation"
         assert decision.remediation_skill_id == problem.primary_skill
+
+
+def test_router_reports_only_declared_problem_ownership():
+    router = DiagnosticRouter.from_yaml(Path("content/mathematics/fractions/add_unlike/diagnostic_route.yaml"))
+    assert router.handles(router.start_problem_id)
+    assert not router.handles("frac.eq.diag.001")
