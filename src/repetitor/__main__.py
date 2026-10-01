@@ -6,6 +6,21 @@ from pathlib import Path
 from repetitor.runtime_paths import default_content_dir
 
 
+def smoke_test(content_dir: Path) -> int:
+    from repetitor.application.diagnostic import DiagnosticRouter
+    from repetitor.application.remediation import load_remediations
+    from repetitor.content import load_problems
+    from repetitor.content.module import load_module_manifest
+
+    module = load_module_manifest(content_dir / "module.yaml")
+    problems = load_problems(content_dir / "problems.yaml")
+    DiagnosticRouter.from_yaml(content_dir / module.diagnostic_route)
+    load_remediations(content_dir / module.remediation_route)
+    if not problems:
+        raise RuntimeError("Pilot content contains no problems")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="REPETITOR adaptive desktop tutor")
     parser.add_argument("--data-dir", type=Path, default=Path.home() / ".repetitor")
@@ -14,7 +29,11 @@ def main() -> int:
         type=Path,
         default=default_content_dir(),
     )
+    parser.add_argument("--smoke-test", action="store_true")
     args = parser.parse_args()
+
+    if args.smoke_test:
+        return smoke_test(args.content_dir)
 
     from repetitor.ui.app import run
     return run(args.data_dir, args.content_dir)
