@@ -72,3 +72,8 @@ Transition beyond Stage 7 requires the Controller gate defined by Constitution v
 ## Final gate rule
 
 Stage 7 is technically complete only after the final three-platform CI head succeeds. Constitutional closure still requires explicit Controller approval.
+
+
+## Controller gate
+
+Stage 7 approved by the Controller on 2026-10-01. The constitutional stages 0–7 are complete. Further work requires a separately approved scope; no Stage 8 is implied.
