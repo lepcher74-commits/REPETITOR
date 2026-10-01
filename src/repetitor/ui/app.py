@@ -7,7 +7,7 @@ from pathlib import Path
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QApplication, QComboBox, QFrame, QHBoxLayout, QLabel, QLineEdit,
-    QMainWindow, QPushButton, QStackedWidget, QVBoxLayout, QWidget,
+    QMainWindow, QMessageBox, QPushButton, QStackedWidget, QVBoxLayout, QWidget,
 )
 
 from repetitor.application.diagnostic import DiagnosticRouter
@@ -396,6 +396,10 @@ class RepetitorWindow(QMainWindow):
         self.stack.setCurrentWidget(self.progress)
 
 
+def create_window(data_dir: Path, content_dir: Path) -> RepetitorWindow:
+    return RepetitorWindow(data_dir, content_dir)
+
+
 def run(data_dir: Path, content_dir: Path) -> int:
     app = QApplication.instance() or QApplication(sys.argv)
     app.setStyleSheet("""
@@ -410,6 +414,16 @@ def run(data_dir: Path, content_dir: Path) -> int:
         QPushButton#secondary { font-weight: 400; }
         QLabel#feedback, QLabel#progress { padding: 12px 0; }
     """)
-    window = RepetitorWindow(data_dir, content_dir)
+    try:
+        window = create_window(data_dir, content_dir)
+    except Exception:
+        QMessageBox.critical(
+            None,
+            "REPETITOR — ошибка запуска",
+            "Не удалось безопасно открыть локальные данные или учебный контент. "
+            "Приложение остановлено, чтобы не создавать ложный или пустой прогресс. "
+            "Сохраните папку данных и обратитесь к сопровождающему пилота.",
+        )
+        return 2
     window.show()
     return app.exec()
