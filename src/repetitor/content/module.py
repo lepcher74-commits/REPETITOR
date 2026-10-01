@@ -22,6 +22,7 @@ class ModuleManifest:
     goals: tuple[Choice, ...]
     diagnostic_route: str
     remediation_route: str
+    review_problem_by_skill: dict[str, str]
 
 
 def load_module_manifest(path: Path) -> ModuleManifest:
@@ -35,4 +36,5 @@ def load_module_manifest(path: Path) -> ModuleManifest:
         goals=tuple(Choice(str(x["id"]), str(x["title_ru"])) for x in raw["goals"]),
         diagnostic_route=str(raw["routes"]["diagnostic"]),
         remediation_route=str(raw["routes"]["remediation"]),
+        review_problem_by_skill={str(k): str(v) for k, v in raw.get("review_problem_by_skill", {}).items()},
     )
