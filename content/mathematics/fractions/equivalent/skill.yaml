@@ -1,0 +1,11 @@
+id: math.g6.fractions.equivalent
+subject: mathematics
+grade_band: middle
+module: fractions
+title_ru: "Эквивалентные дроби"
+objectives:
+  - "понимать, что умножение числителя и знаменателя на одно ненулевое число сохраняет значение дроби"
+prerequisites: []
+mastery_policy: fraction_standard
+misconceptions: []
+tags: [fractions, prerequisite]
