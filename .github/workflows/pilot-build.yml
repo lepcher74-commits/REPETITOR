@@ -37,10 +37,13 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install . pyinstaller
 
+      - name: Stamp build provenance
+        shell: bash
+        run: |
+          printf 'BUILD_SHA = "%s"\\n' "${{ github.sha }}" > src/repetitor/build_metadata.py
+
       - name: Build pilot bundle
         shell: bash
-        env:
-          REPETITOR_BUILD_SHA: ${{ github.sha }}
         run: |
           pyinstaller --noconfirm --clean --onedir --name REPETITOR --add-data "content${{ matrix.sep }}content" src/repetitor/__main__.py
 
