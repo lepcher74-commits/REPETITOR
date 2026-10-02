@@ -387,3 +387,8 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Confirmed manual Windows 11 defect: Narrator speaks interface but not answer correctness feedback (record 36fbd8d...).
 - Added Qt accessibility announcement events and accessible descriptions for diagnostic answer feedback, hints and remediation feedback in src/repetitor/ui/app.py (3175c42...). Added integration regression checks in tests/integration/test_accessibility.py (0b6f4c7...).
 - CI and Pilot Build triggered; results and real Narrator retest pending. Do not mark defect resolved or PR-08 PASS based solely on code/tests.
+
+
+## 2026-10-02 — diagnose and correct accessibility regression test setup
+- App-only commit 3175c42... CI SUCCESS run 36987973288 and unsigned Pilot Build SUCCESS 36987973267, but subsequent test commit 0b6f4c7... CI FAILURE 36987994403 (183 passed, 1 failed on Ubuntu; same failed assertion across platforms). Failure was test_empty_answer_announces_feedback_without_stealing_focus asserting hasFocus() in an offscreen, never-shown Qt window; event emission and accessibleDescription assertions passed.
+- Updated test to show the window, process events, explicitly focus the answer input and assert the precondition before submitting (4994f32...). New CI run 36988653579 pending at time of log. Do not claim retest success yet. App's Narrator announcement remains unverified on real Windows 11.
