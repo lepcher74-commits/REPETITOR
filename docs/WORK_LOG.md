@@ -143,3 +143,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Previous onboarding test SHA fe34ecc... CI 36963292420 SUCCESS; journal SHA 6e16d7a... CI 36963303450 SUCCESS. Pilot Build 36963283937 SUCCESS on earlier d6e50f... only, not current final candidate.
 - Added `application/sync_gate.py`: optional sync requires BOTH current persisted purpose-specific grant AND onboarding authorization/active consent/default-off feature flag. Added two tests for persisted revocation, missing grant, other parent/purpose, email-only denial (0fd4dd8...).
 - This is a local policy gate only: no production network, identity verification, server enforcement or live child data collection. A future server must reauthorize every request. Await fresh CI.
+
+
+## 2026-10-02 — mailbox challenge primitive
+- Combined sync-gate implementation CI 36963537747 SUCCESS on 8e9bddc...; later test/journal CI and Pilot Build were still running at last check.
+- Added single-use random mailbox challenge: SHA-256 token digest, constant-time comparison, 15-minute default expiry, five-attempt limit, no plaintext token persisted in challenge object (ebac34d...). Added three tests (7187942...).
+- This is an in-memory primitive only. It does not send mail, persist attempts across restarts, authenticate an account, verify parent age/authority or activate any server; deployment requires server-side persistence, rate limiting and abuse protections.
+- Await CI on test SHA 7187942... and final journal HEAD. Keep all cloud features OFF.
