@@ -203,3 +203,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Previous parent-login integration test CI 36968276309 SUCCESS, journal CI 36968286248 SUCCESS; implementation Pilot Build 36968268277 SUCCESS on ee43411... only.
 - Added persisted account (5 failed attempts/15 min) and IP (20 failed attempts/15 min) limiter with atomic check-and-record for failed attempts (63765b6..., d32ddce...), two persistence tests (350c159...). Integrated optional limiter with internal `ParentLogin`, requiring trusted client IP when configured (f2b651f...), integration test (c64be94...). Await fresh CI.
 - IMPORTANT: default legacy ParentLogin construction remains unthrottled for backwards compatibility; any future public endpoint MUST inject limiter, use trusted server-derived IP and handle generic errors. Success check vs concurrent failure remains a separate operation; production distributed deployment needs shared transactional datastore and review. No public endpoint or cloud sync. Stage 8 manual gates blocked.
+
+
+## 2026-10-02 — password recovery token foundation
+- Prior limited-login integration CI 36968727168 SUCCESS, journal CI 36968738294 SUCCESS; Pilot Build 36968715323 SUCCESS on f2b651f... only.
+- Added persisted 256-bit one-time recovery tokens, SHA-256 digest storage, 15-minute UTC expiry, atomic consume and reissue invalidation (6e10795..., 045b37a...). Three persistence tests added (7594155...). Await CI.
+- This is token storage ONLY, not a complete recovery flow: no recovery delivery, account enumeration controls, request throttling, password reset transaction or all-session revocation. A recovery token MUST NOT authorize password changes until those safeguards are implemented and tested. No public endpoint, no child-data transfer; Stage 8 remains open.
