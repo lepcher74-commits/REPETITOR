@@ -303,3 +303,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Previous recovery boundary concurrency integration CI queued at 9d45148... and journal CI in progress at 7c499da... at check; preceding journal CI SUCCESS at f4f5944....
 - Added controlled timing-security audit protocol (9ae63b2...) requiring synthetic accounts, randomized interleaved conditions, distribution measurements, repeatability, security-review sign-off and deployment-specific evidence. This is a plan, NOT a performed timing audit. Await CI.
 - No public endpoint, no live mail sender, no cloud child transfer. Stage 8 manual and legal gates remain open.
+
+
+## 2026-10-02 — offline timing-audit measurement helpers
+- Recovery malformed-burst integration CI SUCCESS at 9d45148..., timing audit protocol CI SUCCESS at 9ae63b2..., journal CI SUCCESS at 8201dc0....
+- Added offline seeded interleaved timing collector and nearest-rank p95/p99 summaries (a58ef78...) with deterministic tests (45061bd...). Await fresh CI.
+- Measurement helpers are NOT timing-security evidence: no staging run, confidence intervals, independent security review or approved acceptance threshold. Do not log real account identifiers or use live endpoints. Stage 8 remains open; public recovery and child sync disabled.
