@@ -309,3 +309,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Recovery malformed-burst integration CI SUCCESS at 9d45148..., timing audit protocol CI SUCCESS at 9ae63b2..., journal CI SUCCESS at 8201dc0....
 - Added offline seeded interleaved timing collector and nearest-rank p95/p99 summaries (a58ef78...) with deterministic tests (45061bd...). Await fresh CI.
 - Measurement helpers are NOT timing-security evidence: no staging run, confidence intervals, independent security review or approved acceptance threshold. Do not log real account identifiers or use live endpoints. Stage 8 remains open; public recovery and child sync disabled.
+
+
+## 2026-10-02 — exploratory timing uncertainty intervals
+- Previous timing collector CI and Pilot Build were in progress at check; no success claim for those runs.
+- Added seeded percentile bootstrap median interval helper (a8f8d6e...) and deterministic/invalid-input tests (e45936d...). Await fresh CI.
+- Bootstrap intervals assume suitable samples and do not establish account non-enumerability. Deployment-specific timing audit, threat review and approved acceptance criteria remain pending. Stage 8 open; no public recovery or child sync.
