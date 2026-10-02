@@ -36,3 +36,15 @@ def test_invalid_session_creation_rejected(tmp_path):
         store.create(parent_id="p", now=NOW.replace(tzinfo=None))
     with pytest.raises(ValueError):
         store.create(parent_id="p", now=NOW, ttl_hours=25)
+
+
+def test_revoke_all_only_affects_target_parent(tmp_path):
+    store = ParentSessionStore(tmp_path / "sessions.sqlite")
+    first = store.create(parent_id="p", now=NOW)
+    second = store.create(parent_id="p", now=NOW)
+    other = store.create(parent_id="other", now=NOW)
+    assert store.revoke_all(parent_id="p") == 2
+    assert store.authenticate(token=first, now=NOW) is None
+    assert store.authenticate(token=second, now=NOW) is None
+    assert store.authenticate(token=other, now=NOW) is not None
+    assert store.revoke_all(parent_id="p") == 0
