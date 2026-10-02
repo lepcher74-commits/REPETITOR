@@ -398,3 +398,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Corrected test commit 4994f32... CI SUCCESS run 36988653579; journal commit bc9a571... CI SUCCESS run 36988703470.
 - Accessibility implementation commit 3175c42... CI SUCCESS 36987973288 and Windows/macOS Pilot Build SUCCESS 36987973267; both jobs passed bundled-content verification, packaged-executable smoke and upload. Artifacts verified present/unexpired: Windows ID 11218133365, macOS ID 11218073752.
 - Windows operator retest requested against artifact from build run 36987973267, exact code SHA 3175c42.... Later commits only changed tests/docs; do not represent this as a final exact-SHA release gate. Narrator behavior on real Windows still awaiting operator evidence.
+
+
+## 2026-10-02 — second Narrator remediation: Alert fallback
+- Controller retest on Windows 11 confirmed the first Announcement-only implementation did not produce spoken answer feedback; manual FAIL remains on baseline 3175c42....
+- Qt documentation describes Announcement as an accessibility notification and updateAccessibility as the mechanism for notifying assistive technologies; added a second QAccessible.Alert event as a Windows screen-reader compatibility fallback (80edc27...). Added regression expectation for both events (1a6a63e...).
+- New CI/Pilot Build pending. Must retest a new Windows artifact; no resolution claim until Narrator actually speaks the result.
