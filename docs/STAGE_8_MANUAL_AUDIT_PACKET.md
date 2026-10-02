@@ -7,7 +7,7 @@
 - Baseline commit: `714e96ed19ce4c0d44d23bdc5646b28d6880ad96`.
 - CI success: https://github.com/lepcher74-commits/REPETITOR/actions/runs/36978627964
 - Windows/macOS Pilot Build success: https://github.com/lepcher74-commits/REPETITOR/actions/runs/36978627923
-- Download both unsigned artifacts from that build run's Artifacts section. Artifacts expire after 14 days; if expired, rerun Pilot Build on an explicit pinned candidate ref and record the new run/SHA. Do not substitute a build of unrecorded provenance.
+- Both artifacts were verified present and unexpired on 2026-10-02: `repetitor-windows` (artifact ID `11214672395`) and `repetitor-macos` (artifact ID `11214143484`). Download from the linked build run's Artifacts section. Artifacts have a 14-day retention period; if expired, rerun Pilot Build on an explicit pinned candidate ref and record the new run/SHA. Do not substitute a build of unrecorded provenance.
 - This is a **technical baseline**, not a final candidate; subsequent changes require a new exact-SHA CI/Pilot Build pair before final approval.
 
 ## Operator observation sequence
