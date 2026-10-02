@@ -256,3 +256,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Previous reset fail-closed tests CI SUCCESS at c46a7ee..., journal CI SUCCESS at 5359602...; consent sync gate CI and Pilot Build SUCCESS at e6b6ca9... (earlier malformed intermediate e5ea5f6... CI failed, corrected next commit).
 - Added failure-injection test (413dc3d...) proving that unavailable email transport raises an error and repeated failed deliveries still consume persisted request quotas. Await CI.
 - Recovery delivery failure handling and generic external response remain unimplemented; test documents current internal behavior only. No public endpoint, no live sender, no child-data transfer; Stage 8 remains open.
+
+
+## 2026-10-02 — generic recovery acknowledgement
+- Prior delivery-failure test CI SUCCESS at 413dc3d..., journal CI SUCCESS at bf54c36....
+- Added transport-independent `RecoveryAcknowledgement` (533f80c...) returning identical acknowledgement for registered, unknown, throttled and mail-transport-failure outcomes; two regression tests (7bcb6b7...). Await fresh CI.
+- This is not an HTTP adapter or complete anti-enumeration: timing, invalid-input behavior, unexpected exception handling, trusted IP, safe telemetry and real sender must be reviewed before deployment. No public endpoint or cloud transfer. Stage 8 remains open.
