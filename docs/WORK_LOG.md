@@ -291,3 +291,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Isolated limiter CI SUCCESS at c65f6cb... and journal CI SUCCESS at 665b020...; intermediate implementation 9b9ecbf... CI FAILED, corrected by later test update; Pilot Build SUCCESS at 9b9ecbf... (implementation SHA). Concurrent regression CI still in progress when checked.
 - Added persisted malformed quota restart/window/backwards-clock regressions (93b37e5...), and future public recovery trust-boundary and required evidence contract (be309b8...). Await fresh CI.
 - No live public endpoint, delivery or cloud child-data transfer. Stage 8 remains open; manual/legal/security gates unapproved.
+
+
+## 2026-10-02 — concurrent recovery acknowledgement integration
+- Concurrent limiter CI SUCCESS at 45c0507..., clock tests CI SUCCESS at 93b37e5..., public-boundary document CI SUCCESS at be309b8....
+- Added 12-worker malformed burst integration test (9d45148...) exercising the complete acknowledgement and persisted per-client limiter, identical responses after quota and unaffected second IP. Await fresh CI.
+- Tests verify response equality, not response-time anonymity; shared-IP fairness, distributed deployment, trusted proxy and security review remain pending. No public recovery endpoint, no child sync; Stage 8 open.
