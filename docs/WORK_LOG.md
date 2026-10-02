@@ -285,3 +285,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 ## 2026-10-02 — concurrent malformed quota test
 - Added 12-worker barrier concurrency test (45c0507...) for persisted per-client quota: exactly ten requests accepted and two rejected, with another IP unaffected. Await CI.
 - Previous isolated-limiter CI and Pilot Build were in progress when checked; do not infer success. No public endpoint or child sync; Stage 8 remains open.
+
+
+## 2026-10-02 — recovery boundary specification and clock tests
+- Isolated limiter CI SUCCESS at c65f6cb... and journal CI SUCCESS at 665b020...; intermediate implementation 9b9ecbf... CI FAILED, corrected by later test update; Pilot Build SUCCESS at 9b9ecbf... (implementation SHA). Concurrent regression CI still in progress when checked.
+- Added persisted malformed quota restart/window/backwards-clock regressions (93b37e5...), and future public recovery trust-boundary and required evidence contract (be309b8...). Await fresh CI.
+- No live public endpoint, delivery or cloud child-data transfer. Stage 8 remains open; manual/legal/security gates unapproved.
