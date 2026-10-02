@@ -80,3 +80,26 @@ def bootstrap_median_interval(
     lower = max(0, int(__import__("math").floor((1 - confidence) / 2 * resamples)))
     upper = min(resamples - 1, int(__import__("math").ceil((1 + confidence) / 2 * resamples)) - 1)
     return estimates[lower], estimates[upper]
+
+
+def bootstrap_median_difference_interval(
+    first_ns: list[int], second_ns: list[int], *,
+    resamples: int = 2000, seed: int = 0, confidence: float = 0.95,
+) -> tuple[float, float]:
+    """Exploratory independent-sample interval for median(first)-median(second).
+
+    Zero inclusion is not proof of equivalent timing or account non-enumerability.
+    """
+    if not first_ns or not second_ns or any(x < 0 for x in first_ns + second_ns):
+        raise ValueError("Both samples must be nonempty and nonnegative")
+    if resamples < 100 or not 0 < confidence < 1:
+        raise ValueError("At least 100 resamples and confidence in (0, 1) required")
+    rng = random.Random(seed)
+    estimates = sorted(
+        statistics.median(rng.choices(first_ns, k=len(first_ns)))
+        - statistics.median(rng.choices(second_ns, k=len(second_ns)))
+        for _ in range(resamples)
+    )
+    lower = max(0, int(__import__("math").floor((1 - confidence) / 2 * resamples)))
+    upper = min(resamples - 1, int(__import__("math").ceil((1 + confidence) / 2 * resamples)) - 1)
+    return estimates[lower], estimates[upper]
