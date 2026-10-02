@@ -274,3 +274,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Prior malformed boundary tests CI SUCCESS at b653412..., journal CI SUCCESS at 787fd02..., Pilot Build SUCCESS at 9296c71... (implementation SHA).
 - Added optional injected persistent limiter for malformed recovery requests (c054c45...), with generic response preserved even after quota exceeded; regression test (19c7907...). Await fresh CI.
 - Existing fixed malformed key yields a global three-request-per-hour quota per limiter database, so a deployment MUST isolate/replace this policy before public traffic; optional injection is not production-ready. Timing and transport security review pending. Stage 8 remains open, no public endpoint or child sync.
+
+
+## 2026-10-02 — isolated malformed request quotas
+- Prior malformed limiter CI SUCCESS at 19c7907..., journal CI SUCCESS at 81870b0..., Pilot Build SUCCESS at c054c45... (implementation SHA).
+- Replaced optional global malformed-email quota with separate persistent per-client digest limiter, 10/hour per trusted client IP (31856ec..., 9b9ecbf...). Updated regression and added cross-client isolation test (c65f6cb...). Await fresh CI.
+- Shared NAT users may still affect one another; distributed deployment needs shared authoritative datastore and trusted-proxy IP policy. Timing and production transport review outstanding. No public endpoint or child sync; Stage 8 open.
