@@ -173,3 +173,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Legacy migration CI 36964994262 SUCCESS and journal CI 36965006479 SUCCESS; Pilot Build on 8fed93e... was still running at last check.
 - Added persistent SQLite `MailRequestLimiter` with atomic per-account (3/hour) and server-derived per-IP (10/hour) windows; rejected requests do not consume the other quota (417c72e...). Three tests added (ae6d60f...).
 - Limiter is not wired to a public endpoint. Future deployment MUST enforce limiter before issuing codes, validate trusted-proxy IP handling, handle email enumeration, distributed deployment/shared datastore and operational abuse monitoring. No email sent and no child data uploaded. Await CI.
+
+
+## 2026-10-02 — composed mailbox registration boundary
+- Prior limiter test CI 36965110777 SUCCESS and journal CI 36965120694 SUCCESS; implementation Pilot Build 36965100907 SUCCESS at 417c72e... (not latest HEAD).
+- Added injectable `MailRegistration` orchestration: persisted account/IP limiter → persisted one-time challenge → injected sender; verification consumes token once (72fc9ae...). Three offline fake-sender tests for success/replay, cooldown/no duplicate delivery, and delivery failure (1a1167f...). Await fresh CI.
+- Critical deployment gates: caller must authenticate parent ID, bind recipient to account, derive trusted client IP, avoid account enumeration, provision actual Russian-region mail/hosting and shared distributed rate limits. Fake sender only; no real mail or child-data transfer. Mailbox possession does not prove guardian status. Stage 8 remains open.
