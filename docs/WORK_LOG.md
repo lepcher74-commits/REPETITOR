@@ -250,3 +250,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 ## 2026-10-02 — reset fail-closed regression tests
 - Added two recovery regressions (c46a7ee...): missing credential must not consume recovery token; another parent's recovery token must not change password or revoke sessions. Await fresh CI.
 - Prior consent version CI/Pilot Build were still running at last check; no success claimed. No public reset endpoint or cloud transfer. Stage 8 remains open.
+
+
+## 2026-10-02 — delivery-failure regression
+- Previous reset fail-closed tests CI SUCCESS at c46a7ee..., journal CI SUCCESS at 5359602...; consent sync gate CI and Pilot Build SUCCESS at e6b6ca9... (earlier malformed intermediate e5ea5f6... CI failed, corrected next commit).
+- Added failure-injection test (413dc3d...) proving that unavailable email transport raises an error and repeated failed deliveries still consume persisted request quotas. Await CI.
+- Recovery delivery failure handling and generic external response remain unimplemented; test documents current internal behavior only. No public endpoint, no live sender, no child-data transfer; Stage 8 remains open.
