@@ -156,3 +156,8 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Prior mailbox challenge CI 36963652588 SUCCESS and journal CI 36963664549 SUCCESS; Pilot Build 36963642697 SUCCESS on implementation SHA ebac34d... only.
 - Added SQLite-backed per-parent challenge store with token digests, 15-minute expiry, five persisted attempts and atomic read/consume using BEGIN IMMEDIATE (ad3b842...). Added restart/replay, expiry/guess-limit and parent isolation tests (61abe63...).
 - Issuance still needs API-level throttling; repeated issuance currently replaces the previous token and MUST NOT be exposed directly to unauthenticated requests. No mail delivery, server deployment, identity/guardian proof or live sync enabled. Await CI on new test SHA.
+
+
+## 2026-10-02 — mailbox issuance cooldown
+- Added atomic 60-second per-parent issuance cooldown persisted in SQLite (ae35598...) and restart/old-token survival test (598fb0f...). Repeated issue inside cooldown fails without replacing the valid original token.
+- Migration caveat: existing development SQLite databases created before `last_issued_at` require schema migration before deploying this store; no production deployment exists. API-wide IP/device abuse throttling and email delivery still pending. Await fresh CI and Pilot Build; manual gates unchanged.
