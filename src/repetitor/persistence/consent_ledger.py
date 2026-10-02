@@ -41,3 +41,16 @@ class ConsentLedger:
                 (parent_id, purpose.value),
             ).fetchone()
         return row is not None and row[0] == "grant"
+
+    def active_for_notice(self, parent_id: str, purpose: ConsentPurpose, notice_version: str) -> bool:
+        """Require the latest event to be a grant for this exact notice version."""
+        if not notice_version.strip():
+            return False
+        with sqlite3.connect(self.path) as db:
+            row = db.execute(
+                """SELECT event_type,notice_version FROM consent_events
+                   WHERE parent_id=? AND purpose=?
+                   ORDER BY occurred_at DESC, rowid DESC LIMIT 1""",
+                (parent_id, purpose.value),
+            ).fetchone()
+        return row is not None and row == ("grant", notice_version)
