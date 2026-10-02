@@ -21,6 +21,17 @@ class EmailChallengeStore:
                 consumed INTEGER NOT NULL DEFAULT 0,
                 last_issued_at TEXT NOT NULL DEFAULT ''
             )""")
+            columns = {row[1] for row in db.execute("PRAGMA table_info(email_challenges)")}
+            if "last_issued_at" not in columns:
+                # Existing development databases predate issuance throttling.
+                # Conservatively delay next issuance after migration.
+                db.execute(
+                    "ALTER TABLE email_challenges ADD COLUMN last_issued_at TEXT NOT NULL DEFAULT ''"
+                )
+                db.execute(
+                    "UPDATE email_challenges SET last_issued_at = ?",
+                    (datetime.now(timezone.utc).isoformat(),),
+                )
 
     def issue(self, parent_id: str, now: datetime) -> str:
         if now.tzinfo is None:
