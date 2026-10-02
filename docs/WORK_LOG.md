@@ -227,3 +227,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Previous atomic-reset tests CI SUCCESS at 563b28a..., journal CI SUCCESS at dea6939..., Pilot Build SUCCESS at a6fcb3b... (implementation SHA).
 - Added offline `ParentRecoveryRequest` (d1078ac...) using server-owned normalized-email directory, persisted email/IP rate limiter, single-use recovery token and injected sender. Unknown emails consume quota and return the same result as known ones; two tests added (cfbb2a8...). Await fresh CI.
 - No public HTTP endpoint, live sender or recovery mail template. Observable mail delivery/timing and explicit rate-limit handling require production enumeration-risk review; directory must be authoritative, IP trusted and logging token-free. No child-data transfer; Stage 8 open.
+
+
+## 2026-10-02 — integrated offline recovery tests
+- Prior recovery request tests CI SUCCESS at cfbb2a8..., journal CI SUCCESS at e341c4c..., Pilot Build SUCCESS at d1078ac... (implementation SHA).
+- Added two full-path offline integration tests (a811cbe...) covering server directory -> request limiter -> token delivery stub -> atomic password replacement -> old session revocation, other-parent session isolation, token replay, unknown email and expiry. Await fresh CI; integration tests are not production security review.
+- Remaining: generic HTTP response and timing, sender template, failure recovery and concurrency stress, operator/guardian checks, Russian-hosted deployment review, real accessibility manual gates. Stage 8 remains open and cloud sync disabled.
