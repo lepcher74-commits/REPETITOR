@@ -415,3 +415,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 ## 2026-10-02 — Controller defers Narrator retest; PR-10 preparation
 - Controller explicitly deferred the second Windows Narrator manual retest and requested continuation elsewhere. PR-08 remains BLOCKED/awaiting real manual verification; the prior failed observation remains historical and the Alert fallback is not certified by CI.
 - Created STAGE_8_PR10_OPERATOR_DECISION_PACKET.md (104260b...) with actual operator decisions needed, guardian authority distinction, synthetic local deletion and incident tabletop procedures, exact evidence expectations and scope limits. Preparation only; no operator identity, legal authorization, consent, retention period, support or content review fabricated. PR-10 remains BLOCKED; PR-14 remains BLOCKED.
+
+
+## 2026-10-02 — Stage 8 evidence reconciliation and synthetic PR-10 drill
+- Reconciled STAGE_8_EVIDENCE_MATRIX.md (256895a...) with first Narrator manual FAIL, successful same-implementation-SHA CI/Pilot Build for second Alert fallback, deferred manual retest and independent test CI. No manual PR-08 PASS inferred.
+- Created PR10_SYNTHETIC_OPERATOR_DRILL.md (3f36c69...) as an executable human worksheet for synthetic backup/restore/withdrawal, lost-device tabletop, operator authorization and content-review evidence. This is NOT EXECUTED; all rows remain NOT TESTED. No real learner data is required or permitted for rehearsal.
+- PR-08 BLOCKED/deferred; PR-10 operational BLOCKED pending named operator and human evidence; PR-14 BLOCKED. Stage 8 remains open. Documentation-only CI pending for these changes.
