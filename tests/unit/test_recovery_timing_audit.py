@@ -2,6 +2,7 @@
 import pytest
 
 from repetitor.application.recovery_timing_audit import (
+    bootstrap_median_interval,
     collect_interleaved,
     summarize_durations,
 )
@@ -45,3 +46,21 @@ def test_nearest_rank_percentiles_and_input_validation():
         summarize_durations([-1])
     with pytest.raises(ValueError):
         collect_interleaved({"known": lambda: None}, repetitions=0)
+
+
+def test_bootstrap_median_interval_is_reproducible_and_bounded():
+    values = list(range(1, 201))
+    first = bootstrap_median_interval(values, resamples=500, seed=42)
+    second = bootstrap_median_interval(values, resamples=500, seed=42)
+    assert first == second
+    assert 1 <= first[0] <= first[1] <= 200
+    assert bootstrap_median_interval([7] * 200, resamples=100) == (7, 7)
+
+
+def test_bootstrap_rejects_invalid_inputs():
+    for values, samples, confidence in [
+        ([], 100, 0.95), ([-1], 100, 0.95),
+        ([1, 2], 99, 0.95), ([1, 2], 100, 1),
+    ]:
+        with pytest.raises(ValueError):
+            bootstrap_median_interval(values, resamples=samples, confidence=confidence)
