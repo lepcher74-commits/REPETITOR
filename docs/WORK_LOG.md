@@ -110,3 +110,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Stage 8 evidence PR-05/PR-06 now points to schema hardening `c82c5d7...` and CI `36856369288` (00d8745...).
 - No runtime code changed; technical candidate evidence 87eceb5... remains the last runtime same-SHA CI/Pilot Build proof.
 - Remaining blockers are manual/operational only: PR-08 accessibility, PR-10 authorization/content review/data operations, then final PR-14 rerun.
+
+
+## 2026-10-02 — approved scope change: Russian parent accounts
+- Controller approved optional Russian-hosted parent registration/consent/sync design; local offline learning remains mandatory.
+- Design and fail-closed gates recorded in `docs/RU_PARENT_ACCOUNT_ARCHITECTURE.md` (794fa36...). Email verification is explicitly not age/parenthood verification.
+- This is approval of architecture, not evidence of implemented server, lawful consent or operational pilot authorization.
+- Next: implement in small testable slices; operator identity, representative-verification method, provider contract and manual accessibility remain external gates.
