@@ -239,3 +239,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Previous integrated recovery tests CI SUCCESS at a811cbe..., journal CI SUCCESS at e6b1e2b....
 - Added concurrency regression (980364f...) requiring exactly one of two simultaneous resets to consume a token. Added injected SQLite trigger failure regression (1d0344d...) requiring password and token rollback when session revocation fails, followed by successful retry. Await fresh CI.
 - Still offline only; real sender, HTTP anti-enumeration, deployment security and manual Stage 8 gates remain pending. No cloud transfer.
+
+
+## 2026-10-02 — consent notice-version hardening
+- Previous concurrency and rollback tests CI SUCCESS at 980364f... and 1d0344d..., journal CI SUCCESS at 5cdc43f....
+- Fixed optional sync gate: latest persisted consent event must be an active grant for the EXACT supplied notice version; stale grants or a later withdrawal deny transfer (7a4c356..., e6b6ca9...). Regression test added (d20e302...). Await fresh CI.
+- This is local fail-closed policy only, not guardian identity or production legal approval. Cloud transfer remains disabled, Stage 8 manual gates open.
