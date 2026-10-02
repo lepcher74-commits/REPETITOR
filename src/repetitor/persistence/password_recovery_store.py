@@ -4,7 +4,7 @@ from __future__ import annotations
 import hashlib
 import secrets
 import sqlite3
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 
@@ -30,7 +30,7 @@ class PasswordRecoveryStore:
                    VALUES(?,?,?,0) ON CONFLICT(parent_id) DO UPDATE SET
                    token_digest=excluded.token_digest,expires_at=excluded.expires_at,
                    consumed=0""",
-                (parent_id, digest, (now + timedelta(minutes=15)).isoformat()),
+                (parent_id, digest, (now.astimezone(timezone.utc) + timedelta(minutes=15)).isoformat()),
             )
         return token
 
@@ -45,6 +45,6 @@ class PasswordRecoveryStore:
             changed = db.execute(
                 """UPDATE password_recovery SET consumed=1
                    WHERE parent_id=? AND token_digest=? AND consumed=0 AND expires_at>?""",
-                (parent_id, digest, now.isoformat()),
+                (parent_id, digest, now.astimezone(timezone.utc).isoformat()),
             ).rowcount
             return changed == 1
