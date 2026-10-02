@@ -57,3 +57,26 @@ def collect_interleaved(
             raise ValueError("Monotonic clock moved backwards")
         results[label].append(elapsed)
     return results
+
+
+def bootstrap_median_interval(
+    durations_ns: list[int], *, resamples: int = 2000, seed: int = 0,
+    confidence: float = 0.95,
+) -> tuple[float, float]:
+    """Seeded percentile bootstrap interval; exploratory, not a security verdict.
+
+    Independence of samples and environment stability must be reviewed separately.
+    """
+    if not durations_ns or any(x < 0 for x in durations_ns):
+        raise ValueError("Nonempty nonnegative durations required")
+    if resamples < 100 or not 0 < confidence < 1:
+        raise ValueError("At least 100 resamples and confidence in (0, 1) required")
+    rng = random.Random(seed)
+    n = len(durations_ns)
+    estimates = sorted(
+        statistics.median(rng.choices(durations_ns, k=n))
+        for _ in range(resamples)
+    )
+    lower = max(0, int(__import__("math").floor((1 - confidence) / 2 * resamples)))
+    upper = min(resamples - 1, int(__import__("math").ceil((1 + confidence) / 2 * resamples)) - 1)
+    return estimates[lower], estimates[upper]
