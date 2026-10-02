@@ -215,3 +215,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Verified prior recovery-token tests CI 36969002584 SUCCESS, journal CI 36969012417 SUCCESS; Pilot Build 36968992224 SUCCESS on implementation 045b37a... only.
 - Added atomic reset design and failure-case checklist in docs/PASSWORD_RESET_TRANSACTION_PLAN.md (4555ab8...). Added scoped all-session revocation method (c965ebc...) and regression test (afeb0db...). Await fresh CI.
 - Full password reset is NOT implemented or enabled: must guarantee one transaction for token consumption, credential update and session invalidation, with rollback tests and deployment-specific datastore review. No public recovery endpoint or child-data transfer. Stage 8 remains open.
+
+
+## 2026-10-02 — atomic local password reset
+- Prior all-session revocation test CI SUCCESS at afeb0db..., journal CI SUCCESS at 26d494..., Pilot Build SUCCESS at c965ebc... (implementation SHA only).
+- Added `AtomicParentPasswordReset` (a6fcb3b...) enforcing that recovery, credentials and session stores use ONE local SQLite file. A BEGIN IMMEDIATE transaction validates unused unexpired token, updates scrypt credential, consumes token and revokes all target-parent sessions; invalid token changes nothing. Three tests (563b28a...) cover successful reset, replay/expiry/wrong token and rejecting separate DBs. Await CI.
+- NOT deployed or publicly exposed. Mailbox identity/delivery, reset request limits, enumeration-safe responses and production datastore review remain. Stage 8 manual gates remain blocked; cloud transfer off.
