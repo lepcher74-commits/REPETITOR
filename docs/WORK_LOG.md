@@ -137,3 +137,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Added immutable onboarding state `application/parent_onboarding.py` with explicit email, representative and legal-review stages. Email challenge validation itself is not implemented, and there is deliberately no public setter that claims verified guardianship.
 - Added three unit tests for email-only denial, separate legal gate, default-off sync and consent withdrawal (fe34ecc...). No actual server, identity provider or child-data transfer enabled.
 - Next gate: fresh CI on this implementation, then review integration of persisted consent and onboarding without treating SQLite events as verified legal consent.
+
+
+## 2026-10-02 — parent onboarding slice 4: combined local sync gate
+- Previous onboarding test SHA fe34ecc... CI 36963292420 SUCCESS; journal SHA 6e16d7a... CI 36963303450 SUCCESS. Pilot Build 36963283937 SUCCESS on earlier d6e50f... only, not current final candidate.
+- Added `application/sync_gate.py`: optional sync requires BOTH current persisted purpose-specific grant AND onboarding authorization/active consent/default-off feature flag. Added two tests for persisted revocation, missing grant, other parent/purpose, email-only denial (0fd4dd8...).
+- This is a local policy gate only: no production network, identity verification, server enforcement or live child data collection. A future server must reauthorize every request. Await fresh CI.
