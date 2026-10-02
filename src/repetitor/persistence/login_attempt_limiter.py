@@ -45,9 +45,20 @@ class LoginAttemptLimiter:
                         raise LoginRateLimited("Login temporarily unavailable")
 
     def record_failure(self, *, parent_id: str, client_ip: str, now: datetime) -> None:
-        self.check(parent_id=parent_id, client_ip=client_ip, now=now)
+        if not parent_id.strip() or not client_ip.strip() or now.tzinfo is None:
+            raise ValueError("Server-resolved identity, IP and aware time required")
         with sqlite3.connect(self.path, timeout=5) as db:
             db.execute("BEGIN IMMEDIATE")
+            # Validate both scopes before changing either one.
+            for scope, digest, limit in self._keys(parent_id, client_ip):
+                row = db.execute(
+                    "SELECT window_start,failures FROM login_attempts WHERE scope=? AND key_digest=?",
+                    (scope, digest),
+                ).fetchone()
+                if row:
+                    start = datetime.fromisoformat(row[0])
+                    if now < start or (now - start < timedelta(minutes=15) and row[1] >= limit):
+                        raise LoginRateLimited("Login temporarily unavailable")
             for scope, digest, _ in self._keys(parent_id, client_ip):
                 row = db.execute(
                     "SELECT window_start,failures FROM login_attempts WHERE scope=? AND key_digest=?",
