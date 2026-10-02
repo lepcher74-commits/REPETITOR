@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QAccessible, QAccessibleAnnouncementEvent
+from PySide6.QtGui import QAccessible, QAccessibleAnnouncementEvent, QAccessibleEvent
 from PySide6.QtWidgets import (
     QApplication, QComboBox, QFrame, QHBoxLayout, QLabel, QLineEdit,
     QMainWindow, QMessageBox, QPushButton, QStackedWidget, QVBoxLayout, QWidget,
@@ -201,7 +201,10 @@ class RepetitorWindow(QMainWindow):
         """Expose changed feedback to screen readers without stealing keyboard focus."""
         label.setAccessibleDescription(label.text())
         if label.text():
+            # Announcement is the semantic API; Alert is a compatibility fallback
+            # for screen readers that do not vocalize Announcement on Windows.
             QAccessible.updateAccessibility(QAccessibleAnnouncementEvent(label, label.text()))
+            QAccessible.updateAccessibility(QAccessibleEvent(label, QAccessible.Alert))
 
     def _start_remediation(self, skill_id: str) -> None:
         step = self.remediations.get(skill_id)
