@@ -3,6 +3,7 @@ import pytest
 
 from repetitor.application.recovery_timing_audit import (
     bootstrap_median_interval,
+    bootstrap_median_difference_interval,
     collect_interleaved,
     summarize_durations,
 )
@@ -64,3 +65,28 @@ def test_bootstrap_rejects_invalid_inputs():
     ]:
         with pytest.raises(ValueError):
             bootstrap_median_interval(values, resamples=samples, confidence=confidence)
+
+
+def test_difference_interval_constant_synthetic_samples():
+    assert bootstrap_median_difference_interval(
+        [12] * 200, [7] * 200, resamples=100, seed=3,
+    ) == (5, 5)
+    first = bootstrap_median_difference_interval(
+        list(range(1, 201)), list(range(101, 301)), resamples=500, seed=7,
+    )
+    assert first == bootstrap_median_difference_interval(
+        list(range(1, 201)), list(range(101, 301)), resamples=500, seed=7,
+    )
+    assert first[0] <= first[1]
+
+
+def test_difference_interval_invalid_inputs():
+    for first, second, samples, confidence in [
+        ([], [1], 100, 0.95), ([1], [], 100, 0.95),
+        ([-1], [1], 100, 0.95), ([1], [1], 99, 0.95),
+        ([1], [1], 100, 0),
+    ]:
+        with pytest.raises(ValueError):
+            bootstrap_median_difference_interval(
+                first, second, resamples=samples, confidence=confidence,
+            )
