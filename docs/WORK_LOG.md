@@ -167,3 +167,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Cooldown implementation CI 36964216757 SUCCESS and Pilot Build 36964216782 SUCCESS at ae35598...; cooldown test CI 36964225734 SUCCESS; journal CI 36964236072 SUCCESS.
 - Implemented startup migration for pre-cooldown SQLite challenge tables: add last_issued_at, conservatively mark legacy rows at migration time to prevent immediate resend (8fed93e...). Added legacy-row preservation test (38537bd...). No live production DB or email service exists.
 - Await fresh CI. Remaining public API IP/device throttling and operator/legal/manual gates unchanged.
+
+
+## 2026-10-02 — server-side mail abuse-limit primitive
+- Legacy migration CI 36964994262 SUCCESS and journal CI 36965006479 SUCCESS; Pilot Build on 8fed93e... was still running at last check.
+- Added persistent SQLite `MailRequestLimiter` with atomic per-account (3/hour) and server-derived per-IP (10/hour) windows; rejected requests do not consume the other quota (417c72e...). Three tests added (ae6d60f...).
+- Limiter is not wired to a public endpoint. Future deployment MUST enforce limiter before issuing codes, validate trusted-proxy IP handling, handle email enumeration, distributed deployment/shared datastore and operational abuse monitoring. No email sent and no child data uploaded. Await CI.
