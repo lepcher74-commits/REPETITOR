@@ -349,3 +349,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 ## 2026-10-02 — executable manual evidence status report
 - Evidence matrix and journal CI were in progress at last check. Added runnable read-only `python scripts/stage8_manual_status.py` (65bf25c...) to list unresolved Stage 8 manual record markers with nonzero exit status; it never approves release. Fixture-based tests retained so genuine future human approvals will not cause CI to fail (temporary repository-state assertion 143d7b6... reverted by 0d3fa2f...). Await CI.
 - PR-08, operational PR-10 and final PR-14 remain outstanding; Stage 8 open.
+
+
+## 2026-10-02 — pinned manual audit packet
+- Verified manual-status script CI SUCCESS 36979217952 (65bf25c...), follow-up journal CI SUCCESS 36979238508 (e5f3cae...). No claim of final pilot gate.
+- Added STAGE_8_MANUAL_AUDIT_PACKET.md (a13dc22...) with exact successful same-SHA technical baseline 714e96e... (CI 36978627964, Windows/macOS Pilot Build 36978627923), artifact expiry caveat, executable OS/AT audit instructions and required return evidence.
+- No manual audit, legal review or Controller approval performed; PR-08, operational PR-10 and PR-14 remain BLOCKED.
