@@ -29,3 +29,14 @@ def test_persistent_challenges_are_parent_scoped(tmp_path):
     token = store.issue("p", NOW)
     assert not store.verify("other", token, NOW)
     assert store.verify("p", token, NOW)
+
+
+def test_issuance_cooldown_survives_restart_and_does_not_replace_token(tmp_path):
+    import pytest
+    path = tmp_path / "mail.sqlite"
+    first = EmailChallengeStore(path).issue("p", NOW)
+    with pytest.raises(ValueError, match="rate limited"):
+        EmailChallengeStore(path).issue("p", NOW + timedelta(seconds=30))
+    assert EmailChallengeStore(path).verify("p", first, NOW + timedelta(seconds=31))
+    second = EmailChallengeStore(path).issue("p", NOW + timedelta(seconds=61))
+    assert EmailChallengeStore(path).verify("p", second, NOW + timedelta(seconds=62))
