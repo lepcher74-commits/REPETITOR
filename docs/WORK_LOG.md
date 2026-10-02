@@ -262,3 +262,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Prior delivery-failure test CI SUCCESS at 413dc3d..., journal CI SUCCESS at bf54c36....
 - Added transport-independent `RecoveryAcknowledgement` (533f80c...) returning identical acknowledgement for registered, unknown, throttled and mail-transport-failure outcomes; two regression tests (7bcb6b7...). Await fresh CI.
 - This is not an HTTP adapter or complete anti-enumeration: timing, invalid-input behavior, unexpected exception handling, trusted IP, safe telemetry and real sender must be reviewed before deployment. No public endpoint or cloud transfer. Stage 8 remains open.
+
+
+## 2026-10-02 — malformed recovery request boundary
+- Previous generic acknowledgement CI SUCCESS at 7bcb6b7..., journal CI SUCCESS at d74e32a..., Pilot Build SUCCESS at 533f80c... (implementation SHA).
+- Updated recovery acknowledgement (9296c71...) to return the same generic response for malformed email, while refusing missing trusted IP or naive time as programmer/deployment errors. Added two tests (b653412...). Await fresh CI.
+- Invalid email is not quota charged; future HTTP edge must add abuse control for malformed traffic. Response equality does not prove timing indistinguishability. No live HTTP/mail or child cloud transfer; Stage 8 open.
