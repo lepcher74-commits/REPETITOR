@@ -197,3 +197,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Previous session-bound mail test CI 36967914706 SUCCESS, journal CI 36967926717 SUCCESS; implementation Pilot Build 36967904356 SUCCESS on 690609b... only.
 - Added salted scrypt credential storage and constant-time digest comparison (29549d2...), three persistence tests (2e3508c...). Added internal password-to-revocable-session login (ee43411...) and integration test (30438ac...). Await fresh CI.
 - NOT production login: no public endpoint, server-side login rate limiting, breached-password policy, secure recovery, MFA decision, cookie/CSRF/TLS setup or deployment. Registration is not exposed. Guardian verification is separate and cloud transfer OFF. Stage 8 manual gates remain blocked.
+
+
+## 2026-10-02 — failed parent login throttling
+- Previous parent-login integration test CI 36968276309 SUCCESS, journal CI 36968286248 SUCCESS; implementation Pilot Build 36968268277 SUCCESS on ee43411... only.
+- Added persisted account (5 failed attempts/15 min) and IP (20 failed attempts/15 min) limiter with atomic check-and-record for failed attempts (63765b6..., d32ddce...), two persistence tests (350c159...). Integrated optional limiter with internal `ParentLogin`, requiring trusted client IP when configured (f2b651f...), integration test (c64be94...). Await fresh CI.
+- IMPORTANT: default legacy ParentLogin construction remains unthrottled for backwards compatibility; any future public endpoint MUST inject limiter, use trusted server-derived IP and handle generic errors. Success check vs concurrent failure remains a separate operation; production distributed deployment needs shared transactional datastore and review. No public endpoint or cloud sync. Stage 8 manual gates blocked.
