@@ -21,11 +21,13 @@ class RecoveryAcknowledgement:
         self.requests = requests
 
     def submit(self, *, email: str, server_client_ip: str, now: datetime) -> str:
+        if not server_client_ip.strip() or now.tzinfo is None:
+            raise ValueError("Trusted client IP and aware time required")
         try:
             self.requests.request(
                 email=email, server_client_ip=server_client_ip, now=now,
             )
-        except (AbuseLimitExceeded, OSError):
+        except (AbuseLimitExceeded, OSError, ValueError):
             # Operational monitoring must record failures without token or email.
             # The response does not expose existence or delivery status.
             pass
