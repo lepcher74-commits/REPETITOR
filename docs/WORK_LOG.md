@@ -355,3 +355,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Verified manual-status script CI SUCCESS 36979217952 (65bf25c...), follow-up journal CI SUCCESS 36979238508 (e5f3cae...). No claim of final pilot gate.
 - Added STAGE_8_MANUAL_AUDIT_PACKET.md (a13dc22...) with exact successful same-SHA technical baseline 714e96e... (CI 36978627964, Windows/macOS Pilot Build 36978627923), artifact expiry caveat, executable OS/AT audit instructions and required return evidence.
 - No manual audit, legal review or Controller approval performed; PR-08, operational PR-10 and PR-14 remain BLOCKED.
+
+
+## 2026-10-02 — verified audit artifact availability
+- Audit packet CI SUCCESS 36979446640 (a13dc22...), subsequent journal CI SUCCESS 36979465847 (1973c1a...).
+- Inspected actual Pilot Build run 36978627923 artifacts: Windows ID 11214672395 (~51 MB) and macOS ID 11214143484 (~101 MB), both present/unexpired at check. Recorded IDs in STAGE_8_MANUAL_AUDIT_PACKET.md (316e1ec...). These are pinned technical-baseline artifacts, not a final pilot approval.
+- No human accessibility observations or operator/legal signoffs received. Stage 8 remains open; PR-08, operational PR-10, final PR-14 blocked.
