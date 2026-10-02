@@ -344,3 +344,8 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 ## 2026-10-02 — evidence reconciliation, no new scope
 - Confirmed same-SHA CI SUCCESS run 36978627964 and Pilot Build SUCCESS run 36978627923 on 714e96e...; preflight tests CI SUCCESS 36978645777; operator handoff CI SUCCESS 36978761574 and journal CI SUCCESS 36978781165.
 - Updated STAGE_8_EVIDENCE_MATRIX.md (adab5ae...) with exact technical run IDs while preserving blocked PR-08 manual accessibility, operational PR-10 and final PR-14. No new optional features added. Stage 8 remains open pending real observations/operator decisions and final Controller approval.
+
+
+## 2026-10-02 — executable manual evidence status report
+- Evidence matrix and journal CI were in progress at last check. Added runnable read-only `python scripts/stage8_manual_status.py` (65bf25c...) to list unresolved Stage 8 manual record markers with nonzero exit status; it never approves release. Fixture-based tests retained so genuine future human approvals will not cause CI to fail (temporary repository-state assertion 143d7b6... reverted by 0d3fa2f...). Await CI.
+- PR-08, operational PR-10 and final PR-14 remain outstanding; Stage 8 open.
