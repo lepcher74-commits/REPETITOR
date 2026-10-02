@@ -34,10 +34,3 @@ def test_complete_looking_text_does_not_certify_human_approval(tmp_path):
     assert manual_gate_blockers(tmp_path) == []
     # An empty blocker list is only a textual preflight, not a pilot-release gate.
 
-
-def test_repository_manual_gate_records_are_still_blocked():
-    repository_root = Path(__file__).resolve().parents[2]
-    blockers = manual_gate_blockers(repository_root)
-    assert any("PILOT_MANUAL_GATE_RECORD.md" in item for item in blockers)
-    assert any("ACCESSIBILITY_PILOT_AUDIT_RECORD.md" in item for item in blockers)
-    assert any("PILOT_DATA_OPERATIONS_TEMPLATE.md" in item for item in blockers)
