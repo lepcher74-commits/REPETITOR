@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QAccessible, QAccessibleAnnouncementEvent
 from PySide6.QtWidgets import (
     QApplication, QComboBox, QFrame, QHBoxLayout, QLabel, QLineEdit,
     QMainWindow, QMessageBox, QPushButton, QStackedWidget, QVBoxLayout, QWidget,
@@ -148,6 +149,7 @@ class RepetitorWindow(QMainWindow):
         self.feedback = QLabel("")
         self.feedback.setWordWrap(True)
         self.feedback.setObjectName("feedback")
+        self.feedback.setAccessibleName("Результат проверки ответа")
         submit = QPushButton("Проверить")
         submit.clicked.connect(self._submit)
         hint = QPushButton("Нужна подсказка")
@@ -182,6 +184,7 @@ class RepetitorWindow(QMainWindow):
         self.remediation_answer.returnPressed.connect(self._submit_remediation)
         self.remediation_feedback = QLabel()
         self.remediation_feedback.setWordWrap(True)
+        self.remediation_feedback.setAccessibleName("Результат восстановительной задачи")
         check = QPushButton("Проверить и вернуться")
         check.clicked.connect(self._submit_remediation)
         for widget in (
@@ -192,6 +195,13 @@ class RepetitorWindow(QMainWindow):
             layout.addWidget(widget)
         layout.addStretch()
         return page
+
+    @staticmethod
+    def _announce_feedback(label: QLabel) -> None:
+        """Expose changed feedback to screen readers without stealing keyboard focus."""
+        label.setAccessibleDescription(label.text())
+        if label.text():
+            QAccessible.updateAccessibility(QAccessibleAnnouncementEvent(label, label.text()))
 
     def _start_remediation(self, skill_id: str) -> None:
         step = self.remediations.get(skill_id)
@@ -210,6 +220,7 @@ class RepetitorWindow(QMainWindow):
                 "Все подготовленные варианты этого навыка уже использованы. "
                 "Не будем повтором повышать оценку; нужен новый вариант."
             )
+            self._announce_feedback(self.remediation_feedback)
             self.stack.setCurrentWidget(self.remediation)
             return
         self.remediation_index = step.problems.index(fresh)
@@ -243,6 +254,7 @@ class RepetitorWindow(QMainWindow):
             self.remediation_feedback.setText(
                 "Пока не получилось. Перечитай объяснение и попробуй ещё раз."
             )
+            self._announce_feedback(self.remediation_feedback)
             return
 
         state = self.learning.get_state(STUDENT_ID, step.skill_id)
@@ -260,6 +272,7 @@ class RepetitorWindow(QMainWindow):
             self.remediation_feedback.setText(
                 "Верно. Это одно evidence; следующая проверка будет на новом варианте."
             )
+            self._announce_feedback(self.remediation_feedback)
             return
 
         if state is None or state.mastery < step.exit_mastery:
@@ -269,6 +282,7 @@ class RepetitorWindow(QMainWindow):
                 "Не будем повышать оценку повторением той же задачи; "
                 "нужен дополнительный вариант."
             )
+            self._announce_feedback(self.remediation_feedback)
             return
 
         if self.return_problem_id:
@@ -282,6 +296,7 @@ class RepetitorWindow(QMainWindow):
         self.feedback.setText(
             "Prerequisite восстановлен по нескольким проверяемым evidence. Продолжаем основной маршрут."
         )
+        self._announce_feedback(self.feedback)
 
     def _build_progress(self) -> QWidget:
         page, layout = self._page(
@@ -313,17 +328,20 @@ class RepetitorWindow(QMainWindow):
         hints = self.problem.hints
         if not hints:
             self.feedback.setText("Для этой диагностической задачи подсказка не раскрывается сразу.")
+            self._announce_feedback(self.feedback)
             return
         current = 0 if self.hint_level is None else self.hint_level
         next_hint = next((h for h in hints if h.level > current), None)
         if next_hint:
             self.hint_level = next_hint.level
             self.feedback.setText("Подсказка: " + next_hint.text_ru)
+            self._announce_feedback(self.feedback)
 
     def _submit(self) -> None:
         raw = self.answer.text().strip()
         if not raw:
             self.feedback.setText("Сначала введи ответ.")
+            self._announce_feedback(self.feedback)
             return
         outcome = self.session.submit(
             student_id=STUDENT_ID,
@@ -411,6 +429,8 @@ class RepetitorWindow(QMainWindow):
             self.answer.clear()
             self.hint_level = None
             self._save_session(phase="learning", problem_id=self.problem.id)
+        if self.stack.currentWidget() is self.diagnostic:
+            self._announce_feedback(self.feedback)
 
     def _refresh_progress(self) -> None:
         state = self.learning.get_state(STUDENT_ID, self.module.primary_skill.id)
