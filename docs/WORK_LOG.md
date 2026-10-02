@@ -191,3 +191,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Previous account-bound adapter test CI 36965524418 SUCCESS, journal CI 36965533384 SUCCESS; implementation Pilot Build 36965514350 SUCCESS at f8e56ef... only.
 - Added persisted opaque 256-bit parent sessions (SHA-256 digest only), configurable 1–24h expiry and revocation (9bf9093...), three tests (245e14a...). Added `SessionBoundMailRegistration` enforcing valid session for request and verification (690609b...), integration test for invalid/revoked session (cae2d09...). Await fresh CI.
 - IMPORTANT: session creation is an internal primitive, not login: credential authentication, session rotation, CSRF/cookie security, account lifecycle and production server deployment remain missing. An authorized server must be the ONLY issuer. Guardian authority not inferred from session or email; cloud transfer remains off. Stage 8 remains open.
+
+
+## 2026-10-02 — internal password-based parent login
+- Previous session-bound mail test CI 36967914706 SUCCESS, journal CI 36967926717 SUCCESS; implementation Pilot Build 36967904356 SUCCESS on 690609b... only.
+- Added salted scrypt credential storage and constant-time digest comparison (29549d2...), three persistence tests (2e3508c...). Added internal password-to-revocable-session login (ee43411...) and integration test (30438ac...). Await fresh CI.
+- NOT production login: no public endpoint, server-side login rate limiting, breached-password policy, secure recovery, MFA decision, cookie/CSRF/TLS setup or deployment. Registration is not exposed. Guardian verification is separate and cloud transfer OFF. Stage 8 manual gates remain blocked.
