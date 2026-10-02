@@ -245,3 +245,8 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Previous concurrency and rollback tests CI SUCCESS at 980364f... and 1d0344d..., journal CI SUCCESS at 5cdc43f....
 - Fixed optional sync gate: latest persisted consent event must be an active grant for the EXACT supplied notice version; stale grants or a later withdrawal deny transfer (7a4c356..., e6b6ca9...). Regression test added (d20e302...). Await fresh CI.
 - This is local fail-closed policy only, not guardian identity or production legal approval. Cloud transfer remains disabled, Stage 8 manual gates open.
+
+
+## 2026-10-02 — reset fail-closed regression tests
+- Added two recovery regressions (c46a7ee...): missing credential must not consume recovery token; another parent's recovery token must not change password or revoke sessions. Await fresh CI.
+- Prior consent version CI/Pilot Build were still running at last check; no success claimed. No public reset endpoint or cloud transfer. Stage 8 remains open.
