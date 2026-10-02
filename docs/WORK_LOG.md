@@ -321,3 +321,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Earlier collector CI SUCCESS at a58ef78... and Pilot Build SUCCESS at a58ef78...; median interval implementation CI SUCCESS at a8f8d6e..., its Pilot Build in progress when checked. Latest interval tests CI pending.
 - Added exploratory independent-sample bootstrap interval for differences of scenario medians (35d2f5e...) and synthetic/invalid-input regressions (bca95ec...). Await fresh CI.
 - Confidence intervals overlapping zero are NOT proof of timing equivalence. Actual controlled staging measurement and independent review still required. Stage 8 open; public recovery and child sync disabled.
+
+
+## 2026-10-02 — Stage 8 closeout critical path
+- Timing median/difference CI SUCCESS at e45936d... and 35d2f5e... respectively; latest difference tests CI and Pilot Build on 35d2f5e... in progress when checked.
+- Added STAGE_8_CLOSEOUT_PLAN.md (becae9f...) to stop optional feature expansion, prioritize manual PR-08/PR-10, and require final same-SHA PR-14 verification and Controller approval. No manual gate marked passed.
+- Conditional estimate: 3–5 working days assistant-owned technical closeout; 1–2 weeks full gate only with prompt operator/manual/legal review. Stage 8 remains open; it is the final currently approved numbered stage.
