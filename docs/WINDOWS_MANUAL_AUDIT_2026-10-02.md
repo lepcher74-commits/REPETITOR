@@ -32,3 +32,7 @@ These are operator-reported observations, not independently instrumented evidenc
 ## Supplemental Controller report — 2026-10-02
 - Controller identified platform as **Windows 11** (exact build unspecified).
 - Controller confirmed **progress is displayed** after working with the app. This supports the progress-display check, but does not establish that every fractions exercise, full learning flow or keyboard-only end-to-end path was exercised. Those broader checks remain NOT TESTED until explicitly confirmed.
+
+
+## Supplemental Narrator result, 2026-10-02
+Controller reported spoken output present on Windows 11 after Narrator check: PASS for speech presence. Coverage of each button, input, answer feedback and state, and Narrator version remain unconfirmed. No defect reported.
