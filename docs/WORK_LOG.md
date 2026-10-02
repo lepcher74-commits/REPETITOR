@@ -209,3 +209,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Prior limited-login integration CI 36968727168 SUCCESS, journal CI 36968738294 SUCCESS; Pilot Build 36968715323 SUCCESS on f2b651f... only.
 - Added persisted 256-bit one-time recovery tokens, SHA-256 digest storage, 15-minute UTC expiry, atomic consume and reissue invalidation (6e10795..., 045b37a...). Three persistence tests added (7594155...). Await CI.
 - This is token storage ONLY, not a complete recovery flow: no recovery delivery, account enumeration controls, request throttling, password reset transaction or all-session revocation. A recovery token MUST NOT authorize password changes until those safeguards are implemented and tested. No public endpoint, no child-data transfer; Stage 8 remains open.
+
+
+## 2026-10-02 — recovery transaction prerequisites
+- Verified prior recovery-token tests CI 36969002584 SUCCESS, journal CI 36969012417 SUCCESS; Pilot Build 36968992224 SUCCESS on implementation 045b37a... only.
+- Added atomic reset design and failure-case checklist in docs/PASSWORD_RESET_TRANSACTION_PLAN.md (4555ab8...). Added scoped all-session revocation method (c965ebc...) and regression test (afeb0db...). Await fresh CI.
+- Full password reset is NOT implemented or enabled: must guarantee one transaction for token consumption, credential update and session invalidation, with rollback tests and deployment-specific datastore review. No public recovery endpoint or child-data transfer. Stage 8 remains open.
