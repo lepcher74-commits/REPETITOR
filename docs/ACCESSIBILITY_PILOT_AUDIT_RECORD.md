@@ -28,3 +28,8 @@ A pilot operator must fill the NOT TESTED cells for the actual intended pilot OS
 - resolution or explicit pilot blocker decision.
 
 Automated CI passing does not convert any manual NOT TESTED item to PASS.
+
+
+## Partial Windows observations received 2026-10-02
+
+See `docs/WINDOWS_MANUAL_AUDIT_2026-10-02.md` for exact build SHA and Controller-reported observations. Main-screen keyboard navigation, visible focus and 200% scaling were reported PASS. **Full keyboard-only learning flow and Narrator remain NOT TESTED**; Windows OS version and exact scaling configuration remain unknown. Do not upgrade the broader matrix rows above to PASS on the strength of these partial observations. macOS manual audit is still NOT TESTED.
