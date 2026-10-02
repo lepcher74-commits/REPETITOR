@@ -381,3 +381,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 ## 2026-10-02 — confirmed accessibility defect from Windows manual audit
 - Controller clarified Narrator does not announce correct/incorrect answer feedback on Windows 11 baseline 714e96e.... Recorded explicit FAIL in WINDOWS_MANUAL_AUDIT_2026-10-02.md (36fbd8d...). General Narrator speech presence does not negate this defect.
 - Required: implement an accessible feedback announcement, CI/Pilot Build on new exact SHA, and Controller retest using new Windows artifact. PR-08 BLOCKED; no final pilot release approval.
+
+
+## 2026-10-02 — implement Narrator feedback announcement fix
+- Confirmed manual Windows 11 defect: Narrator speaks interface but not answer correctness feedback (record 36fbd8d...).
+- Added Qt accessibility announcement events and accessible descriptions for diagnostic answer feedback, hints and remediation feedback in src/repetitor/ui/app.py (3175c42...). Added integration regression checks in tests/integration/test_accessibility.py (0b6f4c7...).
+- CI and Pilot Build triggered; results and real Narrator retest pending. Do not mark defect resolved or PR-08 PASS based solely on code/tests.
