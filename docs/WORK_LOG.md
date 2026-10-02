@@ -376,3 +376,8 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 
 ## 2026-10-02 — Windows Narrator partial result
 - Controller reports Narrator speech present on Windows 11; recorded in WINDOWS_MANUAL_AUDIT_2026-10-02.md (a0b8137...). Detailed button/input/answer-feedback spoken coverage and Narrator version not separately confirmed. No inferred full PR-08 PASS; operational PR-10 and final PR-14 blocked.
+
+
+## 2026-10-02 — confirmed accessibility defect from Windows manual audit
+- Controller clarified Narrator does not announce correct/incorrect answer feedback on Windows 11 baseline 714e96e.... Recorded explicit FAIL in WINDOWS_MANUAL_AUDIT_2026-10-02.md (36fbd8d...). General Narrator speech presence does not negate this defect.
+- Required: implement an accessible feedback announcement, CI/Pilot Build on new exact SHA, and Controller retest using new Windows artifact. PR-08 BLOCKED; no final pilot release approval.
