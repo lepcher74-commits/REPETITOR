@@ -361,3 +361,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Audit packet CI SUCCESS 36979446640 (a13dc22...), subsequent journal CI SUCCESS 36979465847 (1973c1a...).
 - Inspected actual Pilot Build run 36978627923 artifacts: Windows ID 11214672395 (~51 MB) and macOS ID 11214143484 (~101 MB), both present/unexpired at check. Recorded IDs in STAGE_8_MANUAL_AUDIT_PACKET.md (316e1ec...). These are pinned technical-baseline artifacts, not a final pilot approval.
 - No human accessibility observations or operator/legal signoffs received. Stage 8 remains open; PR-08, operational PR-10, final PR-14 blocked.
+
+
+## 2026-10-02 — Controller Windows manual observations (partial)
+- Controller reported Windows launch PASS, main-screen keyboard navigation PASS, visible keyboard focus PASS and 200% scaling PASS for baseline 714e96e.... Full fractions learning flow and Narrator NOT TESTED; Windows version and scaling configuration unspecified. No defects reported in tested scenarios.
+- Saved exact scope/limitations in WINDOWS_MANUAL_AUDIT_2026-10-02.md (2970ffc...) and linked ACCESSIBILITY_PILOT_AUDIT_RECORD.md (ae29164...). No claim of full PR-08 pass or macOS manual coverage.
+- Operational PR-10, full PR-08 and final PR-14 remain BLOCKED; Stage 8 open.
