@@ -8,7 +8,8 @@ from __future__ import annotations
 from datetime import datetime
 
 from repetitor.application.parent_recovery_request import ParentRecoveryRequest
-from repetitor.persistence.mail_request_limiter import MailRequestLimiter, AbuseLimitExceeded
+from repetitor.persistence.mail_request_limiter import AbuseLimitExceeded
+from repetitor.persistence.malformed_request_limiter import MalformedRequestLimiter
 
 
 RECOVERY_ACKNOWLEDGEMENT = (
@@ -17,7 +18,7 @@ RECOVERY_ACKNOWLEDGEMENT = (
 
 
 class RecoveryAcknowledgement:
-    def __init__(self, requests: ParentRecoveryRequest, *, malformed_limiter: MailRequestLimiter | None = None):
+    def __init__(self, requests: ParentRecoveryRequest, *, malformed_limiter: MalformedRequestLimiter | None = None):
         self.requests = requests
         self.malformed_limiter = malformed_limiter
 
@@ -28,9 +29,7 @@ class RecoveryAcknowledgement:
         if not normalized or "@" not in normalized or len(normalized) > 254:
             if self.malformed_limiter is not None:
                 try:
-                    self.malformed_limiter.check_and_record(
-                        parent_id="malformed-recovery-request", client_ip=server_client_ip, now=now,
-                    )
+                    self.malformed_limiter.check_and_record(client_ip=server_client_ip, now=now)
                 except AbuseLimitExceeded:
                     pass
             return RECOVERY_ACKNOWLEDGEMENT
