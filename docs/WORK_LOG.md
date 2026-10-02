@@ -372,3 +372,7 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 ## 2026-10-02 — Windows 11 progress display confirmation
 - Controller confirmed Windows 11 and that progress displays in the tested application. Updated partial Windows audit (3c9a0cf...) without inferring a complete fractions exercise or end-to-end keyboard flow.
 - Narrator, exact Windows build and remaining manual checks still outstanding. PR-08/operational PR-10/final PR-14 remain blocked; Stage 8 open.
+
+
+## 2026-10-02 — Windows Narrator partial result
+- Controller reports Narrator speech present on Windows 11; recorded in WINDOWS_MANUAL_AUDIT_2026-10-02.md (a0b8137...). Detailed button/input/answer-feedback spoken coverage and Narrator version not separately confirmed. No inferred full PR-08 PASS; operational PR-10 and final PR-14 blocked.
