@@ -37,3 +37,12 @@ Repository/automation evidence is strong enough for PR-01â€“07, PR-09 and PR-11â
 5. after those records are committed, designate one final candidate SHA and require both CI and Pilot Build to pass again.
 
 No efficacy, WCAG conformance, legal compliance, code-signing or notarization claim is made.
+
+
+## 2026-10-02 technical verification update (not a final pilot gate)
+
+- On commit `714e96ed19ce4c0d44d23bdc5646b28d6880ad96`, CI run **36978627964** and Windows/macOS Pilot Build run **36978627923** both completed **SUCCESS**. This verifies the manual-gate preflight implementation on a matching technical SHA, but does **not** supersede the Stage 8 final pilot candidate or imply that manual records are approved.
+- Preflight tests CI **36978645777** SUCCESS on `5a7c31c...`; handoff document CI **36978761574** SUCCESS on `3dab042...`; handoff journal CI **36978781165** SUCCESS on `bae638d...`.
+- **PR-08 remains BLOCKED:** interactive Windows/macOS accessibility checks are still NOT TESTED.
+- **PR-10 pilot operation remains BLOCKED:** actual operator, guardian authorization, support, retention/deletion and content-review sign-offs remain unfilled.
+- **PR-14 remains BLOCKED:** final candidate SHA must be nominated only after those manual records are complete and both workflows pass on that exact final SHA.
