@@ -36,3 +36,7 @@ These are operator-reported observations, not independently instrumented evidenc
 
 ## Supplemental Narrator result, 2026-10-02
 Controller reported spoken output present on Windows 11 after Narrator check: PASS for speech presence. Coverage of each button, input, answer feedback and state, and Narrator version remain unconfirmed. No defect reported.
+
+
+## Confirmed defect — Narrator answer feedback, 2026-10-02
+Controller clarified that Narrator does NOT announce the correctness/incorrectness feedback after an answer. This supersedes any interpretation that general speech presence establishes feedback accessibility. Result: **FAIL — answer feedback spoken announcement** on Windows 11, tested baseline SHA `714e96ed19ce4c0d44d23bdc5646b28d6880ad96`. Exact Windows/Narrator build unspecified. Remediation required, followed by a newly built artifact and real Narrator retest; do not mark PR-08 PASS.
