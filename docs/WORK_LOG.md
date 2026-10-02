@@ -161,3 +161,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 ## 2026-10-02 — mailbox issuance cooldown
 - Added atomic 60-second per-parent issuance cooldown persisted in SQLite (ae35598...) and restart/old-token survival test (598fb0f...). Repeated issue inside cooldown fails without replacing the valid original token.
 - Migration caveat: existing development SQLite databases created before `last_issued_at` require schema migration before deploying this store; no production deployment exists. API-wide IP/device abuse throttling and email delivery still pending. Await fresh CI and Pilot Build; manual gates unchanged.
+
+
+## 2026-10-02 — legacy mailbox challenge migration
+- Cooldown implementation CI 36964216757 SUCCESS and Pilot Build 36964216782 SUCCESS at ae35598...; cooldown test CI 36964225734 SUCCESS; journal CI 36964236072 SUCCESS.
+- Implemented startup migration for pre-cooldown SQLite challenge tables: add last_issued_at, conservatively mark legacy rows at migration time to prevent immediate resend (8fed93e...). Added legacy-row preservation test (38537bd...). No live production DB or email service exists.
+- Await fresh CI. Remaining public API IP/device throttling and operator/legal/manual gates unchanged.
