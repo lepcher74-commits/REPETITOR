@@ -367,3 +367,8 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Controller reported Windows launch PASS, main-screen keyboard navigation PASS, visible keyboard focus PASS and 200% scaling PASS for baseline 714e96e.... Full fractions learning flow and Narrator NOT TESTED; Windows version and scaling configuration unspecified. No defects reported in tested scenarios.
 - Saved exact scope/limitations in WINDOWS_MANUAL_AUDIT_2026-10-02.md (2970ffc...) and linked ACCESSIBILITY_PILOT_AUDIT_RECORD.md (ae29164...). No claim of full PR-08 pass or macOS manual coverage.
 - Operational PR-10, full PR-08 and final PR-14 remain BLOCKED; Stage 8 open.
+
+
+## 2026-10-02 — Windows 11 progress display confirmation
+- Controller confirmed Windows 11 and that progress displays in the tested application. Updated partial Windows audit (3c9a0cf...) without inferring a complete fractions exercise or end-to-end keyboard flow.
+- Narrator, exact Windows build and remaining manual checks still outstanding. PR-08/operational PR-10/final PR-14 remain blocked; Stage 8 open.
