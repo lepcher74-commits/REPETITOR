@@ -117,3 +117,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Design and fail-closed gates recorded in `docs/RU_PARENT_ACCOUNT_ARCHITECTURE.md` (794fa36...). Email verification is explicitly not age/parenthood verification.
 - This is approval of architecture, not evidence of implemented server, lawful consent or operational pilot authorization.
 - Next: implement in small testable slices; operator identity, representative-verification method, provider contract and manual accessibility remain external gates.
+
+
+## 2026-10-02 — parent consent implementation slice 1
+- Added pure fail-closed policy `application/parent_consent.py`: distinct sync/AI purposes, notice version, representative/legal approval, default-off feature flag and withdrawal.
+- Added four negative/positive unit tests. This is NOT an identity-verification service, stored consent ledger, server, or production authorization; those remain pending.
+- Await CI on test commit a5d0d31...; preserve manual and legal gates.
