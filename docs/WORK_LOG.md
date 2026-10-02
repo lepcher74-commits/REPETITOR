@@ -233,3 +233,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Prior recovery request tests CI SUCCESS at cfbb2a8..., journal CI SUCCESS at e341c4c..., Pilot Build SUCCESS at d1078ac... (implementation SHA).
 - Added two full-path offline integration tests (a811cbe...) covering server directory -> request limiter -> token delivery stub -> atomic password replacement -> old session revocation, other-parent session isolation, token replay, unknown email and expiry. Await fresh CI; integration tests are not production security review.
 - Remaining: generic HTTP response and timing, sender template, failure recovery and concurrency stress, operator/guardian checks, Russian-hosted deployment review, real accessibility manual gates. Stage 8 remains open and cloud sync disabled.
+
+
+## 2026-10-02 — password reset contention and rollback
+- Previous integrated recovery tests CI SUCCESS at a811cbe..., journal CI SUCCESS at e6b1e2b....
+- Added concurrency regression (980364f...) requiring exactly one of two simultaneous resets to consume a token. Added injected SQLite trigger failure regression (1d0344d...) requiring password and token rollback when session revocation fails, followed by successful retry. Await fresh CI.
+- Still offline only; real sender, HTTP anti-enumeration, deployment security and manual Stage 8 gates remain pending. No cloud transfer.
