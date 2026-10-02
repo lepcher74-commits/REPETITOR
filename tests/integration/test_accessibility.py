@@ -28,3 +28,32 @@ def test_learning_inputs_accept_keyboard_focus(tmp_path):
     assert window.answer.focusPolicy().value != 0
     assert window.remediation_answer.focusPolicy().value != 0
     window.close()
+
+
+def test_empty_answer_announces_feedback_without_stealing_focus(tmp_path, monkeypatch):
+    from repetitor.ui import app as ui_app
+
+    events = []
+    monkeypatch.setattr(ui_app.QAccessible, "updateAccessibility", lambda event: events.append(event))
+    window = make_window(tmp_path)
+    window._start_diagnostic()
+    window.answer.setText("")
+    window._submit()
+    assert window.feedback.accessibleDescription() == "Сначала введи ответ."
+    assert events, "Answer feedback must generate an accessibility announcement"
+    assert window.answer.hasFocus()
+    window.close()
+
+
+def test_remediation_incorrect_answer_announces_feedback(tmp_path, monkeypatch):
+    from repetitor.ui import app as ui_app
+
+    events = []
+    monkeypatch.setattr(ui_app.QAccessible, "updateAccessibility", lambda event: events.append(event))
+    window = make_window(tmp_path)
+    window._start_remediation("math.prereq.lcm")
+    window.remediation_answer.setText("not a fraction")
+    window._submit_remediation()
+    assert "Пока не получилось" in window.remediation_feedback.accessibleDescription()
+    assert events
+    window.close()
