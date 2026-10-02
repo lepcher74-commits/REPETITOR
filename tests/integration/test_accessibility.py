@@ -45,7 +45,7 @@ def test_empty_answer_announces_feedback_without_stealing_focus(tmp_path, monkey
     window.answer.setText("")
     window._submit()
     assert window.feedback.accessibleDescription() == "Сначала введи ответ."
-    assert events, "Answer feedback must generate an accessibility announcement"
+    assert len(events) == 2, "Answer feedback must generate announcement and alert accessibility events"
     assert window.answer.hasFocus()
     window.close()
 
