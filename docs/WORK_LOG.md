@@ -130,3 +130,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Added `persistence/consent_ledger.py` and three persistence tests: default-off, per-purpose/parent isolation, persisted withdrawal, event history.
 - SQLite history is application append-only, NOT tamper-evident and NOT identity or legally valid consent proof. No child data sync connected to ledger; cloud remains OFF.
 - Await fresh CI for test commit 38bb821...; no manual gates marked complete.
+
+
+## 2026-10-02 — parent onboarding slice 3
+- Consent-ledger tests CI 36963172217 SUCCESS at 38bb821...; journal SHA 1057c14... CI still in progress when checked.
+- Added immutable onboarding state `application/parent_onboarding.py` with explicit email, representative and legal-review stages. Email challenge validation itself is not implemented, and there is deliberately no public setter that claims verified guardianship.
+- Added three unit tests for email-only denial, separate legal gate, default-off sync and consent withdrawal (fe34ecc...). No actual server, identity provider or child-data transfer enabled.
+- Next gate: fresh CI on this implementation, then review integration of persisted consent and onboarding without treating SQLite events as verified legal consent.
