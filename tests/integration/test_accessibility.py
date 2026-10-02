@@ -36,7 +36,12 @@ def test_empty_answer_announces_feedback_without_stealing_focus(tmp_path, monkey
     events = []
     monkeypatch.setattr(ui_app.QAccessible, "updateAccessibility", lambda event: events.append(event))
     window = make_window(tmp_path)
+    window.show()
+    QApplication.processEvents()
     window._start_diagnostic()
+    window.answer.setFocus()
+    QApplication.processEvents()
+    assert window.answer.hasFocus()
     window.answer.setText("")
     window._submit()
     assert window.feedback.accessibleDescription() == "Сначала введи ответ."
