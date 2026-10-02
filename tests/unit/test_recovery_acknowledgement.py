@@ -89,7 +89,8 @@ def test_untrusted_request_context_is_not_silently_accepted(tmp_path):
 
 def test_malformed_requests_are_persistently_throttled_when_configured(tmp_path):
     from repetitor.persistence.mail_request_limiter import AbuseLimitExceeded
-    limiter = MailRequestLimiter(tmp_path / "malformed.sqlite")
+    from repetitor.persistence.malformed_request_limiter import MalformedRequestLimiter
+    limiter = MalformedRequestLimiter(tmp_path / "malformed.sqlite")
     requests = ParentRecoveryRequest(
         directory=Directory(), limiter=MailRequestLimiter(tmp_path / "normal.sqlite"),
         recovery=PasswordRecoveryStore(tmp_path / "recovery.sqlite"), sender=Sender(),
@@ -101,5 +102,13 @@ def test_malformed_requests_are_persistently_throttled_when_configured(tmp_path)
     assert len(set(responses)) == 1
     with __import__("pytest").raises(AbuseLimitExceeded):
         limiter.check_and_record(
-            parent_id="malformed-recovery-request", client_ip="192.0.2.1", now=NOW,
+            client_ip="192.0.2.1", now=NOW,
         )
+
+
+def test_malformed_quota_does_not_block_other_client(tmp_path):
+    from repetitor.persistence.malformed_request_limiter import MalformedRequestLimiter
+    limiter = MalformedRequestLimiter(tmp_path / "malformed.sqlite")
+    for _ in range(10):
+        limiter.check_and_record(client_ip="192.0.2.1", now=NOW)
+    limiter.check_and_record(client_ip="192.0.2.2", now=NOW)
