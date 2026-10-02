@@ -60,3 +60,12 @@ class ParentSessionStore:
         digest = hashlib.sha256(token.encode("utf-8")).hexdigest()
         with sqlite3.connect(self.path) as db:
             db.execute("UPDATE parent_sessions SET revoked=1 WHERE token_digest=?", (digest,))
+
+    def revoke_all(self, *, parent_id: str) -> int:
+        if not parent_id.strip():
+            raise ValueError("Parent ID required")
+        with sqlite3.connect(self.path) as db:
+            return db.execute(
+                "UPDATE parent_sessions SET revoked=1 WHERE parent_id=? AND revoked=0",
+                (parent_id,),
+            ).rowcount
