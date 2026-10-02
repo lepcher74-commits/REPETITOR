@@ -62,3 +62,26 @@ def test_mail_transport_failure_does_not_change_response(tmp_path):
         email="unknown@example.test", server_client_ip="192.0.2.1", now=NOW,
     )
     assert failed == unknown
+
+
+def test_malformed_address_gets_same_acknowledgement(tmp_path):
+    service = make_service(tmp_path, Sender())
+    malformed = service.submit(
+        email="not-an-address", server_client_ip="192.0.2.1", now=NOW,
+    )
+    unknown = service.submit(
+        email="unknown@example.test", server_client_ip="192.0.2.1", now=NOW,
+    )
+    assert malformed == unknown
+
+
+def test_untrusted_request_context_is_not_silently_accepted(tmp_path):
+    import pytest
+    service = make_service(tmp_path, Sender())
+    with pytest.raises(ValueError):
+        service.submit(email="parent@example.test", server_client_ip=" ", now=NOW)
+    with pytest.raises(ValueError):
+        service.submit(
+            email="parent@example.test", server_client_ip="192.0.2.1",
+            now=datetime(2026, 10, 2),
+        )
