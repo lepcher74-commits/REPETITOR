@@ -46,3 +46,12 @@ No efficacy, WCAG conformance, legal compliance, code-signing or notarization cl
 - **PR-08 remains BLOCKED:** interactive Windows/macOS accessibility checks are still NOT TESTED.
 - **PR-10 pilot operation remains BLOCKED:** actual operator, guardian authorization, support, retention/deletion and content-review sign-offs remain unfilled.
 - **PR-14 remains BLOCKED:** final candidate SHA must be nominated only after those manual records are complete and both workflows pass on that exact final SHA.
+
+
+## 2026-10-02 accessibility fix verification and deferred manual gate
+
+- Windows 11 operator confirmed that the first accessibility announcement implementation (SHA `3175c422ea2a8230ac64ae1a6724098744017d53`) did **not** cause Narrator to speak correct/incorrect feedback. That manual FAIL remains valid for that artifact.
+- A second implementation adds an accessibility Alert event alongside Announcement (SHA `80edc27fb81e2257599f260f1bce311a48ea3b75`). CI **36990447333** and Windows/macOS Pilot Build **36990447259** both succeeded on that **same implementation SHA**, including packaged smoke and bundled-content verification. The resulting Windows artifact ID is `11219631559`, macOS artifact ID `11219586996`. Regression-test commit `1a6a63eb...` independently passed CI **36990464483**; its test additions are not part of the implementation artifact.
+- Controller deferred further Windows Narrator retest. **PR-08 remains BLOCKED**: successful CI and packaging do not prove actual spoken feedback. Other incomplete manual accessibility checks, including macOS VoiceOver, remain open.
+- PR-10 operator decision packet: `STAGE_8_PR10_OPERATOR_DECISION_PACKET.md`. This is preparatory documentation, not evidence of operator identity, guardian authorization, legal review, content sign-off, actual retention/deletion drill or incident rehearsal. **PR-10 operational remains BLOCKED**.
+- The older working baseline in the table above is historical, not the current code. **PR-14 remains BLOCKED**; only after all manual gates are resolved can a final SHA receive same-SHA CI and Pilot Build verification and Controller approval.
