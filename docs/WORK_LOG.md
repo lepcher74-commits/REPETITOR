@@ -185,3 +185,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Previous composed mail registration CI 36965301555 SUCCESS, journal CI 36965314373 SUCCESS; Pilot Build 36965289994 SUCCESS on implementation SHA 72fc9ae... only.
 - Added `BoundMailRegistration` with authenticated-actor value and server-owned registered-mailbox directory; request cannot supply an arbitrary recipient, and verification is scoped to the actor (f8e56ef...). Added two offline tests (3da60ee...). Await CI.
 - AuthenticatedParent is a trusted-boundary data carrier, NOT an authentication implementation; actual session validation, immutable account-mailbox binding during outstanding challenges, trusted proxy configuration and enumeration-safe HTTP responses remain prerequisites. No guardian proof or cloud transfer enabled.
+
+
+## 2026-10-02 — authenticated session boundary primitive
+- Previous account-bound adapter test CI 36965524418 SUCCESS, journal CI 36965533384 SUCCESS; implementation Pilot Build 36965514350 SUCCESS at f8e56ef... only.
+- Added persisted opaque 256-bit parent sessions (SHA-256 digest only), configurable 1–24h expiry and revocation (9bf9093...), three tests (245e14a...). Added `SessionBoundMailRegistration` enforcing valid session for request and verification (690609b...), integration test for invalid/revoked session (cae2d09...). Await fresh CI.
+- IMPORTANT: session creation is an internal primitive, not login: credential authentication, session rotation, CSRF/cookie security, account lifecycle and production server deployment remain missing. An authorized server must be the ONLY issuer. Guardian authority not inferred from session or email; cloud transfer remains off. Stage 8 remains open.
