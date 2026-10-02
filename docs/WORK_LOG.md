@@ -315,3 +315,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Previous timing collector CI and Pilot Build were in progress at check; no success claim for those runs.
 - Added seeded percentile bootstrap median interval helper (a8f8d6e...) and deterministic/invalid-input tests (e45936d...). Await fresh CI.
 - Bootstrap intervals assume suitable samples and do not establish account non-enumerability. Deployment-specific timing audit, threat review and approved acceptance criteria remain pending. Stage 8 open; no public recovery or child sync.
+
+
+## 2026-10-02 — timing scenario difference analysis
+- Earlier collector CI SUCCESS at a58ef78... and Pilot Build SUCCESS at a58ef78...; median interval implementation CI SUCCESS at a8f8d6e..., its Pilot Build in progress when checked. Latest interval tests CI pending.
+- Added exploratory independent-sample bootstrap interval for differences of scenario medians (35d2f5e...) and synthetic/invalid-input regressions (bca95ec...). Await fresh CI.
+- Confidence intervals overlapping zero are NOT proof of timing equivalence. Actual controlled staging measurement and independent review still required. Stage 8 open; public recovery and child sync disabled.
