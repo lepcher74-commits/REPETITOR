@@ -123,3 +123,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Added pure fail-closed policy `application/parent_consent.py`: distinct sync/AI purposes, notice version, representative/legal approval, default-off feature flag and withdrawal.
 - Added four negative/positive unit tests. This is NOT an identity-verification service, stored consent ledger, server, or production authorization; those remain pending.
 - Await CI on test commit a5d0d31...; preserve manual and legal gates.
+
+
+## 2026-10-02 — parent consent slice 2: local event ledger
+- CI 36961891265 SUCCESS on previous parent-consent policy journal SHA 02022ae...; earlier test SHA a5d0d31... also green (36961879830).
+- Added `persistence/consent_ledger.py` and three persistence tests: default-off, per-purpose/parent isolation, persisted withdrawal, event history.
+- SQLite history is application append-only, NOT tamper-evident and NOT identity or legally valid consent proof. No child data sync connected to ledger; cloud remains OFF.
+- Await fresh CI for test commit 38bb821...; no manual gates marked complete.
