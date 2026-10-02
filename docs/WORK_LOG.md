@@ -280,3 +280,8 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Prior malformed limiter CI SUCCESS at 19c7907..., journal CI SUCCESS at 81870b0..., Pilot Build SUCCESS at c054c45... (implementation SHA).
 - Replaced optional global malformed-email quota with separate persistent per-client digest limiter, 10/hour per trusted client IP (31856ec..., 9b9ecbf...). Updated regression and added cross-client isolation test (c65f6cb...). Await fresh CI.
 - Shared NAT users may still affect one another; distributed deployment needs shared authoritative datastore and trusted-proxy IP policy. Timing and production transport review outstanding. No public endpoint or child sync; Stage 8 open.
+
+
+## 2026-10-02 — concurrent malformed quota test
+- Added 12-worker barrier concurrency test (45c0507...) for persisted per-client quota: exactly ten requests accepted and two rejected, with another IP unaffected. Await CI.
+- Previous isolated-limiter CI and Pilot Build were in progress when checked; do not infer success. No public endpoint or child sync; Stage 8 remains open.
