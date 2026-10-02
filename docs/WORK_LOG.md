@@ -268,3 +268,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Previous generic acknowledgement CI SUCCESS at 7bcb6b7..., journal CI SUCCESS at d74e32a..., Pilot Build SUCCESS at 533f80c... (implementation SHA).
 - Updated recovery acknowledgement (9296c71...) to return the same generic response for malformed email, while refusing missing trusted IP or naive time as programmer/deployment errors. Added two tests (b653412...). Await fresh CI.
 - Invalid email is not quota charged; future HTTP edge must add abuse control for malformed traffic. Response equality does not prove timing indistinguishability. No live HTTP/mail or child cloud transfer; Stage 8 open.
+
+
+## 2026-10-02 — malformed recovery traffic limits
+- Prior malformed boundary tests CI SUCCESS at b653412..., journal CI SUCCESS at 787fd02..., Pilot Build SUCCESS at 9296c71... (implementation SHA).
+- Added optional injected persistent limiter for malformed recovery requests (c054c45...), with generic response preserved even after quota exceeded; regression test (19c7907...). Await fresh CI.
+- Existing fixed malformed key yields a global three-request-per-hour quota per limiter database, so a deployment MUST isolate/replace this policy before public traffic; optional injection is not production-ready. Timing and transport security review pending. Stage 8 remains open, no public endpoint or child sync.
