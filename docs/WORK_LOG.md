@@ -297,3 +297,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Concurrent limiter CI SUCCESS at 45c0507..., clock tests CI SUCCESS at 93b37e5..., public-boundary document CI SUCCESS at be309b8....
 - Added 12-worker malformed burst integration test (9d45148...) exercising the complete acknowledgement and persisted per-client limiter, identical responses after quota and unaffected second IP. Await fresh CI.
 - Tests verify response equality, not response-time anonymity; shared-IP fairness, distributed deployment, trusted proxy and security review remain pending. No public recovery endpoint, no child sync; Stage 8 open.
+
+
+## 2026-10-02 — recovery timing audit plan
+- Previous recovery boundary concurrency integration CI queued at 9d45148... and journal CI in progress at 7c499da... at check; preceding journal CI SUCCESS at f4f5944....
+- Added controlled timing-security audit protocol (9ae63b2...) requiring synthetic accounts, randomized interleaved conditions, distribution measurements, repeatability, security-review sign-off and deployment-specific evidence. This is a plan, NOT a performed timing audit. Await CI.
+- No public endpoint, no live mail sender, no cloud child transfer. Stage 8 manual and legal gates remain open.
