@@ -339,3 +339,8 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Previous closeout plan CI SUCCESS at becae9f... and journal CI SUCCESS at b6eb407.... Manual preflight CI and Pilot Build still in progress when checked; no success claim for these.
 - Added STAGE_8_OPERATOR_HANDOFF.md (3dab042...) with exact candidate artifact/SHA capture, Windows/macOS assistive-technology observation steps, operator/guardian/data-operations review and final same-SHA verification procedure. No manual test was performed and no legal or Controller approval is implied.
 - PR-08/PR-10 operational evidence and PR-14 final same-SHA verification remain outstanding; Stage 8 open.
+
+
+## 2026-10-02 — evidence reconciliation, no new scope
+- Confirmed same-SHA CI SUCCESS run 36978627964 and Pilot Build SUCCESS run 36978627923 on 714e96e...; preflight tests CI SUCCESS 36978645777; operator handoff CI SUCCESS 36978761574 and journal CI SUCCESS 36978781165.
+- Updated STAGE_8_EVIDENCE_MATRIX.md (adab5ae...) with exact technical run IDs while preserving blocked PR-08 manual accessibility, operational PR-10 and final PR-14. No new optional features added. Stage 8 remains open pending real observations/operator decisions and final Controller approval.
