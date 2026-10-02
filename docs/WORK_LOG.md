@@ -327,3 +327,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Timing median/difference CI SUCCESS at e45936d... and 35d2f5e... respectively; latest difference tests CI and Pilot Build on 35d2f5e... in progress when checked.
 - Added STAGE_8_CLOSEOUT_PLAN.md (becae9f...) to stop optional feature expansion, prioritize manual PR-08/PR-10, and require final same-SHA PR-14 verification and Controller approval. No manual gate marked passed.
 - Conditional estimate: 3–5 working days assistant-owned technical closeout; 1–2 weeks full gate only with prompt operator/manual/legal review. Stage 8 remains open; it is the final currently approved numbered stage.
+
+
+## 2026-10-02 — Stage 8 manual-gate preflight
+- Latest timing comparison CI SUCCESS at bca95ec... and journal CI SUCCESS at 3282c02...; Pilot Build SUCCESS at 35d2f5e... (implementation SHA). Latest closeout journal CI was still in progress when checked.
+- Added conservative read-only manual-record preflight (714e96e...) and tests (5a7c31c...) for missing files and unresolved markers. It deliberately cannot certify manual observations or Controller approval; explanatory NOT TESTED text can produce conservative false positives requiring human review. Await CI.
+- PR-08 manual Windows/macOS AT, PR-10 operator/legal/guardian/data-operations evidence and final same-SHA PR-14 remain blocked. Stage 8 not closed.
