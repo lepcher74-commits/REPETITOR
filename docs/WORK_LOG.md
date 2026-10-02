@@ -179,3 +179,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Prior limiter test CI 36965110777 SUCCESS and journal CI 36965120694 SUCCESS; implementation Pilot Build 36965100907 SUCCESS at 417c72e... (not latest HEAD).
 - Added injectable `MailRegistration` orchestration: persisted account/IP limiter → persisted one-time challenge → injected sender; verification consumes token once (72fc9ae...). Three offline fake-sender tests for success/replay, cooldown/no duplicate delivery, and delivery failure (1a1167f...). Await fresh CI.
 - Critical deployment gates: caller must authenticate parent ID, bind recipient to account, derive trusted client IP, avoid account enumeration, provision actual Russian-region mail/hosting and shared distributed rate limits. Fake sender only; no real mail or child-data transfer. Mailbox possession does not prove guardian status. Stage 8 remains open.
+
+
+## 2026-10-02 — account-bound mailbox adapter
+- Previous composed mail registration CI 36965301555 SUCCESS, journal CI 36965314373 SUCCESS; Pilot Build 36965289994 SUCCESS on implementation SHA 72fc9ae... only.
+- Added `BoundMailRegistration` with authenticated-actor value and server-owned registered-mailbox directory; request cannot supply an arbitrary recipient, and verification is scoped to the actor (f8e56ef...). Added two offline tests (3da60ee...). Await CI.
+- AuthenticatedParent is a trusted-boundary data carrier, NOT an authentication implementation; actual session validation, immutable account-mailbox binding during outstanding challenges, trusted proxy configuration and enumeration-safe HTTP responses remain prerequisites. No guardian proof or cloud transfer enabled.
