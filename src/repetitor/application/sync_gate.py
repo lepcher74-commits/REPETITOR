@@ -20,6 +20,8 @@ def may_start_optional_sync(
     """
     return (
         consent is not None
-        and ledger.active_for_notice(\n            parent.parent_id, ConsentPurpose.CLOUD_LEARNING_SYNC, consent.notice_version\n        )
+        and ledger.active_for_notice(
+            parent.parent_id, ConsentPurpose.CLOUD_LEARNING_SYNC, consent.notice_version
+        )
         and parent.may_sync(consent, feature_enabled=feature_enabled)
     )
