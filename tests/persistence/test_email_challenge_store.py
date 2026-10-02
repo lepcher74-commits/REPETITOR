@@ -40,3 +40,26 @@ def test_issuance_cooldown_survives_restart_and_does_not_replace_token(tmp_path)
     assert EmailChallengeStore(path).verify("p", first, NOW + timedelta(seconds=31))
     second = EmailChallengeStore(path).issue("p", NOW + timedelta(seconds=61))
     assert EmailChallengeStore(path).verify("p", second, NOW + timedelta(seconds=62))
+
+
+def test_legacy_challenge_schema_migrates_without_losing_existing_rows(tmp_path):
+    import sqlite3
+    path = tmp_path / "legacy.sqlite"
+    with sqlite3.connect(path) as db:
+        db.execute("""CREATE TABLE email_challenges (
+            parent_id TEXT PRIMARY KEY, digest TEXT NOT NULL,
+            expires_at TEXT NOT NULL, attempts INTEGER NOT NULL,
+            consumed INTEGER NOT NULL DEFAULT 0
+        )""")
+        db.execute(
+            "INSERT INTO email_challenges VALUES(?,?,?,?,?)",
+            ("old", "digest", (NOW + timedelta(days=1)).isoformat(), 5, 0),
+        )
+    store = EmailChallengeStore(path)
+    with sqlite3.connect(path) as db:
+        assert db.execute("SELECT COUNT(*) FROM email_challenges").fetchone()[0] == 1
+        assert "last_issued_at" in {
+            row[1] for row in db.execute("PRAGMA table_info(email_challenges)")
+        }
+    # Legacy row remains readable; existing token is not replaced during migration.
+    assert not store.verify("old", "wrong", NOW)
