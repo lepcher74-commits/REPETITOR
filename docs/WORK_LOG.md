@@ -221,3 +221,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Prior all-session revocation test CI SUCCESS at afeb0db..., journal CI SUCCESS at 26d494..., Pilot Build SUCCESS at c965ebc... (implementation SHA only).
 - Added `AtomicParentPasswordReset` (a6fcb3b...) enforcing that recovery, credentials and session stores use ONE local SQLite file. A BEGIN IMMEDIATE transaction validates unused unexpired token, updates scrypt credential, consumes token and revokes all target-parent sessions; invalid token changes nothing. Three tests (563b28a...) cover successful reset, replay/expiry/wrong token and rejecting separate DBs. Await CI.
 - NOT deployed or publicly exposed. Mailbox identity/delivery, reset request limits, enumeration-safe responses and production datastore review remain. Stage 8 manual gates remain blocked; cloud transfer off.
+
+
+## 2026-10-02 — recovery request orchestration
+- Previous atomic-reset tests CI SUCCESS at 563b28a..., journal CI SUCCESS at dea6939..., Pilot Build SUCCESS at a6fcb3b... (implementation SHA).
+- Added offline `ParentRecoveryRequest` (d1078ac...) using server-owned normalized-email directory, persisted email/IP rate limiter, single-use recovery token and injected sender. Unknown emails consume quota and return the same result as known ones; two tests added (cfbb2a8...). Await fresh CI.
+- No public HTTP endpoint, live sender or recovery mail template. Observable mail delivery/timing and explicit rate-limit handling require production enumeration-risk review; directory must be authoritative, IP trusted and logging token-free. No child-data transfer; Stage 8 open.
