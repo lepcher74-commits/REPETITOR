@@ -150,3 +150,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Added single-use random mailbox challenge: SHA-256 token digest, constant-time comparison, 15-minute default expiry, five-attempt limit, no plaintext token persisted in challenge object (ebac34d...). Added three tests (7187942...).
 - This is an in-memory primitive only. It does not send mail, persist attempts across restarts, authenticate an account, verify parent age/authority or activate any server; deployment requires server-side persistence, rate limiting and abuse protections.
 - Await CI on test SHA 7187942... and final journal HEAD. Keep all cloud features OFF.
+
+
+## 2026-10-02 — persistent mailbox challenge slice
+- Prior mailbox challenge CI 36963652588 SUCCESS and journal CI 36963664549 SUCCESS; Pilot Build 36963642697 SUCCESS on implementation SHA ebac34d... only.
+- Added SQLite-backed per-parent challenge store with token digests, 15-minute expiry, five persisted attempts and atomic read/consume using BEGIN IMMEDIATE (ad3b842...). Added restart/replay, expiry/guess-limit and parent isolation tests (61abe63...).
+- Issuance still needs API-level throttling; repeated issuance currently replaces the previous token and MUST NOT be exposed directly to unauthenticated requests. No mail delivery, server deployment, identity/guardian proof or live sync enabled. Await CI on new test SHA.
