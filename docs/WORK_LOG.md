@@ -410,3 +410,8 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Implementation SHA 80edc27fb81e2257599f260f1bce311a48ea3b75: CI SUCCESS run 36990447333 and Windows/macOS Pilot Build SUCCESS run 36990447259. Both build jobs passed bundled offline content verification, packaged executable smoke and artifact upload.
 - Test SHA 1a6a63eb035e4a05fe09eec37c0eb2fa1a8a28bf CI SUCCESS run 36990464483; previous journal cd87300... CI SUCCESS run 36990495136.
 - Verified Windows artifact 11219631559 (~51MB) and macOS artifact 11219586996 (~101MB), both present/unexpired. Provided Windows build to Controller for actual Narrator correct/incorrect feedback retest. No real Windows speech result yet; PR-08 remains BLOCKED, operational PR-10 and final PR-14 remain BLOCKED. Later tests/docs are not included in implementation artifact SHA; final release gate still requires same-SHA verification.
+
+
+## 2026-10-02 — Controller defers Narrator retest; PR-10 preparation
+- Controller explicitly deferred the second Windows Narrator manual retest and requested continuation elsewhere. PR-08 remains BLOCKED/awaiting real manual verification; the prior failed observation remains historical and the Alert fallback is not certified by CI.
+- Created STAGE_8_PR10_OPERATOR_DECISION_PACKET.md (104260b...) with actual operator decisions needed, guardian authority distinction, synthetic local deletion and incident tabletop procedures, exact evidence expectations and scope limits. Preparation only; no operator identity, legal authorization, consent, retention period, support or content review fabricated. PR-10 remains BLOCKED; PR-14 remains BLOCKED.
