@@ -404,3 +404,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Controller retest on Windows 11 confirmed the first Announcement-only implementation did not produce spoken answer feedback; manual FAIL remains on baseline 3175c42....
 - Qt documentation describes Announcement as an accessibility notification and updateAccessibility as the mechanism for notifying assistive technologies; added a second QAccessible.Alert event as a Windows screen-reader compatibility fallback (80edc27...). Added regression expectation for both events (1a6a63e...).
 - New CI/Pilot Build pending. Must retest a new Windows artifact; no resolution claim until Narrator actually speaks the result.
+
+
+## 2026-10-02 — Alert fallback build verified and handed off
+- Implementation SHA 80edc27fb81e2257599f260f1bce311a48ea3b75: CI SUCCESS run 36990447333 and Windows/macOS Pilot Build SUCCESS run 36990447259. Both build jobs passed bundled offline content verification, packaged executable smoke and artifact upload.
+- Test SHA 1a6a63eb035e4a05fe09eec37c0eb2fa1a8a28bf CI SUCCESS run 36990464483; previous journal cd87300... CI SUCCESS run 36990495136.
+- Verified Windows artifact 11219631559 (~51MB) and macOS artifact 11219586996 (~101MB), both present/unexpired. Provided Windows build to Controller for actual Narrator correct/incorrect feedback retest. No real Windows speech result yet; PR-08 remains BLOCKED, operational PR-10 and final PR-14 remain BLOCKED. Later tests/docs are not included in implementation artifact SHA; final release gate still requires same-SHA verification.
