@@ -392,3 +392,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 ## 2026-10-02 — diagnose and correct accessibility regression test setup
 - App-only commit 3175c42... CI SUCCESS run 36987973288 and unsigned Pilot Build SUCCESS 36987973267, but subsequent test commit 0b6f4c7... CI FAILURE 36987994403 (183 passed, 1 failed on Ubuntu; same failed assertion across platforms). Failure was test_empty_answer_announces_feedback_without_stealing_focus asserting hasFocus() in an offscreen, never-shown Qt window; event emission and accessibleDescription assertions passed.
 - Updated test to show the window, process events, explicitly focus the answer input and assert the precondition before submitting (4994f32...). New CI run 36988653579 pending at time of log. Do not claim retest success yet. App's Narrator announcement remains unverified on real Windows 11.
+
+
+## 2026-10-02 — fixed build ready for Windows Narrator retest
+- Corrected test commit 4994f32... CI SUCCESS run 36988653579; journal commit bc9a571... CI SUCCESS run 36988703470.
+- Accessibility implementation commit 3175c42... CI SUCCESS 36987973288 and Windows/macOS Pilot Build SUCCESS 36987973267; both jobs passed bundled-content verification, packaged-executable smoke and upload. Artifacts verified present/unexpired: Windows ID 11218133365, macOS ID 11218073752.
+- Windows operator retest requested against artifact from build run 36987973267, exact code SHA 3175c42.... Later commits only changed tests/docs; do not represent this as a final exact-SHA release gate. Narrator behavior on real Windows still awaiting operator evidence.
