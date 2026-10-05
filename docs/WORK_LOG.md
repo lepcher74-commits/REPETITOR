@@ -470,3 +470,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Confirmed CI SUCCESS for candidate-safe data-operations docs: 68804c5... run 37274256869, 255e42a... run 37274272443; final manual-gate cleanup: 23daff6... run 37274369953, e04ce44... run 37274399399.
 - STAGE_8_EVIDENCE_MATRIX.md still labeled 87eceb5... as a technical working baseline despite later text calling it historical. Updated the header and gate wording (25ecc95...) to state that it is a 2026-10-01 evidence snapshot only and that the final pilot candidate is NOT NOMINATED.
 - Existing PASS rows remain historical technical evidence tied to their cited runs; they do not grant PR-14 to current HEAD or a future candidate. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open. Fresh docs CI pending.
+
+
+## 2026-10-05 — fail-closed preflight for extended placeholders
+- Confirmed evidence-matrix CI 37276311182 SUCCESS and journal CI 37276327285 SUCCESS.
+- Found manual preflight checked literal [FILL] and [BLOCKED / but candidate-neutral templates use longer placeholders such as [FILL AT FINAL CANDIDATE NOMINATION]. This could miss a still-unfilled final SHA if other markers were cleared.
+- Widened marker detection to [FILL, [BLOCKED and NOT HUMAN-REVIEWED (c502314...) and added a focused regression test for extended SHA/block/review markers (a93d4d4...). Textual preflight remains read-only and cannot approve manual evidence.
+- CI pending. PR-08 BLOCKED/deferred, PR-10 BLOCKED, PR-14 BLOCKED; Stage 8 open.
