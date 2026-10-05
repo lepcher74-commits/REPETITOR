@@ -70,3 +70,11 @@ No efficacy, WCAG conformance, legal compliance, code-signing or notarization cl
 - Final `PILOT_MANUAL_GATE_RECORD.md` and `PILOT_DATA_OPERATIONS_TEMPLATE.md` no longer inherit candidate-specific approvals from historical SHA `87eceb5...`; exact candidate SHA/date/network-transfer status must be recorded and verified at final nomination.
 - The matrix's older PASS rows remain traceable technical evidence for their cited commits/runs, not a statement that current HEAD or a future final candidate has passed PR-14.
 - Final pilot candidate remains **NOT NOMINATED**. PR-08, operational/content PR-10 and PR-14 remain BLOCKED.
+
+
+## 2026-10-05 runtime UI review fingerprint gate
+
+- Guard commit `ca5ac157ef2489dc8333e3e1cca1d4b8a1337a4a` intentionally failed CI run **37287549563** on Windows, macOS and Ubuntu because the inventory did not yet contain the runtime UI source fingerprint. Ubuntu showed **1 failed / 188 passed**; the sole failing assertion exposed SHA-256 `37be23a5802cf7902aeaa3a1ed2fd7d16bf4c4788a2e971183aa91fe9ad664a8` for `src/repetitor/ui/app.py`.
+- `PILOT_CONTENT_REVIEW_INVENTORY.md` now pins that exact value from commit `19936c5848fc9ad820cbce41b801b1ffc87282aa`. This is drift-detection evidence only and does not perform human content/accessibility review.
+- **Recovery CI is still UNVERIFIED in this evidence matrix.** Do not nominate an audit candidate until an exact CI run is captured for the fingerprint-pinned revision (or a descendant with unchanged guarded inputs) and is green. A documentation commit or matching hash alone is not a CI PASS.
+- Consequently PR-08 remains BLOCKED/deferred, operational/content PR-10 remains BLOCKED, PR-14 remains BLOCKED, and the final candidate remains NOT NOMINATED.
