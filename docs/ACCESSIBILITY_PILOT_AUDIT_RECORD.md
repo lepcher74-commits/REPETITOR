@@ -4,7 +4,7 @@ Date opened: 2026-10-01
 Stage: 8 / E8.5
 Status: MANUAL TESTING REQUIRED
 
-Prepared audit candidate: `e017aaaff1f5d30c188775a552240a829d9685fc`; CI `37301914433`; Pilot Build `37301914518`; Windows artifact `11341429699`; macOS artifact `11341924295`. No manual result is inferred from this preparation.
+Prepared audit candidate: **REPLACEMENT NOT YET NOMINATED**. Previous `e017aaaff1f5d30c188775a552240a829d9685fc` artifacts are superseded for affected accessibility/UI checks after learner-visible changes. No manual result is inferred.
 
 This record distinguishes automated evidence from checks that require a real interactive desktop session. It is not a WCAG conformance statement.
 
