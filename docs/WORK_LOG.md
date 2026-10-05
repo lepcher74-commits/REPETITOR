@@ -524,3 +524,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - CI exposed current full-source `src/repetitor/ui/app.py` SHA-256 `37be23a5802cf7902aeaa3a1ed2fd7d16bf4c4788a2e971183aa91fe9ad664a8`.
 - Pinned the UI fingerprint in PILOT_CONTENT_REVIEW_INVENTORY.md (19936c5...) next to the YAML fingerprint. Documented that full-source hashing is intentionally conservative and that matching hashes do not establish accessibility, age appropriateness, safety, clarity or human approval.
 - Fresh CI pending. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-05 — runtime UI fingerprint fail-closed cycle fully reconciled
+- Rechecked CI run 37287549563 for guard commit ca5ac157ef2489dc8333e3e1cca1d4b8a1337a4a: Windows, macOS and Ubuntu jobs all completed FAILURE at the runtime UI source fingerprint guard. Ubuntu reported exactly 1 failed / 188 passed; the failing assertion exposed SHA-256 `37be23a5802cf7902aeaa3a1ed2fd7d16bf4c4788a2e971183aa91fe9ad664a8` for `src/repetitor/ui/app.py`.
+- Confirmed `PILOT_CONTENT_REVIEW_INVENTORY.md` on main contains that exact runtime UI source fingerprint, introduced by 19936c5848fc9ad820cbce41b801b1ffc87282aa, alongside the previously pinned learner-visible YAML fingerprint.
+- This proves the intended fail-closed detection and repository-side remediation are traceable. It does NOT prove recovery CI green: no exact recovery workflow run was available through the current commit-run/status interface, so CI PASS is deliberately not inferred.
+- Final candidate remains NOT NOMINATED. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 remains open. Next technical evidence gate is an exact CI run showing the fingerprint-pinned revision (or a descendant with unchanged guarded inputs) green.
