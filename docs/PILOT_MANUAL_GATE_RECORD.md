@@ -1,12 +1,12 @@
 # Pilot manual gate record
 
-Candidate SHA: `87eceb5ca1e48bdd52943f65b594495d25af6998`
-Date: 2026-10-01
+Candidate SHA: [FILL AT FINAL CANDIDATE NOMINATION]
+Date: [FILL WHEN FINAL MANUAL GATE IS EXECUTED]
 Reviewer/operator: [ROLE OR IDENTIFIER]
 Pilot jurisdiction: [FILL]
 Intended participant age range: [FILL]
 
-Use PASS, FAIL, or NOT TESTED. A NOT TESTED or FAIL required row blocks pilot release.
+Use PASS, FAIL, or NOT TESTED. A NOT TESTED or FAIL required row blocks pilot release. Historical observations belong in dated audit/evidence records; this file represents only the final nominated candidate.
 
 ## Accessibility
 
@@ -44,7 +44,7 @@ Reviewer reads every learner-visible prompt, hint, explanation and feedback in t
 | Support contact defined | NOT TESTED | [FILL] |
 | Local-data retention period defined | NOT TESTED | [FILL] |
 | Withdrawal/deletion procedure defined | NOT TESTED | [FILL] |
-| No unreviewed production network AI provider enabled | PASS | Candidate 87eceb5... configures no production network AI provider; default core is offline |
+| No unreviewed production network AI provider enabled | NOT TESTED | Verify the exact final candidate/build; do not inherit an earlier candidate result |
 
 ## Release decision
 
