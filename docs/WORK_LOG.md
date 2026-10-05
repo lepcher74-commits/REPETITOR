@@ -458,3 +458,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Audited current runtime/backup code: CLI default data dir is `~/.repetitor` with explicit `--data-dir`; backup uses SQLite online backup API, integrity/schema checks and refuses silent overwrite. Existing DATA_BACKUP_RECOVERY.md matches those implementation contracts.
 - Removed stale hard-coded candidate 87eceb5... from PILOT_DATA_OPERATIONS_TEMPLATE.md (68804c5...). Candidate SHA is now filled only at final nomination; external-transfer status must be re-verified on that exact candidate instead of inherited from an old build. Added explicit exact-candidate verification checklist for storage, backup rehearsal, network behavior and operator decisions.
 - No operator decisions or manual evidence invented. PR-10 remains BLOCKED pending actual operator completion; PR-08 deferred/BLOCKED; PR-14 BLOCKED; Stage 8 open. Fresh CI pending.
+
+
+## 2026-10-05 — final manual gate record made candidate-neutral
+- Found PILOT_MANUAL_GATE_RECORD.md still pinned to historical candidate 87eceb5... and carrying a candidate-specific automated PASS for no production network AI provider.
+- Updated the final manual-gate template (23daff6...) so candidate SHA/date are filled only when the final candidate is actually nominated/executed; network-provider row is reset to NOT TESTED and must be verified on that exact build. Historical observations remain in dated audit/evidence records rather than being inherited into a future release decision.
+- This is deliberately more conservative and may keep the preflight blocked longer. No prior historical evidence was deleted. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open. Fresh CI pending.
