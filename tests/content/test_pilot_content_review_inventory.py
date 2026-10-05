@@ -15,6 +15,7 @@ PROBLEM_FILES = (
     ROOT / 'content/mathematics/fractions/subtract_unlike/problems.yaml',
 )
 REMEDIATION = ROOT / 'content/mathematics/fractions/add_unlike/remediation.yaml'
+RUNTIME_UI = ROOT / 'src/repetitor/ui/app.py'
 
 
 def _problem_ids() -> set[str]:
@@ -75,4 +76,13 @@ def test_review_inventory_fingerprint_matches_learner_visible_yaml():
     assert f'Learner-visible YAML fingerprint (SHA-256): `{fingerprint}`' in text, (
         'Learner-visible pilot wording changed without refreshing the human-review inventory. '
         'Update the fingerprint and repeat affected semantic review; a matching hash is not approval.'
+    )
+
+
+def test_review_inventory_runtime_ui_source_fingerprint_matches():
+    text = INVENTORY.read_text(encoding='utf-8')
+    fingerprint = hashlib.sha256(RUNTIME_UI.read_bytes()).hexdigest()
+    assert f'Runtime UI source fingerprint (SHA-256): `{fingerprint}`' in text, (
+        'Runtime UI source changed without refreshing the learner-visible review inventory. '
+        'Reassess affected UI wording/behavior and update the fingerprint; matching is not approval.'
     )
