@@ -1,6 +1,6 @@
 # Pilot manual gate record
 
-Prepared audit candidate/artifact set for manual execution: **REPLACEMENT NOT YET NOMINATED**. Previous `e017aaaff1f5d30c188775a552240a829d9685fc` artifacts are superseded for affected UI/content checks after learner-visible changes. `Audit candidate SHA observed` remains unfilled until checks are actually performed on the replacement artifact.
+Prepared audit candidate/artifact set for manual execution: `983d04c564879f9ff8b6de110497901279073aeb`; CI `37304924020`; Pilot Build `37304924030`; Windows artifact `11343327951`; macOS artifact `11342674307`. This is preparation only; `Audit candidate SHA observed` remains unfilled until the checks are actually performed.
 
 Audit candidate SHA observed: [FILL]\nFinal candidate SHA after any required fixes: [FILL AT FINAL CANDIDATE NOMINATION]
 Date: [FILL WHEN FINAL MANUAL GATE IS EXECUTED]
