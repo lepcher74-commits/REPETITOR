@@ -118,3 +118,11 @@ No efficacy, WCAG conformance, legal compliance, code-signing or notarization cl
 - Because `src/repetitor/ui/app.py` changed, audit candidate `e017aaaff1f5d30c188775a552240a829d9685fc` is **SUPERSEDED for affected UI/content review**. Its historical CI/Pilot Build evidence remains valid for that SHA but cannot be used as the current manual-review artifact.
 - The runtime UI fingerprint guard must fail closed until the new canonical fingerprint is pinned, followed by fresh CI + Windows/macOS Pilot Build before nominating a replacement audit candidate.
 - No human content review or accessibility result has been performed or inferred. Final candidate remains NOT NOMINATED; PR-08/PR-10/PR-14 remain BLOCKED.
+
+
+## 2026-10-05 child-facing wording remediation and fingerprint refresh
+
+- Learner-visible wording fix `b246ee2b793f8f0a9ff7d2947e9e7154515fd357` intentionally invalidated the runtime UI fingerprint binding.
+- CI run **37303689834** failed closed on Ubuntu with two explained failures: the missing refreshed UI fingerprint and a unit test still asserting the old learner-facing phrase. The new canonical normalized UI SHA-256 exposed by CI is `47d78e92438dcb327ff9687ee5bb8287b153efb2912026e651460bb0a13edeaa`.
+- The inventory fingerprint was refreshed in `12d054f...`; the architecture wording contract was updated in `8a8f56a...` without weakening its anti-repeat/mastery-farming assertion.
+- Previous audit candidate `e017aa...` remains historical/superseded for affected UI review. Replacement audit candidate is not nominated until fresh same-SHA CI + Windows/macOS Pilot Build succeeds.
