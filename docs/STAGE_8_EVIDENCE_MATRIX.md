@@ -102,3 +102,10 @@ No efficacy, WCAG conformance, legal compliance, code-signing or notarization cl
 - Windows artifact: **11341429699** (`repetitor-windows`, unexpired at verification time). macOS artifact: **11341924295** (`repetitor-macos`, unexpired at verification time).
 - This SHA is now the **audit candidate** for manual PR-08/PR-10 execution. It is **not** the PR-14 final candidate. Any relevant code or learner-visible content fix after manual findings invalidates affected observations and requires a replacement audit candidate.
 - PR-08 remains BLOCKED/NOT TESTED for outstanding manual accessibility checks; operational/content PR-10 remains BLOCKED. Final candidate remains NOT NOMINATED; PR-14 remains BLOCKED.
+
+
+## 2026-10-05 audit-candidate manual preflight remains fail-closed
+
+- After binding the prepared audit candidate `e017aaaff1f5d30c188775a552240a829d9685fc` to the manual records, the conservative Stage 8 textual preflight still finds **12 unresolved markers** across the four required records.
+- Current unresolved categories include NOT TESTED, [FILL], reviewer/operator placeholders, [BLOCKED], MANUAL TESTING REQUIRED and NOT HUMAN-REVIEWED. This is expected: technical candidate preparation must not clear human/operational gates.
+- Therefore the existence of same-SHA CI/Pilot Build evidence does not make the pilot ready. PR-08 and operational/content PR-10 remain BLOCKED; final candidate remains NOT NOMINATED and PR-14 remains BLOCKED.
