@@ -584,3 +584,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Fixed wording only in b246ee2b793f8f0a9ff7d2947e9e7154515fd357: «базовый навык», «одна проверка», «уровень освоения», «подтверждён несколькими проверками». No mathematical verifier/routing logic changed.
 - This learner-visible source change supersedes audit candidate e017aa... for affected manual UI/content review. Historical technical evidence is retained, but a replacement audit candidate requires refreshed UI fingerprint + CI + Pilot Build.
 - Evidence matrix invalidation recorded in 64c90dd.... Manual PR-08/PR-10 results remain unperformed; final candidate NOT NOMINATED; PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-05 — child-facing wording fix fingerprint cycle
+- CI 37303689834 on b246ee2... failed closed as intended after learner-visible UI wording changed. Ubuntu: 2 failed / 187 passed. Failures were (1) runtime UI fingerprint mismatch exposing new canonical SHA-256 `47d78e92438dcb327ff9687ee5bb8287b153efb2912026e651460bb0a13edeaa`; (2) stale unit wording assertion still expecting «повышать оценку».
+- Refreshed PILOT_CONTENT_REVIEW_INVENTORY.md fingerprint in 12d054f... and updated the architecture wording contract to «повышать уровень освоения» in 8a8f56a.... No routing/verifier/mastery logic changed.
+- Previous audit candidate e017aa... stays superseded for affected UI/content review. Replacement audit candidate requires fresh same-SHA CI + Pilot Build; no manual result is carried forward.
