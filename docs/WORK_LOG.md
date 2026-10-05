@@ -490,3 +490,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Found STAGE_8_MANUAL_AUDIT_PACKET.md still presented 2026-10-02 artifacts as the artifact to inspect. Those artifacts predate later accessibility/gate changes and may expire, so they must not become final-gate evidence by convenience.
 - Refreshed the packet (7c3ef0e...) into a final-candidate execution template: final audit requires an exact nominated SHA, same-SHA CI, Windows/macOS Pilot Build run and artifact IDs. The 714e96e... runs are retained only as historical reference and explicitly cannot substitute for final verification.
 - No manual result was created. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open. Fresh CI pending.
+
+
+## 2026-10-05 — Stage 8 candidate lifecycle clarified
+- Confirmed stale-artifact packet CI SUCCESS: 7c3ef0e... run 37278427014; journal 77a4e44... run 37278451190.
+- Found a process ambiguity: CLOSEOUT_PLAN said freeze a proposed SHA before manual checks, while the refreshed audit packet used final-candidate language. Clarified a two-phase lifecycle: audit candidate -> manual PR-08/PR-10 evidence and fixes -> final candidate -> same-SHA PR-14.
+- Updated STAGE_8_CLOSEOUT_PLAN.md (963dc5d...) with explicit audit/final candidate definitions and invalidation rule for code/content changes. Aligned STAGE_8_MANUAL_AUDIT_PACKET.md (2361274...) so manual evidence is collected on a pinned audit candidate and affected checks repeat after relevant changes.
+- No candidate is currently nominated and no manual PASS is implied. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open. Fresh CI pending.
