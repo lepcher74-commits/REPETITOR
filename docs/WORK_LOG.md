@@ -517,3 +517,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Confirmed YAML fingerprint inventory recovery CI SUCCESS: a980ecc... run 37287278707; journal fe7b832... run 37287302126.
 - Added a second conservative review guard (ca5ac15...) that hashes the full `src/repetitor/ui/app.py` source and requires its fingerprint in PILOT_CONTENT_REVIEW_INVENTORY.md. This intentionally invalidates the review record on any runtime UI source change, including non-text changes, rather than risk silently missing learner-visible wording/behavior drift.
 - The guard is expected to fail until the current source fingerprint is pinned in the inventory. Matching fingerprint remains drift evidence only, not semantic/accessibility approval. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-05 — runtime UI fingerprint pinned after expected fail-closed CI
+- Runtime UI guard commit ca5ac15... produced the intended CI failure (run 37287549563): Ubuntu reported 1 failed / 188 passed, solely because the inventory lacked the current UI fingerprint; macOS showed the same test failure while Windows was still running when inspected.
+- CI exposed current full-source `src/repetitor/ui/app.py` SHA-256 `37be23a5802cf7902aeaa3a1ed2fd7d16bf4c4788a2e971183aa91fe9ad664a8`.
+- Pinned the UI fingerprint in PILOT_CONTENT_REVIEW_INVENTORY.md (19936c5...) next to the YAML fingerprint. Documented that full-source hashing is intentionally conservative and that matching hashes do not establish accessibility, age appropriateness, safety, clarity or human approval.
+- Fresh CI pending. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open.
