@@ -1,7 +1,7 @@
 # Stage 8 — Production Readiness & Pilot evidence matrix
 
-Technical working baseline: `87eceb5ca1e48bdd52943f65b594495d25af6998` (technical candidate; final pilot candidate awaits manual gates)
-Recorded: 2026-10-01
+Historical technical baseline: `87eceb5ca1e48bdd52943f65b594495d25af6998` (2026-10-01 evidence snapshot only; **not** the current/final pilot candidate)
+Final pilot candidate: **NOT NOMINATED** — nominate only after manual/operational gates are complete.
 
 Status vocabulary:
 - **PASS** — objective repository/CI evidence exists.
@@ -29,7 +29,7 @@ Status vocabulary:
 
 Stage 8 is **not closed**.
 
-Repository/automation evidence is strong enough for PR-01–07, PR-09 and PR-11–13. PR-13 is backed by CI 36862547259 on the same technical SHA 87eceb5... whose Windows/macOS Pilot Build 36862547237 also passed. PR-11 is a technical reachability result only and is not evidence of learning efficacy. The remaining release blockers are deliberately human/operational:
+Historical repository/automation evidence supports PR-01–07, PR-09 and PR-11–13 for the cited implementations/runs; these PASS rows do not nominate the current repository HEAD as the final pilot candidate. PR-13 is backed by CI 36862547259 on the same technical SHA 87eceb5... whose Windows/macOS Pilot Build 36862547237 also passed. PR-11 is a technical reachability result only and is not evidence of learning efficacy. The remaining release blockers are deliberately human/operational:
 1. complete `PILOT_MANUAL_GATE_RECORD.md` for the intended Windows/macOS environment and assistive technology;
 2. resolve pilot jurisdiction/operator/participant authorization and guardian/consent requirements in that record;
 3. complete `PILOT_DATA_OPERATIONS_TEMPLATE.md` with actual retention/deletion procedure and support contact;
@@ -63,3 +63,10 @@ No efficacy, WCAG conformance, legal compliance, code-signing or notarization cl
 - The implementation-only CI run **37263037839** failed because the pre-existing tests still expected three manual records; Ubuntu evidence shows 3 failed / 181 passed, specifically the intended new fourth-record behavior. This was a test expectation lag, not evidence that the gate logic should be reverted.
 - Updated tests then passed CI **37263055579** on `a188c18...`; journal follow-up CI **37263071548** also passed. Pilot Build **37263037789** on the implementation SHA succeeded. None of these automated results grants PR-08/PR-10 approval.
 - Current manual records still contain unresolved markers by design. PR-08, operational/content PR-10 and final PR-14 remain BLOCKED.
+
+
+## 2026-10-05 candidate-neutral gate records
+
+- Final `PILOT_MANUAL_GATE_RECORD.md` and `PILOT_DATA_OPERATIONS_TEMPLATE.md` no longer inherit candidate-specific approvals from historical SHA `87eceb5...`; exact candidate SHA/date/network-transfer status must be recorded and verified at final nomination.
+- The matrix's older PASS rows remain traceable technical evidence for their cited commits/runs, not a statement that current HEAD or a future final candidate has passed PR-14.
+- Final pilot candidate remains **NOT NOMINATED**. PR-08, operational/content PR-10 and PR-14 remain BLOCKED.
