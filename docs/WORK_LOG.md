@@ -451,3 +451,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - CI 37265896881/37265914626 correctly failed the new content inventory guard on all OSes: actual authored problem-pool hints = 13, while PILOT_CONTENT_REVIEW_INVENTORY.md incorrectly stated 10. Ubuntu: 1 failed, 185 passed.
 - Root cause was manual arithmetic in the inventory: equivalent 3 + simplify 3 + add_unlike 4 + subtract_unlike 3 = 13. Corrected the documentation to 13 (d16a9a6...) without weakening the guard. Problem-ID equality test had already passed, supporting the 42-problem inventory.
 - Fresh CI pending. This correction does not perform the human content review; PR-10 remains BLOCKED. PR-08 deferred/BLOCKED and PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-05 — PR-10 data-operations template made candidate-safe
+- Corrected content inventory d16a9a6... CI 37274069332 SUCCESS; journal 7d58462... CI 37274086005 SUCCESS.
+- Audited current runtime/backup code: CLI default data dir is `~/.repetitor` with explicit `--data-dir`; backup uses SQLite online backup API, integrity/schema checks and refuses silent overwrite. Existing DATA_BACKUP_RECOVERY.md matches those implementation contracts.
+- Removed stale hard-coded candidate 87eceb5... from PILOT_DATA_OPERATIONS_TEMPLATE.md (68804c5...). Candidate SHA is now filled only at final nomination; external-transfer status must be re-verified on that exact candidate instead of inherited from an old build. Added explicit exact-candidate verification checklist for storage, backup rehearsal, network behavior and operator decisions.
+- No operator decisions or manual evidence invented. PR-10 remains BLOCKED pending actual operator completion; PR-08 deferred/BLOCKED; PR-14 BLOCKED; Stage 8 open. Fresh CI pending.
