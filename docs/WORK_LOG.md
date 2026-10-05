@@ -577,3 +577,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Reviewed audit candidate e017aaaff1f5d30c188775a552240a829d9685fc dependency manifest and common outbound-network API references. Runtime dependencies remain PySide6/PyYAML/sympy only; repository searches for common Python/Qt HTTP/socket/mail client APIs returned no matches, but GitHub reported incomplete_results=true.
 - Recorded this as supporting negative source evidence in PRIVACY_CHILD_SAFETY_REVIEW.md (ff85525...). It is explicitly NOT an operational runtime/network PASS and does not clear the exact-build verification row.
 - Manual preflight remains blocked; PR-08 BLOCKED, PR-10 BLOCKED, final candidate NOT NOMINATED, PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-05 — assistant pre-review found child-facing wording defect
+- Preparatory (non-human-gate) semantic review found learner-visible technical English in runtime feedback: prerequisite/evidence, plus ambiguous «повышать оценку». These are clarity defects for the intended Russian grade-6 audience.
+- Fixed wording only in b246ee2b793f8f0a9ff7d2947e9e7154515fd357: «базовый навык», «одна проверка», «уровень освоения», «подтверждён несколькими проверками». No mathematical verifier/routing logic changed.
+- This learner-visible source change supersedes audit candidate e017aa... for affected manual UI/content review. Historical technical evidence is retained, but a replacement audit candidate requires refreshed UI fingerprint + CI + Pilot Build.
+- Evidence matrix invalidation recorded in 64c90dd.... Manual PR-08/PR-10 results remain unperformed; final candidate NOT NOMINATED; PR-14 BLOCKED; Stage 8 open.
