@@ -2,7 +2,7 @@
 
 Complete before real-user enrollment.
 
-Prepared audit candidate for rehearsal: **REPLACEMENT NOT YET NOMINATED**. Previous `e017aaaff1f5d30c188775a552240a829d9685fc` is superseded for the current audit lifecycle after learner-visible changes. The rehearsal/review field below remains unfilled until a human/operator actually executes it.
+Prepared audit candidate for rehearsal: `983d04c564879f9ff8b6de110497901279073aeb` (CI `37304924020`; Pilot Build `37304924030`). The rehearsal/review field below remains unfilled until a human/operator actually executes it.
 
 Audit candidate SHA rehearsed/reviewed: [FILL]\nFinal candidate SHA re-verified: [FILL AT FINAL CANDIDATE NOMINATION]
 Pilot operator: [FILL]
