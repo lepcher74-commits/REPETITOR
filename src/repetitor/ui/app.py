@@ -246,6 +246,7 @@ class RepetitorWindow(QMainWindow):
             return
         step = self.remediations[self.remediation_skill]
         raw = self.remediation_answer.text().strip()
+        used_hint = self.hint_level is not None
         outcome = self.session.submit(
             student_id=STUDENT_ID,
             problem=step.problems[self.remediation_index],
@@ -358,10 +359,10 @@ class RepetitorWindow(QMainWindow):
             ),
         )
         if outcome.verification.correct:
-            if self.hint_level is None:
-                self.feedback.setText("Верно. Я учту, что ты решил эту задачу самостоятельно.")
-            else:
+            if used_hint:
                 self.feedback.setText("Верно. Я учту, что ты решил эту задачу с подсказкой.")
+            else:
+                self.feedback.setText("Верно. Я учту, что ты решил эту задачу самостоятельно.")
         elif outcome.verification.mathematically_equivalent:
             self.feedback.setText("По значению верно, но проверь требуемую форму ответа.")
         elif outcome.misconception_hypothesis:
