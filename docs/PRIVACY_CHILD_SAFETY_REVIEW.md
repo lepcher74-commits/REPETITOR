@@ -52,3 +52,12 @@ The following block a real-user pilot even if automated CI is green:
 ## Legal/compliance boundary
 
 The project is designed toward data minimization and child safety, but this repository does not claim legal compliance or certification under GDPR/GDPR-K, COPPA, 152-FZ, accessibility law, or another jurisdictional regime. Applicable obligations depend on pilot jurisdiction, operator role, participant ages, data flows and deployment details and require current legal review before a real-user pilot.
+
+
+## 2026-10-05 audit-candidate source-level outbound-network check
+
+Audit candidate: `e017aaaff1f5d30c188775a552240a829d9685fc`.
+
+- `pyproject.toml` declares only PySide6, PyYAML and sympy as runtime dependencies; no third-party HTTP/mail/network client dependency is declared.
+- Repository code searches for common outbound APIs/clients (`requests`, `httpx`, `aiohttp`, `urllib`, `socket`, `smtplib`, `http.client`, `QNetwork`, `QTcpSocket`) returned no matches. GitHub marked these search responses `incomplete_results=true`, so this is supporting negative evidence, not proof of absence.
+- This source-level check does **not** satisfy the operational exact-build network verification row. Real deployment/runtime behavior still must be checked and recorded by the operator before enrollment.
