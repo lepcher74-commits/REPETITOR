@@ -598,3 +598,11 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - CI 37304672691 then failed closed exactly on two expected fingerprint assertions (macOS 2 failed / 187 passed), exposing YAML SHA-256 `852ccdcaa0c2a243a06335dccaa5cd9a33f93953ab85013c60527f7a370c6258` and UI SHA-256 `39ffd7cc0e2a0fae1be9613e3722e17d90f0846bfa6b49fe86faba70ec42b438`.
 - Pinned both fingerprints in 2a98f88.... Retired stale e017aa... artifact references from the manual audit packet/records (95fed83..., f6029b4..., f44db71..., 27b5cef...). No human reviewed/rehearsed/observed field was filled.
 - Replacement audit candidate is still NOT NOMINATED until a fresh exact same-SHA CI + Windows/macOS Pilot Build passes after this stabilized documentation state. Final candidate remains NOT NOMINATED; PR-08/PR-10/PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-05 — stabilized replacement audit candidate ready for manual execution
+- Verification SHA `983d04c564879f9ff8b6de110497901279073aeb` passed same-SHA CI **37304924020** on Windows/macOS/Ubuntu and Pilot Build **37304924030** on Windows/macOS.
+- Pilot Build passed bundled-content verification, packaged executable smoke, exact build-SHA check and artifact upload on both platforms.
+- Prepared artifacts: Windows **11343327951**, digest `2c40cb9cda7cc7cb6f87c218dffea1f7d7e6046261d54567616a4c767c80a416`; macOS **11342674307**, digest `1d5c9490e53c4b75948360f0170e311a6d371d8bf86a53854a0d593399367a28`.
+- Replacement audit candidate is now `983d04c...`. Manual audit/content/data-operation templates were rebound to it (091ab8a..., 7a66356..., a37ed9f..., 83e3e9a..., b72c5d7...); artifact digests added in 5c288f6.... No human result was filled or inferred.
+- Next blocker is actual manual PR-08 accessibility execution plus PR-10 human content/operator/data-operations review on these artifacts. Final candidate remains NOT NOMINATED; PR-14 BLOCKED; Stage 8 open.
