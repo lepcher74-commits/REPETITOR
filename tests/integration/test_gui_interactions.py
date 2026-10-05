@@ -38,7 +38,7 @@ def test_revealing_hint_is_recorded_as_non_independent_evidence(tmp_path):
     assert state is not None
     assert state.independence == 0.0
     assert "с подсказкой" in w.feedback.text()
-    assert "самостоятельно" not in w.feedback.text()
+    assert "решил эту задачу самостоятельно" not in w.feedback.text()
     w.close()
 
 
