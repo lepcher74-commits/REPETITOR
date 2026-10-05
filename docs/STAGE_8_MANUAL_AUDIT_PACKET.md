@@ -6,12 +6,14 @@
 
 Do **not** use the historical 2026-10-02 baseline as final-gate evidence. It predates later accessibility and gate-hardening changes and its workflow artifacts may expire.
 
-For final execution, first nominate an exact candidate SHA after the prerequisite manual/operational decisions are ready, then obtain a successful Windows/macOS Pilot Build for that exact SHA. Record:
-- candidate SHA: [FILL];
+For manual execution, first pin an exact **audit candidate SHA** and obtain a successful Windows/macOS Pilot Build for that SHA. After all required observations/decisions and any resulting fixes are complete, nominate the separate **final candidate SHA** for PR-14 same-SHA verification. For the audit candidate record:
+- audit candidate SHA: [FILL];
 - Pilot Build run ID: [FILL];
 - Windows artifact ID: [FILL];
 - macOS artifact ID: [FILL];
-- CI run ID on the same SHA: [FILL].
+- CI run ID on the same audit SHA: [FILL].
+
+If any code or learner-visible content changes after these observations, repeat affected manual checks on the replacement audit candidate. Do not relabel an older audited SHA as the final candidate.
 
 Historical reference only: baseline `714e96ed19ce4c0d44d23bdc5646b28d6880ad96`, CI run `36978627964`, Pilot Build run `36978627923`. These runs are not valid substitutes for final-candidate verification.
 
