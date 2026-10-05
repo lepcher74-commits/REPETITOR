@@ -116,7 +116,7 @@ class RepetitorWindow(QMainWindow):
     def _build_onboarding(self) -> QWidget:
         page, layout = self._page(
             "Начнём учиться",
-            "Три решения — и сразу короткая диагностика. Настройки можно уточнить позже.",
+            "Три настройки — и сразу короткая диагностика. Их можно уточнить позже.",
         )
         self.subject = QComboBox(); self.subject.setAccessibleName("Предмет"); self.subject.addItem(self.module.subject.title_ru, self.module.subject.id)
         self.grade = QComboBox(); self.grade.setAccessibleName("Класс"); self.grade.addItem(f"{self.module.grade} класс", self.module.grade)
@@ -221,7 +221,7 @@ class RepetitorWindow(QMainWindow):
             self.remediation_answer.setEnabled(False)
             self.remediation_feedback.setText(
                 "Все подготовленные варианты этого навыка уже использованы. "
-                "Не будем повтором повышать оценку; нужен новый вариант."
+                "Повтор той же задачи не будет повышать уровень освоения; нужен новый вариант."
             )
             self._announce_feedback(self.remediation_feedback)
             self.stack.setCurrentWidget(self.remediation)
@@ -358,7 +358,10 @@ class RepetitorWindow(QMainWindow):
             ),
         )
         if outcome.verification.correct:
-            self.feedback.setText("Верно. Я учту, что ты решил эту задачу самостоятельно.")
+            if self.hint_level is None:
+                self.feedback.setText("Верно. Я учту, что ты решил эту задачу самостоятельно.")
+            else:
+                self.feedback.setText("Верно. Я учту, что ты решил эту задачу с подсказкой.")
         elif outcome.verification.mathematically_equivalent:
             self.feedback.setText("По значению верно, но проверь требуемую форму ответа.")
         elif outcome.misconception_hypothesis:
