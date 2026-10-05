@@ -88,9 +88,9 @@ Also review the UI wording in `src/repetitor/ui/app.py`: onboarding/diagnostic/r
 
 The bounded YAML fingerprint also includes every learner-visible `message_ru` from `content/mathematics/fractions/add_unlike/diagnostic_route.yaml`, because those route messages are appended to runtime feedback.
 
-Learner-visible YAML fingerprint (SHA-256): `4d5bcb49392cd8e2119a0c1cc588aebb0fce62282704a33b0022aefef27ac9df`
+Learner-visible YAML fingerprint (SHA-256): `852ccdcaa0c2a243a06335dccaa5cd9a33f93953ab85013c60527f7a370c6258`
 
-Runtime UI source fingerprint (SHA-256): `47d78e92438dcb327ff9687ee5bb8287b153efb2912026e651460bb0a13edeaa`
+Runtime UI source fingerprint (SHA-256): `39ffd7cc0e2a0fae1be9613e3722e17d90f0846bfa6b49fe86faba70ec42b438`
 
 This fingerprint covers problem prompts, multiple-choice labels, authored hint text, remediation titles/explanations and remediation problem prompts, plus learner-visible diagnostic-route messages in the bounded YAML pilot scope. The runtime fingerprint covers the full `src/repetitor/ui/app.py` file conservatively, so even non-text UI source changes invalidate this review binding. These fingerprints are drift detectors only: matching values do **not** establish age appropriateness, safety, accessibility, clarity or human approval. If the fingerprint changes, refresh this inventory and repeat the affected semantic review before final candidate nomination.
 
