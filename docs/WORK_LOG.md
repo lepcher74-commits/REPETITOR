@@ -606,3 +606,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Prepared artifacts: Windows **11343327951**, digest `2c40cb9cda7cc7cb6f87c218dffea1f7d7e6046261d54567616a4c767c80a416`; macOS **11342674307**, digest `1d5c9490e53c4b75948360f0170e311a6d371d8bf86a53854a0d593399367a28`.
 - Replacement audit candidate is now `983d04c...`. Manual audit/content/data-operation templates were rebound to it (091ab8a..., 7a66356..., a37ed9f..., 83e3e9a..., b72c5d7...); artifact digests added in 5c288f6.... No human result was filled or inferred.
 - Next blocker is actual manual PR-08 accessibility execution plus PR-10 human content/operator/data-operations review on these artifacts. Final candidate remains NOT NOMINATED; PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-05 — replacement audit candidate preflight still fail-closed
+- Rechecked the four mandatory manual records after binding replacement candidate 983d04c.... Conservative preflight still reports **12 unresolved markers**, all in human/operational categories (NOT TESTED/FILL/operator/reviewer/BLOCKED/manual-testing/human-review markers).
+- This is expected and confirms the technical verification did not accidentally clear PR-08/PR-10. Evidence matrix updated in dccf59d....
+- No further automated result may be substituted for these observations/decisions. Final candidate remains NOT NOMINATED; PR-14 BLOCKED; Stage 8 open.
