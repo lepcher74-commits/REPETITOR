@@ -86,7 +86,9 @@ Also review the UI wording in `src/repetitor/ui/app.py`: onboarding/diagnostic/r
 
 Learner-visible YAML fingerprint (SHA-256): `4d5bcb49392cd8e2119a0c1cc588aebb0fce62282704a33b0022aefef27ac9df`
 
-This fingerprint covers problem prompts, multiple-choice labels, authored hint text, remediation titles/explanations and remediation problem prompts in the bounded YAML pilot scope. It is a drift detector only: a matching fingerprint does **not** establish age appropriateness, safety, clarity or human approval. If the fingerprint changes, refresh this inventory and repeat the affected semantic review before final candidate nomination.
+Runtime UI source fingerprint (SHA-256): `37be23a5802cf7902aeaa3a1ed2fd7d16bf4c4788a2e971183aa91fe9ad664a8`
+
+This fingerprint covers problem prompts, multiple-choice labels, authored hint text, remediation titles/explanations and remediation problem prompts in the bounded YAML pilot scope. The runtime fingerprint covers the full `src/repetitor/ui/app.py` file conservatively, so even non-text UI source changes invalidate this review binding. These fingerprints are drift detectors only: matching values do **not** establish age appropriateness, safety, accessibility, clarity or human approval. If the fingerprint changes, refresh this inventory and repeat the affected semantic review before final candidate nomination.
 
 ## Completion record
 
