@@ -445,3 +445,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Confirmed evidence/journal CI SUCCESS: 6a821e0... run 37265437888 and 4172dbc... run 37265453757.
 - Added tests/content/test_pilot_content_review_inventory.py (244c26d...) to compare every current pilot/remediation problem ID and authored problem-pool hint count against PILOT_CONTENT_REVIEW_INVENTORY.md. Future content additions/removals now require an explicit inventory refresh instead of silently escaping the bounded human-review scope.
 - This is a completeness guard only; it cannot judge age appropriateness, wording safety, semantic fairness or approve PR-10. Fresh CI pending. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-05 — inventory drift guard caught authored-hint undercount
+- CI 37265896881/37265914626 correctly failed the new content inventory guard on all OSes: actual authored problem-pool hints = 13, while PILOT_CONTENT_REVIEW_INVENTORY.md incorrectly stated 10. Ubuntu: 1 failed, 185 passed.
+- Root cause was manual arithmetic in the inventory: equivalent 3 + simplify 3 + add_unlike 4 + subtract_unlike 3 = 13. Corrected the documentation to 13 (d16a9a6...) without weakening the guard. Problem-ID equality test had already passed, supporting the 42-problem inventory.
+- Fresh CI pending. This correction does not perform the human content review; PR-10 remains BLOCKED. PR-08 deferred/BLOCKED and PR-14 BLOCKED; Stage 8 open.
