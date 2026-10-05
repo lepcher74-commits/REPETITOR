@@ -109,3 +109,12 @@ No efficacy, WCAG conformance, legal compliance, code-signing or notarization cl
 - After binding the prepared audit candidate `e017aaaff1f5d30c188775a552240a829d9685fc` to the manual records, the conservative Stage 8 textual preflight still finds **12 unresolved markers** across the four required records.
 - Current unresolved categories include NOT TESTED, [FILL], reviewer/operator placeholders, [BLOCKED], MANUAL TESTING REQUIRED and NOT HUMAN-REVIEWED. This is expected: technical candidate preparation must not clear human/operational gates.
 - Therefore the existence of same-SHA CI/Pilot Build evidence does not make the pilot ready. PR-08 and operational/content PR-10 remain BLOCKED; final candidate remains NOT NOMINATED and PR-14 remains BLOCKED.
+
+
+## 2026-10-05 audit candidate invalidated by learner-visible wording fix
+
+- Assistant pre-review of the bounded learner-visible scope found technical English terms in Russian child-facing feedback (`prerequisite`, `evidence`) and the ambiguous phrase «повышать оценку».
+- Commit `b246ee2b793f8f0a9ff7d2947e9e7154515fd357` replaces only those learner-visible UI phrases with plain Russian wording; mathematical/content routing semantics are unchanged.
+- Because `src/repetitor/ui/app.py` changed, audit candidate `e017aaaff1f5d30c188775a552240a829d9685fc` is **SUPERSEDED for affected UI/content review**. Its historical CI/Pilot Build evidence remains valid for that SHA but cannot be used as the current manual-review artifact.
+- The runtime UI fingerprint guard must fail closed until the new canonical fingerprint is pinned, followed by fresh CI + Windows/macOS Pilot Build before nominating a replacement audit candidate.
+- No human content review or accessibility result has been performed or inferred. Final candidate remains NOT NOMINATED; PR-08/PR-10/PR-14 remain BLOCKED.
