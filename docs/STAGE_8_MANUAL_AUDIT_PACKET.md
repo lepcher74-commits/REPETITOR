@@ -12,6 +12,8 @@ For manual execution, first pin an exact **audit candidate SHA** and obtain a su
 - Windows artifact ID: `11343327951`;
 - macOS artifact ID: `11342674307`;
 - CI run ID on the same audit SHA: `37304924020`.
+- Windows artifact archive digest (GitHub Actions SHA-256): `2c40cb9cda7cc7cb6f87c218dffea1f7d7e6046261d54567616a4c767c80a416`.
+- macOS artifact archive digest (GitHub Actions SHA-256): `1d5c9490e53c4b75948360f0170e311a6d371d8bf86a53854a0d593399367a28`.
 
 Previous audit candidate `e017aaaff1f5d30c188775a552240a829d9685fc` and its artifacts are historical only. The replacement artifact set above is the one prepared for manual audit.
 
