@@ -571,3 +571,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Re-ran the Stage 8 marker logic conceptually against the four current manual records after audit-candidate binding. It still yields 12 unresolved marker categories/records, including NOT TESTED, [FILL], operator/reviewer placeholders, [BLOCKED], MANUAL TESTING REQUIRED and NOT HUMAN-REVIEWED.
 - This confirms that the prepared audit candidate and green technical builds did not accidentally clear human gates. Evidence matrix updated in 219b7f6....
 - No manual observation was performed. PR-08 BLOCKED; PR-10 BLOCKED; final candidate NOT NOMINATED; PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-05 — audit-candidate source-level network check
+- Reviewed audit candidate e017aaaff1f5d30c188775a552240a829d9685fc dependency manifest and common outbound-network API references. Runtime dependencies remain PySide6/PyYAML/sympy only; repository searches for common Python/Qt HTTP/socket/mail client APIs returned no matches, but GitHub reported incomplete_results=true.
+- Recorded this as supporting negative source evidence in PRIVACY_CHILD_SAFETY_REVIEW.md (ff85525...). It is explicitly NOT an operational runtime/network PASS and does not clear the exact-build verification row.
+- Manual preflight remains blocked; PR-08 BLOCKED, PR-10 BLOCKED, final candidate NOT NOMINATED, PR-14 BLOCKED; Stage 8 open.
