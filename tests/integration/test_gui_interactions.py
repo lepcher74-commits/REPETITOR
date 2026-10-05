@@ -37,6 +37,8 @@ def test_revealing_hint_is_recorded_as_non_independent_evidence(tmp_path):
     state = w.learning.get_state("local-student", w.module.primary_skill.id)
     assert state is not None
     assert state.independence == 0.0
+    assert "с подсказкой" in w.feedback.text()
+    assert "самостоятельно" not in w.feedback.text()
     w.close()
 
 
