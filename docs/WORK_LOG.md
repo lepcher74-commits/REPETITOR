@@ -537,3 +537,16 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Added explicit runtime UI fingerprint gate to STAGE_8_EVIDENCE_MATRIX.md (2c63b9b...). It records fail-closed CI 37287549563, the derived/pinned UI SHA-256, and marks recovery CI UNVERIFIED rather than inferring PASS from the matching inventory value.
 - Audit candidate nomination is therefore blocked until an exact green CI run is captured for the fingerprint-pinned revision or an unchanged-input descendant. This does not alter any manual result.
 - PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; final candidate NOT NOMINATED; Stage 8 open.
+
+
+## 2026-10-05 — Windows-only false drift in runtime UI fingerprint guard
+- PR-triggered recovery CI run 37298623011 on documentation-only descendant 7aa21cd... completed FAILURE overall: Ubuntu and macOS passed, Windows failed exactly one test (188 passed / 1 failed).
+- Windows computed runtime UI SHA-256 `972a4e61be88114a67947cd100c04666342981f3320a8bb5133dac2399f31970` while Linux-derived pinned value is `37be23a5802cf7902aeaa3a1ed2fd7d16bf4c4788a2e971183aa91fe9ad664a8`. The checkout log shows the PR merge ref on a Windows runner; the guard used raw `read_bytes()`, making the hash sensitive to checkout line-ending conversion (LF/CRLF).
+- Fixed the test guard in 4b9ebd9... to read source as text with universal newline handling and hash canonical UTF-8 bytes. Runtime UI and learner-visible YAML were not changed; the pinned fingerprint remains the canonical LF/text value.
+- Fresh PR CI is required before recovery PASS. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; audit/final candidate not nominated.
+
+
+## 2026-10-05 — runtime UI fingerprint recovery CI green
+- PR CI run 37300233581 on e2e0f49b109dd25b1fb2b594b100a1351ed6688b completed SUCCESS on Windows, macOS and Ubuntu after the cross-platform newline normalization fix.
+- Recovery CI blocker is closed. Runtime/content guarded inputs did not change; pinned UI fingerprint remains 37be23a5802cf7902aeaa3a1ed2fd7d16bf4c4788a2e971183aa91fe9ad664a8.
+- Audit candidate is still NOT NOMINATED because the closeout process also requires a same-SHA Windows/macOS Pilot Build before manual PR-08/PR-10 execution. Final candidate remains NOT NOMINATED; PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open.
