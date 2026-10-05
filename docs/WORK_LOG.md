@@ -464,3 +464,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Found PILOT_MANUAL_GATE_RECORD.md still pinned to historical candidate 87eceb5... and carrying a candidate-specific automated PASS for no production network AI provider.
 - Updated the final manual-gate template (23daff6...) so candidate SHA/date are filled only when the final candidate is actually nominated/executed; network-provider row is reset to NOT TESTED and must be verified on that exact build. Historical observations remain in dated audit/evidence records rather than being inherited into a future release decision.
 - This is deliberately more conservative and may keep the preflight blocked longer. No prior historical evidence was deleted. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open. Fresh CI pending.
+
+
+## 2026-10-05 — evidence matrix made explicit about historical vs final candidate
+- Confirmed CI SUCCESS for candidate-safe data-operations docs: 68804c5... run 37274256869, 255e42a... run 37274272443; final manual-gate cleanup: 23daff6... run 37274369953, e04ce44... run 37274399399.
+- STAGE_8_EVIDENCE_MATRIX.md still labeled 87eceb5... as a technical working baseline despite later text calling it historical. Updated the header and gate wording (25ecc95...) to state that it is a 2026-10-01 evidence snapshot only and that the final pilot candidate is NOT NOMINATED.
+- Existing PASS rows remain historical technical evidence tied to their cited runs; they do not grant PR-14 to current HEAD or a future candidate. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open. Fresh docs CI pending.
