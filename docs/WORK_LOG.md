@@ -483,3 +483,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Confirmed preflight hardening CI SUCCESS: c502314... run 37277739271 + Pilot Build 37277739407; regression-test a93d4d4... run 37277795327; journal 715b104... run 37277846396.
 - PRIVACY_CHILD_SAFETY_REVIEW.md still said the 'current pilot candidate' had no required AI/cloud flow even though no final candidate is nominated. Updated it (acbc822...) to describe checked items as repository-implementation evidence and added an explicit exact-final-candidate outbound network/data-flow recheck before enrollment.
 - No technical PASS was converted into operational approval. PR-09 historical/implementation evidence remains useful, while final candidate verification is explicitly pending. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open. Fresh CI pending.
+
+
+## 2026-10-05 — manual audit packet no longer points operators at stale artifacts
+- Confirmed privacy-baseline CI SUCCESS: acbc822... run 37278043309; journal dee6b20... run 37278060358.
+- Found STAGE_8_MANUAL_AUDIT_PACKET.md still presented 2026-10-02 artifacts as the artifact to inspect. Those artifacts predate later accessibility/gate changes and may expire, so they must not become final-gate evidence by convenience.
+- Refreshed the packet (7c3ef0e...) into a final-candidate execution template: final audit requires an exact nominated SHA, same-SHA CI, Windows/macOS Pilot Build run and artifact IDs. The 714e96e... runs are retained only as historical reference and explicitly cannot substitute for final verification.
+- No manual result was created. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open. Fresh CI pending.
