@@ -15,5 +15,5 @@ def test_gui_propagates_answer_revealing_hint_evidence():
 
 def test_remediation_does_not_repeat_last_item_to_farm_mastery():
     source = Path("src/repetitor/ui/app.py").read_text(encoding="utf-8")
-    assert "Не будем повышать оценку повторением той же задачи" in source
+    assert "Не будем повышать уровень освоения повторением той же задачи" in source
     assert "self.remediation_index = max(1, len(step.problems) - 1)" not in source
