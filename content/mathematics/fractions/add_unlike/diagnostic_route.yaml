@@ -44,7 +44,7 @@ rules:
     when: {correct: true}
     next_problem_id: frac.add.guided.001
     phase: guided
-    message_ru: "Пререквизиты готовы. Разберём сложение с поддержкой."
+    message_ru: "Базовые навыки готовы. Разберём сложение с поддержкой."
   - problem_id: frac.add.probe.lcm
     when: {correct: false}
     next_problem_id: null
@@ -60,7 +60,7 @@ rules:
     when: {correct: true}
     next_problem_id: frac.add.independent.002
     phase: independent
-    message_ru: "Ещё одна самостоятельная задача для устойчивого evidence."
+    message_ru: "Ещё одна самостоятельная задача, чтобы убедиться, что навык освоен."
   - problem_id: frac.add.independent.001
     when: {correct: false}
     next_problem_id: frac.add.guided.001
@@ -80,7 +80,7 @@ rules:
     when: {correct: true}
     next_problem_id: frac.add.transfer.002
     phase: reverse_transfer
-    message_ru: "Перенос получился. Теперь обратная задача."
+    message_ru: "Получилось применить навык в новой ситуации. Теперь обратная задача."
   - problem_id: frac.add.transfer.001
     when: {correct: false}
     next_problem_id: frac.add.independent.002
