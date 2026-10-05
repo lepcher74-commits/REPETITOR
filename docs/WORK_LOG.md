@@ -504,3 +504,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Audited Stage 8 manual records for candidate terminology. Several still asked reviewers to fill only a generic/final candidate SHA, which conflicted with the new two-phase process.
 - Updated content review (d1dbef2...) to bind semantic review to an audit candidate and require repeat after learner-visible changes; data operations (3fdb08f...) now records audit rehearsal SHA plus final re-verification SHA; manual gate (65a4baf...) records audit observation SHA plus final post-fix SHA; synthetic drill (6b4c2c0...) explicitly uses an audit candidate.
 - These are traceability changes only; no human review/rehearsal was performed. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open. Fresh CI pending.
+
+
+## 2026-10-05 — learner-visible YAML wording bound to review inventory
+- Added deterministic learner-visible YAML fingerprint guard in b757308.... CI run 37287057864 failed as intended on Windows/macOS/Ubuntu; Ubuntu showed exactly 1 failed / 187 passed, with only the new missing-fingerprint assertion failing.
+- CI-derived canonical fingerprint for the current bounded YAML learner-visible fields is `4d5bcb49392cd8e2119a0c1cc588aebb0fce62282704a33b0022aefef27ac9df`.
+- Pinned that fingerprint in PILOT_CONTENT_REVIEW_INVENTORY.md (a980ecc...) and documented its exact scope and limitation: drift detection only, never semantic/age/safety approval. A changed fingerprint requires inventory refresh and affected human review before final nomination.
+- Runtime UI wording remains a separately listed human-review scope and is not claimed to be covered by this YAML fingerprint. Fresh CI pending. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open.
