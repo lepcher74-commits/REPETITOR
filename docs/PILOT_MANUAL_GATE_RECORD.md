@@ -1,5 +1,7 @@
 # Pilot manual gate record
 
+Prepared audit candidate/artifact set for manual execution: `e017aaaff1f5d30c188775a552240a829d9685fc`; CI `37301914433`; Pilot Build `37301914518`; Windows artifact `11341429699`; macOS artifact `11341924295`. This is preparation only; `Audit candidate SHA observed` remains unfilled until the checks are actually performed.
+
 Audit candidate SHA observed: [FILL]\nFinal candidate SHA after any required fixes: [FILL AT FINAL CANDIDATE NOMINATION]
 Date: [FILL WHEN FINAL MANUAL GATE IS EXECUTED]
 Reviewer/operator: [ROLE OR IDENTIFIER]
