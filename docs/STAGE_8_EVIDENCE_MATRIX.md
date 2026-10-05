@@ -78,3 +78,9 @@ No efficacy, WCAG conformance, legal compliance, code-signing or notarization cl
 - `PILOT_CONTENT_REVIEW_INVENTORY.md` now pins that exact value from commit `19936c5848fc9ad820cbce41b801b1ffc87282aa`. This is drift-detection evidence only and does not perform human content/accessibility review.
 - **Recovery CI is still UNVERIFIED in this evidence matrix.** Do not nominate an audit candidate until an exact CI run is captured for the fingerprint-pinned revision (or a descendant with unchanged guarded inputs) and is green. A documentation commit or matching hash alone is not a CI PASS.
 - Consequently PR-08 remains BLOCKED/deferred, operational/content PR-10 remains BLOCKED, PR-14 remains BLOCKED, and the final candidate remains NOT NOMINATED.
+
+
+## 2026-10-05 PR-triggered recovery verification
+
+- This documentation-only descendant exists solely to obtain PR-triggered CI evidence after pinning the runtime UI review fingerprint. It does not change `src/repetitor/ui/app.py`, learner-visible YAML, manual gate status, or candidate nomination state.
+- A green CI run on this branch is acceptable recovery evidence for the fingerprint guard because the guarded runtime/content inputs are unchanged from the pinned-fingerprint revision. It is **not** PR-14 final-candidate evidence and does not satisfy PR-08 or operational/content PR-10.
