@@ -439,3 +439,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Inspected failed implementation-only CI 37263037839: all OS jobs failed because tests still expected 3 manual records after production code added the fourth content-review record; Ubuntu log: 3 failed, 181 passed. This is fully explained by test expectation lag.
 - Updated test commit a188c18... CI 37263055579 SUCCESS; journal f024d32... CI 37263071548 SUCCESS. Pilot Build 37263037789 on implementation 86ee03f... SUCCESS. Added this trace to STAGE_8_EVIDENCE_MATRIX.md (6a821e0...).
 - No manual evidence status changed. PR-08 BLOCKED/deferred, PR-10 BLOCKED, PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-05 — CI guard against pilot content-review inventory drift
+- Confirmed evidence/journal CI SUCCESS: 6a821e0... run 37265437888 and 4172dbc... run 37265453757.
+- Added tests/content/test_pilot_content_review_inventory.py (244c26d...) to compare every current pilot/remediation problem ID and authored problem-pool hint count against PILOT_CONTENT_REVIEW_INVENTORY.md. Future content additions/removals now require an explicit inventory refresh instead of silently escaping the bounded human-review scope.
+- This is a completeness guard only; it cannot judge age appropriateness, wording safety, semantic fairness or approve PR-10. Fresh CI pending. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open.
