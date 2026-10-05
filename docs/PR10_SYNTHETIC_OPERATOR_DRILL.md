@@ -4,7 +4,7 @@ Status: NOT EXECUTED. Use only invented test records, never a real child's profi
 
 ## Before starting
 
-- Operator/reviewer: [FILL]; date: [FILL]; candidate SHA and artifact ID: [FILL].
+- Operator/reviewer: [FILL]; date: [FILL]; audit candidate SHA and artifact ID: [FILL].
 - Approved test machine and OS: [FILL]; test data directory (not a real participant's directory): [FILL].
 - Planned backup location and owner: [FILL]; approved local retention period: [FILL]; support and incident contacts: [FILL].
 - Keep all evidence sanitized. Do not commit names of children, parent emails, SQLite databases, logs containing personal data or recovery tokens.
