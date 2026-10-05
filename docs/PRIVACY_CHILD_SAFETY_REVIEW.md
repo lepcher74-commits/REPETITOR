@@ -1,6 +1,6 @@
 # Stage 8 privacy and child-safety release review
 
-Status: pilot review baseline. This document is not a legal certification.
+Status: technical privacy/child-safety baseline. Final pilot candidate is NOT NOMINATED. This document is not a legal certification.
 
 ## Current local data inventory
 
@@ -19,12 +19,12 @@ The current profile schema does not require a child's name, email, phone number,
 - The default learning core is offline.
 - `NoAIProvider` is the default no-network behavior.
 - `SafeAIProvider` is an interface/failure boundary; this repository does not currently configure a production network AI provider.
-- Therefore the current pilot candidate has no required AI/cloud data flow.
+- Therefore the currently reviewed repository architecture has no required AI/cloud data flow. This is not a final-candidate assertion; network/data-flow behavior must be re-verified on the exact nominated build before enrollment.
 - Before any production AI provider is enabled, its exact destination, fields, retention, authentication, consent/guardian requirements and deletion path must be documented and reviewed. Only minimum pedagogical context may be sent.
 
 ## Child-safety release checklist
 
-Required before controlled pilot:
+Required before controlled pilot. Checked technical items below describe the reviewed repository implementation; they must not be interpreted as approval of an un-nominated final candidate:
 - [x] No advertising path in the application architecture currently implemented.
 - [x] Learning core works without AI/cloud availability.
 - [x] Formal verification, not an LLM, controls supported mathematical correctness.
@@ -36,6 +36,7 @@ Required before controlled pilot:
 - [ ] Pilot operator confirms data retention/deletion procedure and support contact.
 - [ ] Manual content review confirms age-appropriate wording for the complete pilot content set.
 - [ ] Manual accessibility audit is recorded for available Windows/macOS assistive technology combinations.
+- [ ] Exact final candidate/build is re-checked for outbound network/data flows before enrollment.
 - [ ] Any future network AI provider receives a separate privacy/safety review before activation.
 
 ## Release blockers
