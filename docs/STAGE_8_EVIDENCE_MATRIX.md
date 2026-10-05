@@ -139,3 +139,14 @@ No efficacy, WCAG conformance, legal compliance, code-signing or notarization cl
 - Both values were pinned in `PILOT_CONTENT_REVIEW_INVENTORY.md` by `2a98f88...`. Matching fingerprints remain drift evidence only; they are not semantic/age/safety/accessibility approval.
 - The prior audit candidate `e017aa...` is historical/superseded for affected UI/content/accessibility checks. Manual audit/data-operation records were changed back to **replacement not yet nominated** and do not contain fabricated observations.
 - This assistant pre-review does **not** satisfy human PR-10 content review. PR-08 and PR-10 remain BLOCKED; final candidate is NOT NOMINATED; PR-14 remains BLOCKED.
+
+
+## 2026-10-05 stabilized replacement audit candidate verified
+
+- **Replacement audit candidate:** `983d04c564879f9ff8b6de110497901279073aeb`.
+- Same-SHA CI run **37304924020** completed **SUCCESS** on Windows, macOS and Ubuntu after the expanded learner-visible fingerprint guards and hint-feedback regression fixes.
+- Same-SHA Pilot Build run **37304924030** completed **SUCCESS** on Windows and macOS. Both jobs passed bundle build, embedded offline-content verification, packaged executable smoke, exact build-SHA verification and artifact upload.
+- Windows artifact **11343327951** (`repetitor-windows`), GitHub Actions digest `sha256:2c40cb9cda7cc7cb6f87c218dffea1f7d7e6046261d54567616a4c767c80a416`.
+- macOS artifact **11342674307** (`repetitor-macos`), GitHub Actions digest `sha256:1d5c9490e53c4b75948360f0170e311a6d371d8bf86a53854a0d593399367a28`.
+- Manual audit packet and PR-08/PR-10 records were rebound to this replacement candidate without filling any human observation/review/rehearsal result. Previous `e017aa...` artifacts remain historical only.
+- This is an **audit candidate**, not the final candidate. PR-08 and operational/content PR-10 remain BLOCKED; final candidate remains NOT NOMINATED; PR-14 remains BLOCKED.
