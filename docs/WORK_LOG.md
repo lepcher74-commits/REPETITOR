@@ -544,3 +544,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Windows computed runtime UI SHA-256 `972a4e61be88114a67947cd100c04666342981f3320a8bb5133dac2399f31970` while Linux-derived pinned value is `37be23a5802cf7902aeaa3a1ed2fd7d16bf4c4788a2e971183aa91fe9ad664a8`. The checkout log shows the PR merge ref on a Windows runner; the guard used raw `read_bytes()`, making the hash sensitive to checkout line-ending conversion (LF/CRLF).
 - Fixed the test guard in 4b9ebd9... to read source as text with universal newline handling and hash canonical UTF-8 bytes. Runtime UI and learner-visible YAML were not changed; the pinned fingerprint remains the canonical LF/text value.
 - Fresh PR CI is required before recovery PASS. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; audit/final candidate not nominated.
+
+
+## 2026-10-05 — runtime UI fingerprint recovery CI green
+- PR CI run 37300233581 on e2e0f49b109dd25b1fb2b594b100a1351ed6688b completed SUCCESS on Windows, macOS and Ubuntu after the cross-platform newline normalization fix.
+- Recovery CI blocker is closed. Runtime/content guarded inputs did not change; pinned UI fingerprint remains 37be23a5802cf7902aeaa3a1ed2fd7d16bf4c4788a2e971183aa91fe9ad664a8.
+- Audit candidate is still NOT NOMINATED because the closeout process also requires a same-SHA Windows/macOS Pilot Build before manual PR-08/PR-10 execution. Final candidate remains NOT NOMINATED; PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open.
