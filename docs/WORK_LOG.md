@@ -477,3 +477,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Found manual preflight checked literal [FILL] and [BLOCKED / but candidate-neutral templates use longer placeholders such as [FILL AT FINAL CANDIDATE NOMINATION]. This could miss a still-unfilled final SHA if other markers were cleared.
 - Widened marker detection to [FILL, [BLOCKED and NOT HUMAN-REVIEWED (c502314...) and added a focused regression test for extended SHA/block/review markers (a93d4d4...). Textual preflight remains read-only and cannot approve manual evidence.
 - CI pending. PR-08 BLOCKED/deferred, PR-10 BLOCKED, PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-05 — PR-09 privacy baseline separated from final-candidate assertion
+- Confirmed preflight hardening CI SUCCESS: c502314... run 37277739271 + Pilot Build 37277739407; regression-test a93d4d4... run 37277795327; journal 715b104... run 37277846396.
+- PRIVACY_CHILD_SAFETY_REVIEW.md still said the 'current pilot candidate' had no required AI/cloud flow even though no final candidate is nominated. Updated it (acbc822...) to describe checked items as repository-implementation evidence and added an explicit exact-final-candidate outbound network/data-flow recheck before enrollment.
+- No technical PASS was converted into operational approval. PR-09 historical/implementation evidence remains useful, while final candidate verification is explicitly pending. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open. Fresh CI pending.
