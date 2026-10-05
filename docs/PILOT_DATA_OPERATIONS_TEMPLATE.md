@@ -2,7 +2,7 @@
 
 Complete before real-user enrollment.
 
-Candidate SHA: [FILL AT FINAL CANDIDATE NOMINATION]
+Audit candidate SHA rehearsed/reviewed: [FILL]\nFinal candidate SHA re-verified: [FILL AT FINAL CANDIDATE NOMINATION]
 Pilot operator: [FILL]
 Jurisdiction: [FILL]
 
@@ -26,7 +26,7 @@ How affected local data is preserved without unnecessary copying: stop the affec
 How participant/guardian communication is handled when required: [OPERATOR TO DEFINE FOR JURISDICTION/SETTING]
 
 ## Candidate verification checklist
-- [ ] Exact candidate SHA/build recorded above.
+- [ ] Audit candidate SHA/build used for rehearsal recorded above.\n- [ ] Exact final candidate SHA/build recorded and re-verified above.
 - [ ] `--data-dir` behavior and actual deployment data directory verified.
 - [ ] Primary SQLite database and startup-log locations verified on deployed build.
 - [ ] Backup/restore rehearsal completed with synthetic data using `DATA_BACKUP_RECOVERY.md`.
