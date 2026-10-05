@@ -421,3 +421,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Reconciled STAGE_8_EVIDENCE_MATRIX.md (256895a...) with first Narrator manual FAIL, successful same-implementation-SHA CI/Pilot Build for second Alert fallback, deferred manual retest and independent test CI. No manual PR-08 PASS inferred.
 - Created PR10_SYNTHETIC_OPERATOR_DRILL.md (3f36c69...) as an executable human worksheet for synthetic backup/restore/withdrawal, lost-device tabletop, operator authorization and content-review evidence. This is NOT EXECUTED; all rows remain NOT TESTED. No real learner data is required or permitted for rehearsal.
 - PR-08 BLOCKED/deferred; PR-10 operational BLOCKED pending named operator and human evidence; PR-14 BLOCKED. Stage 8 remains open. Documentation-only CI pending for these changes.
+
+
+## 2026-10-05 — bounded learner-visible content review inventory
+- Confirmed prior documentation CI SUCCESS: evidence matrix 256895a... run 36996117181, synthetic PR-10 drill 3f36c69... run 36996154707, journal 62552b2... run 36996184023.
+- Added PILOT_CONTENT_REVIEW_INVENTORY.md (08226f6...) enumerating all current learner-visible problem/remediation content: 42 problem entries total, 10 authored problem-pool hints, 2 remediation explanations, plus runtime UI/feedback text that must be reviewed on the exact final candidate.
+- This converts PR-10 content review from an open-ended task into a bounded checklist but does NOT perform or approve the human age/safety review. Count mismatch on a future candidate is a STOP/refresh condition. PR-08 remains deferred/BLOCKED; PR-10 operational remains BLOCKED; PR-14 remains BLOCKED. Stage 8 open.
