@@ -55,3 +55,11 @@ No efficacy, WCAG conformance, legal compliance, code-signing or notarization cl
 - Controller deferred further Windows Narrator retest. **PR-08 remains BLOCKED**: successful CI and packaging do not prove actual spoken feedback. Other incomplete manual accessibility checks, including macOS VoiceOver, remain open.
 - PR-10 operator decision packet: `STAGE_8_PR10_OPERATOR_DECISION_PACKET.md`. This is preparatory documentation, not evidence of operator identity, guardian authorization, legal review, content sign-off, actual retention/deletion drill or incident rehearsal. **PR-10 operational remains BLOCKED**.
 - The older working baseline in the table above is historical, not the current code. **PR-14 remains BLOCKED**; only after all manual gates are resolved can a final SHA receive same-SHA CI and Pilot Build verification and Controller approval.
+
+
+## 2026-10-05 conservative preflight hardening
+
+- `PILOT_CONTENT_REVIEW_INVENTORY.md` is now a required input to the read-only Stage 8 manual-marker preflight (implementation `86ee03f...`, unit update `a188c18...`). This prevents an unreviewed/missing learner-content record from being silently omitted from the textual completeness check.
+- The implementation-only CI run **37263037839** failed because the pre-existing tests still expected three manual records; Ubuntu evidence shows 3 failed / 181 passed, specifically the intended new fourth-record behavior. This was a test expectation lag, not evidence that the gate logic should be reverted.
+- Updated tests then passed CI **37263055579** on `a188c18...`; journal follow-up CI **37263071548** also passed. Pilot Build **37263037789** on the implementation SHA succeeded. None of these automated results grants PR-08/PR-10 approval.
+- Current manual records still contain unresolved markers by design. PR-08, operational/content PR-10 and final PR-14 remain BLOCKED.
