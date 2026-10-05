@@ -558,3 +558,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - `e017aaaff1f5d30c188775a552240a829d9685fc` is now nominated as the **audit candidate** for manual PR-08/PR-10 execution. It is NOT the final candidate and does not satisfy PR-14.
 - STAGE_8_EVIDENCE_MATRIX.md updated in 189d2fe...; STAGE_8_MANUAL_AUDIT_PACKET.md bound to this audit candidate/run/artifact set in 273a574.... No manual observation was inferred or marked PASS.
 - Next: execute/record manual accessibility and operational/content review against the pinned audit artifacts. Relevant code/content fixes require a replacement audit candidate. Final candidate remains NOT NOMINATED; PR-08 BLOCKED; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-05 — manual records bound to prepared audit candidate without fabricating execution
+- Bound the prepared audit candidate `e017aaaff1f5d30c188775a552240a829d9685fc` and same-SHA evidence (CI 37301914433; Pilot Build 37301914518; Windows artifact 11341429699; macOS artifact 11341924295) into the content-review, data-operations, manual-gate and accessibility records.
+- Commits: PILOT_CONTENT_REVIEW_INVENTORY.md 6436fbb...; PILOT_DATA_OPERATIONS_TEMPLATE.md 4bd1276...; PILOT_MANUAL_GATE_RECORD.md 50a7567...; ACCESSIBILITY_PILOT_AUDIT_RECORD.md dc28675....
+- Fields that assert actual human action (reviewed/rehearsed/observed/results) remain unfilled or NOT TESTED. No manual PASS/FAIL was inferred from CI or artifact existence.
+- The next blocking work is real manual PR-08 accessibility execution and PR-10 operator/content/data-operations review on the pinned audit artifacts. Final candidate remains NOT NOMINATED; PR-14 BLOCKED; Stage 8 open.
