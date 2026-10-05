@@ -497,3 +497,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Found a process ambiguity: CLOSEOUT_PLAN said freeze a proposed SHA before manual checks, while the refreshed audit packet used final-candidate language. Clarified a two-phase lifecycle: audit candidate -> manual PR-08/PR-10 evidence and fixes -> final candidate -> same-SHA PR-14.
 - Updated STAGE_8_CLOSEOUT_PLAN.md (963dc5d...) with explicit audit/final candidate definitions and invalidation rule for code/content changes. Aligned STAGE_8_MANUAL_AUDIT_PACKET.md (2361274...) so manual evidence is collected on a pinned audit candidate and affected checks repeat after relevant changes.
 - No candidate is currently nominated and no manual PASS is implied. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open. Fresh CI pending.
+
+
+## 2026-10-05 — manual records aligned to audit-candidate/final-candidate lifecycle
+- Verified lifecycle clarification CI by exact SHA: 963dc5d... run 37279391932 SUCCESS; 2361274f... run 37279423004 SUCCESS; da5a017... run 37279461170 SUCCESS. A generic Actions listing had returned stale unrelated runs, so no run IDs were inferred from it.
+- Audited Stage 8 manual records for candidate terminology. Several still asked reviewers to fill only a generic/final candidate SHA, which conflicted with the new two-phase process.
+- Updated content review (d1dbef2...) to bind semantic review to an audit candidate and require repeat after learner-visible changes; data operations (3fdb08f...) now records audit rehearsal SHA plus final re-verification SHA; manual gate (65a4baf...) records audit observation SHA plus final post-fix SHA; synthetic drill (6b4c2c0...) explicitly uses an audit candidate.
+- These are traceability changes only; no human review/rehearsal was performed. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open. Fresh CI pending.
