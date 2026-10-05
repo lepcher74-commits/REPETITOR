@@ -150,3 +150,10 @@ No efficacy, WCAG conformance, legal compliance, code-signing or notarization cl
 - macOS artifact **11342674307** (`repetitor-macos`), GitHub Actions digest `sha256:1d5c9490e53c4b75948360f0170e311a6d371d8bf86a53854a0d593399367a28`.
 - Manual audit packet and PR-08/PR-10 records were rebound to this replacement candidate without filling any human observation/review/rehearsal result. Previous `e017aa...` artifacts remain historical only.
 - This is an **audit candidate**, not the final candidate. PR-08 and operational/content PR-10 remain BLOCKED; final candidate remains NOT NOMINATED; PR-14 remains BLOCKED.
+
+
+## 2026-10-05 replacement-candidate preflight remains blocked
+
+- After rebinding all four required manual records to replacement audit candidate `983d04c564879f9ff8b6de110497901279073aeb`, the conservative textual preflight still finds **12 unresolved markers**.
+- Remaining marker classes are exclusively manual/operational: NOT TESTED, [FILL], reviewer/operator placeholders, [BLOCKED], MANUAL TESTING REQUIRED and NOT HUMAN-REVIEWED.
+- This is the intended fail-closed state. Same-SHA CI/Pilot Build and prepared artifacts do not authorize a pilot, do not complete PR-08/PR-10, and do not permit final-candidate nomination.
