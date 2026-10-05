@@ -433,3 +433,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Content inventory commit 08226f6... CI SUCCESS run 37262143815; journal 26eaae9... CI SUCCESS run 37262155861.
 - Found a completeness gap: stage8 manual preflight checked accessibility/manual/data-operation records but not the newly required PILOT_CONTENT_REVIEW_INVENTORY.md. Added it to MANUAL_RECORDS (86ee03f...) and updated unit expectations (a188c18...). This can only report unresolved/missing markers; an empty blocker list still cannot grant human or Controller approval.
 - Fresh CI pending. Because production Python/test code changed, final PR-14 candidate is not implied; PR-08 deferred/BLOCKED, PR-10 operational/content review BLOCKED, PR-14 BLOCKED. Stage 8 open.
+
+
+## 2026-10-05 — preflight CI failure triaged and evidence recorded
+- Inspected failed implementation-only CI 37263037839: all OS jobs failed because tests still expected 3 manual records after production code added the fourth content-review record; Ubuntu log: 3 failed, 181 passed. This is fully explained by test expectation lag.
+- Updated test commit a188c18... CI 37263055579 SUCCESS; journal f024d32... CI 37263071548 SUCCESS. Pilot Build 37263037789 on implementation 86ee03f... SUCCESS. Added this trace to STAGE_8_EVIDENCE_MATRIX.md (6a821e0...).
+- No manual evidence status changed. PR-08 BLOCKED/deferred, PR-10 BLOCKED, PR-14 BLOCKED; Stage 8 open.
