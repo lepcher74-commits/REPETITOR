@@ -82,6 +82,12 @@ LCM remediation:
 
 Also review the UI wording in `src/repetitor/ui/app.py`: onboarding/diagnostic/remediation/progress headings and subtitles; answer placeholders; empty-answer feedback; hints prefix; correct/equivalent/incorrect feedback; misconception uncertainty wording; review/enrichment transition messages; remediation success/failure/exhaustion messages; progress labels; startup failure dialog. Review the exact pinned audit-candidate source. If learner-visible code/content changes afterward, repeat affected review on the replacement audit candidate before final nomination.
 
+## Learner-visible YAML drift binding
+
+Learner-visible YAML fingerprint (SHA-256): `4d5bcb49392cd8e2119a0c1cc588aebb0fce62282704a33b0022aefef27ac9df`
+
+This fingerprint covers problem prompts, multiple-choice labels, authored hint text, remediation titles/explanations and remediation problem prompts in the bounded YAML pilot scope. It is a drift detector only: a matching fingerprint does **not** establish age appropriateness, safety, clarity or human approval. If the fingerprint changes, refresh this inventory and repeat the affected semantic review before final candidate nomination.
+
 ## Completion record
 
 Audit candidate SHA reviewed: [FILL]
