@@ -304,7 +304,7 @@ class RepetitorWindow(QMainWindow):
     def _build_progress(self) -> QWidget:
         page, layout = self._page(
             "Мой прогресс",
-            "Показываем знания, самостоятельность и перенос — не время в приложении.",
+            "Показываем знания, самостоятельность и умение применять навык в новых задачах — не время в приложении.",
         )
         self.progress_text = QLabel()
         self.progress_text.setWordWrap(True)
@@ -444,8 +444,8 @@ class RepetitorWindow(QMainWindow):
             f"Навык: {self.module.primary_skill.title_ru}\n\n"
             f"Освоение: {state.mastery:.0%}\n"
             f"Самостоятельность: {state.independence:.0%}\n"
-            f"Перенос: {state.transfer:.0%}\n"
-            f"Свидетельств: {state.evidence_count}"
+            f"Применение в новых задачах: {state.transfer:.0%}\n"
+            f"Проверок: {state.evidence_count}"
         )
 
     def _show_progress(self) -> None:
