@@ -210,7 +210,7 @@ class RepetitorWindow(QMainWindow):
         step = self.remediations.get(skill_id)
         if step is None:
             self.feedback.setText(
-                self.feedback.text() + "\n\nДля этого prerequisite контент remediation ещё не создан."
+                self.feedback.text() + "\n\nДля этого базового навыка восстановительные задания ещё не подготовлены."
             )
             return
         self.remediation_skill = skill_id
@@ -273,7 +273,7 @@ class RepetitorWindow(QMainWindow):
                 remediation_skill_id=step.skill_id,
             )
             self.remediation_feedback.setText(
-                "Верно. Это одно evidence; следующая проверка будет на новом варианте."
+                "Верно. Это одна проверка; следующая будет на новом варианте."
             )
             self._announce_feedback(self.remediation_feedback)
             return
@@ -282,7 +282,7 @@ class RepetitorWindow(QMainWindow):
             self.remediation_answer.setEnabled(False)
             self.remediation_feedback.setText(
                 "Проверок пока недостаточно для подтверждения навыка. "
-                "Не будем повышать оценку повторением той же задачи; "
+                "Не будем повышать уровень освоения повторением той же задачи; "
                 "нужен дополнительный вариант."
             )
             self._announce_feedback(self.remediation_feedback)
@@ -297,7 +297,7 @@ class RepetitorWindow(QMainWindow):
         self.hint_level = None
         self.stack.setCurrentWidget(self.diagnostic)
         self.feedback.setText(
-            "Prerequisite восстановлен по нескольким проверяемым evidence. Продолжаем основной маршрут."
+            "Базовый навык подтверждён несколькими проверками. Продолжаем основной маршрут."
         )
         self._announce_feedback(self.feedback)
 
