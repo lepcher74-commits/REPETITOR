@@ -1,4 +1,5 @@
 name: Pilot Build
+# Stage 8 audit-candidate trigger: workflow-only change; no runtime/content modification.
 
 on:
   workflow_dispatch:
