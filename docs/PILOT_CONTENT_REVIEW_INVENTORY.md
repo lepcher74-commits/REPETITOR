@@ -80,11 +80,11 @@ LCM remediation:
 
 ## Runtime learner-visible messages
 
-Also review the UI wording in `src/repetitor/ui/app.py`: onboarding/diagnostic/remediation/progress headings and subtitles; answer placeholders; empty-answer feedback; hints prefix; correct/equivalent/incorrect feedback; misconception uncertainty wording; review/enrichment transition messages; remediation success/failure/exhaustion messages; progress labels; startup failure dialog. Review exact final candidate source, because these messages can change independently of YAML content.
+Also review the UI wording in `src/repetitor/ui/app.py`: onboarding/diagnostic/remediation/progress headings and subtitles; answer placeholders; empty-answer feedback; hints prefix; correct/equivalent/incorrect feedback; misconception uncertainty wording; review/enrichment transition messages; remediation success/failure/exhaustion messages; progress labels; startup failure dialog. Review the exact pinned audit-candidate source. If learner-visible code/content changes afterward, repeat affected review on the replacement audit candidate before final nomination.
 
 ## Completion record
 
-Candidate SHA reviewed: [FILL]
+Audit candidate SHA reviewed: [FILL]
 
 Reviewer / role: [FILL]
 
