@@ -90,7 +90,7 @@ Reviewer / role: [FILL]
 
 Review date: [FILL]
 
-Problems: 42 total listed above (36 sequence/add-unlike problem entries + 6 remediation problems). Hints: 10 authored hints in problem pools, plus remediation explanations and runtime messages. Reviewer must verify these counts against the exact candidate; count mismatch is a STOP condition requiring inventory refresh.
+Problems: 42 total listed above (36 sequence/add-unlike problem entries + 6 remediation problems). Hints: 13 authored hints in problem pools, plus remediation explanations and runtime messages. Reviewer must verify these counts against the exact candidate; count mismatch is a STOP condition requiring inventory refresh.
 
 | Area | Result | Issues / disposition |
 |---|---|---|
