@@ -1,6 +1,6 @@
 # Pilot manual gate record
 
-Candidate SHA: [FILL AT FINAL CANDIDATE NOMINATION]
+Audit candidate SHA observed: [FILL]\nFinal candidate SHA after any required fixes: [FILL AT FINAL CANDIDATE NOMINATION]
 Date: [FILL WHEN FINAL MANUAL GATE IS EXECUTED]
 Reviewer/operator: [ROLE OR IDENTIFIER]
 Pilot jurisdiction: [FILL]
