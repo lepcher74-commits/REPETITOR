@@ -81,7 +81,8 @@ def test_review_inventory_fingerprint_matches_learner_visible_yaml():
 
 def test_review_inventory_runtime_ui_source_fingerprint_matches():
     text = INVENTORY.read_text(encoding='utf-8')
-    fingerprint = hashlib.sha256(RUNTIME_UI.read_bytes()).hexdigest()
+    canonical_source = RUNTIME_UI.read_text(encoding='utf-8').encode('utf-8')
+    fingerprint = hashlib.sha256(canonical_source).hexdigest()
     assert f'Runtime UI source fingerprint (SHA-256): `{fingerprint}`' in text, (
         'Runtime UI source changed without refreshing the learner-visible review inventory. '
         'Reassess affected UI wording/behavior and update the fingerprint; matching is not approval.'
