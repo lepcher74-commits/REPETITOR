@@ -427,3 +427,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Confirmed prior documentation CI SUCCESS: evidence matrix 256895a... run 36996117181, synthetic PR-10 drill 3f36c69... run 36996154707, journal 62552b2... run 36996184023.
 - Added PILOT_CONTENT_REVIEW_INVENTORY.md (08226f6...) enumerating all current learner-visible problem/remediation content: 42 problem entries total, 10 authored problem-pool hints, 2 remediation explanations, plus runtime UI/feedback text that must be reviewed on the exact final candidate.
 - This converts PR-10 content review from an open-ended task into a bounded checklist but does NOT perform or approve the human age/safety review. Count mismatch on a future candidate is a STOP/refresh condition. PR-08 remains deferred/BLOCKED; PR-10 operational remains BLOCKED; PR-14 remains BLOCKED. Stage 8 open.
+
+
+## 2026-10-05 — content review wired into conservative Stage 8 preflight
+- Content inventory commit 08226f6... CI SUCCESS run 37262143815; journal 26eaae9... CI SUCCESS run 37262155861.
+- Found a completeness gap: stage8 manual preflight checked accessibility/manual/data-operation records but not the newly required PILOT_CONTENT_REVIEW_INVENTORY.md. Added it to MANUAL_RECORDS (86ee03f...) and updated unit expectations (a188c18...). This can only report unresolved/missing markers; an empty blocker list still cannot grant human or Controller approval.
+- Fresh CI pending. Because production Python/test code changed, final PR-14 candidate is not implied; PR-08 deferred/BLOCKED, PR-10 operational/content review BLOCKED, PR-14 BLOCKED. Stage 8 open.
