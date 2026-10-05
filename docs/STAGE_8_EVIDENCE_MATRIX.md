@@ -92,3 +92,13 @@ No efficacy, WCAG conformance, legal compliance, code-signing or notarization cl
 - The normalization changed only the test guard/documentation; `src/repetitor/ui/app.py` and learner-visible YAML remained unchanged, so the pinned runtime UI fingerprint `37be23a5802cf7902aeaa3a1ed2fd7d16bf4c4788a2e971183aa91fe9ad664a8` remains the canonical review binding.
 - The runtime UI fingerprint **recovery CI gate is PASS**. This does not nominate a final candidate and does not complete manual PR-08 or operational/content PR-10.
 - Per the closeout plan, an audit candidate still requires a successful Windows/macOS Pilot Build on the same candidate SHA before manual execution begins.
+
+
+## 2026-10-05 audit candidate nominated after same-SHA verification
+
+- **Audit candidate:** `e017aaaff1f5d30c188775a552240a829d9685fc`.
+- Same-SHA CI run **37301914433** completed **SUCCESS** on Windows, macOS and Ubuntu.
+- Same-SHA Pilot Build run **37301914518** completed **SUCCESS** on Windows and macOS, including bundled offline-content verification, packaged executable smoke, exact build-SHA verification, and artifact upload.
+- Windows artifact: **11341429699** (`repetitor-windows`, unexpired at verification time). macOS artifact: **11341924295** (`repetitor-macos`, unexpired at verification time).
+- This SHA is now the **audit candidate** for manual PR-08/PR-10 execution. It is **not** the PR-14 final candidate. Any relevant code or learner-visible content fix after manual findings invalidates affected observations and requires a replacement audit candidate.
+- PR-08 remains BLOCKED/NOT TESTED for outstanding manual accessibility checks; operational/content PR-10 remains BLOCKED. Final candidate remains NOT NOMINATED; PR-14 remains BLOCKED.
