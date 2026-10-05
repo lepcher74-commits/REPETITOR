@@ -1,14 +1,19 @@
-# Stage 8 manual audit packet — reproducible technical baseline
+# Stage 8 manual audit packet — final-candidate execution template
 
-**Prepared:** 2026-10-02. **Status:** ready for operator execution; NO manual result recorded.
+**Prepared:** 2026-10-02; refreshed 2026-10-05. **Status:** final candidate NOT NOMINATED; NO final manual result recorded.
 
 ## Artifact to inspect
 
-- Baseline commit: `714e96ed19ce4c0d44d23bdc5646b28d6880ad96`.
-- CI success: https://github.com/lepcher74-commits/REPETITOR/actions/runs/36978627964
-- Windows/macOS Pilot Build success: https://github.com/lepcher74-commits/REPETITOR/actions/runs/36978627923
-- Both artifacts were verified present and unexpired on 2026-10-02: `repetitor-windows` (artifact ID `11214672395`) and `repetitor-macos` (artifact ID `11214143484`). Download from the linked build run's Artifacts section. Artifacts have a 14-day retention period; if expired, rerun Pilot Build on an explicit pinned candidate ref and record the new run/SHA. Do not substitute a build of unrecorded provenance.
-- This is a **technical baseline**, not a final candidate; subsequent changes require a new exact-SHA CI/Pilot Build pair before final approval.
+Do **not** use the historical 2026-10-02 baseline as final-gate evidence. It predates later accessibility and gate-hardening changes and its workflow artifacts may expire.
+
+For final execution, first nominate an exact candidate SHA after the prerequisite manual/operational decisions are ready, then obtain a successful Windows/macOS Pilot Build for that exact SHA. Record:
+- candidate SHA: [FILL];
+- Pilot Build run ID: [FILL];
+- Windows artifact ID: [FILL];
+- macOS artifact ID: [FILL];
+- CI run ID on the same SHA: [FILL].
+
+Historical reference only: baseline `714e96ed19ce4c0d44d23bdc5646b28d6880ad96`, CI run `36978627964`, Pilot Build run `36978627923`. These runs are not valid substitutes for final-candidate verification.
 
 ## Operator observation sequence
 
