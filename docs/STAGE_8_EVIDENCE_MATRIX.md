@@ -126,3 +126,16 @@ No efficacy, WCAG conformance, legal compliance, code-signing or notarization cl
 - CI run **37303689834** failed closed on Ubuntu with two explained failures: the missing refreshed UI fingerprint and a unit test still asserting the old learner-facing phrase. The new canonical normalized UI SHA-256 exposed by CI is `47d78e92438dcb327ff9687ee5bb8287b153efb2912026e651460bb0a13edeaa`.
 - The inventory fingerprint was refreshed in `12d054f...`; the architecture wording contract was updated in `8a8f56a...` without weakening its anti-repeat/mastery-farming assertion.
 - Previous audit candidate `e017aa...` remains historical/superseded for affected UI review. Replacement audit candidate is not nominated until fresh same-SHA CI + Windows/macOS Pilot Build succeeds.
+
+
+## 2026-10-05 assistant pre-review hardening before replacement audit candidate
+
+- A preparatory assistant review of the bounded learner-visible scope found clarity/accuracy issues before human PR-10 review: technical English (`prerequisite`, `evidence`), ambiguous progress terminology, misleading remediation button text, an over-strong "independent" success message after hint use, and learner-visible diagnostic-route messages not covered by the existing YAML drift fingerprint.
+- Learner-facing wording was simplified in commits `b246ee2...`, `5d16e07...`, `e474caf...`; hint-use feedback behavior was corrected in `4cc4d58...` / `1ff92b2...` and regression coverage tightened in `3c9c95d...` / `99da161...`.
+- Diagnostic route wording was cleaned in `2337c64...`. The review guard was expanded in `fd8f7bf...` so every learner-visible `message_ru` from `diagnostic_route.yaml` participates in the bounded YAML fingerprint instead of silently escaping review drift detection.
+- CI run **37304672691** failed closed as intended after the guard expansion. macOS reported exactly **2 failed / 187 passed**, both fingerprint assertions. CI-derived canonical fingerprints are:
+  - learner-visible bounded YAML: `852ccdcaa0c2a243a06335dccaa5cd9a33f93953ab85013c60527f7a370c6258`;
+  - runtime UI source: `39ffd7cc0e2a0fae1be9613e3722e17d90f0846bfa6b49fe86faba70ec42b438`.
+- Both values were pinned in `PILOT_CONTENT_REVIEW_INVENTORY.md` by `2a98f88...`. Matching fingerprints remain drift evidence only; they are not semantic/age/safety/accessibility approval.
+- The prior audit candidate `e017aa...` is historical/superseded for affected UI/content/accessibility checks. Manual audit/data-operation records were changed back to **replacement not yet nominated** and do not contain fabricated observations.
+- This assistant pre-review does **not** satisfy human PR-10 content review. PR-08 and PR-10 remain BLOCKED; final candidate is NOT NOMINATED; PR-14 remains BLOCKED.
