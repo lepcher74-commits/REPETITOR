@@ -246,7 +246,6 @@ class RepetitorWindow(QMainWindow):
             return
         step = self.remediations[self.remediation_skill]
         raw = self.remediation_answer.text().strip()
-        used_hint = self.hint_level is not None
         outcome = self.session.submit(
             student_id=STUDENT_ID,
             problem=step.problems[self.remediation_index],
@@ -347,6 +346,7 @@ class RepetitorWindow(QMainWindow):
             self.feedback.setText("Сначала введи ответ.")
             self._announce_feedback(self.feedback)
             return
+        used_hint = self.hint_level is not None
         outcome = self.session.submit(
             student_id=STUDENT_ID,
             problem=self.problem,
