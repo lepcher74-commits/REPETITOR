@@ -1,5 +1,5 @@
 name: Pilot Build
-# Stage 8 replacement audit-candidate trigger after child-facing wording refresh.
+# Stage 8 stabilized replacement audit-candidate verification trigger.
 
 on:
   workflow_dispatch:
