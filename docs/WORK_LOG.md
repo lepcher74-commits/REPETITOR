@@ -565,3 +565,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Commits: PILOT_CONTENT_REVIEW_INVENTORY.md 6436fbb...; PILOT_DATA_OPERATIONS_TEMPLATE.md 4bd1276...; PILOT_MANUAL_GATE_RECORD.md 50a7567...; ACCESSIBILITY_PILOT_AUDIT_RECORD.md dc28675....
 - Fields that assert actual human action (reviewed/rehearsed/observed/results) remain unfilled or NOT TESTED. No manual PASS/FAIL was inferred from CI or artifact existence.
 - The next blocking work is real manual PR-08 accessibility execution and PR-10 operator/content/data-operations review on the pinned audit artifacts. Final candidate remains NOT NOMINATED; PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-05 — audit candidate preflight confirmed fail-closed
+- Re-ran the Stage 8 marker logic conceptually against the four current manual records after audit-candidate binding. It still yields 12 unresolved marker categories/records, including NOT TESTED, [FILL], operator/reviewer placeholders, [BLOCKED], MANUAL TESTING REQUIRED and NOT HUMAN-REVIEWED.
+- This confirms that the prepared audit candidate and green technical builds did not accidentally clear human gates. Evidence matrix updated in 219b7f6....
+- No manual observation was performed. PR-08 BLOCKED; PR-10 BLOCKED; final candidate NOT NOMINATED; PR-14 BLOCKED; Stage 8 open.
