@@ -1,5 +1,5 @@
 name: Pilot Build
-# Stage 8 audit-candidate trigger: workflow-only change; no runtime/content modification.
+# Stage 8 replacement audit-candidate trigger after child-facing wording refresh.
 
 on:
   workflow_dispatch:
