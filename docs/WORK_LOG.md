@@ -590,3 +590,11 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - CI 37303689834 on b246ee2... failed closed as intended after learner-visible UI wording changed. Ubuntu: 2 failed / 187 passed. Failures were (1) runtime UI fingerprint mismatch exposing new canonical SHA-256 `47d78e92438dcb327ff9687ee5bb8287b153efb2912026e651460bb0a13edeaa`; (2) stale unit wording assertion still expecting «повышать оценку».
 - Refreshed PILOT_CONTENT_REVIEW_INVENTORY.md fingerprint in 12d054f... and updated the architecture wording contract to «повышать уровень освоения» in 8a8f56a.... No routing/verifier/mastery logic changed.
 - Previous audit candidate e017aa... stays superseded for affected UI/content review. Replacement audit candidate requires fresh same-SHA CI + Pilot Build; no manual result is carried forward.
+
+
+## 2026-10-05 — pre-review hardening stabilized before replacement audit candidate
+- Assistant-only preparatory review (not a human PR-10 result) found and corrected learner-facing clarity/accuracy debt across runtime feedback/progress/remediation and diagnostic route messages. Key commits: b246ee2..., 5d16e07..., e474caf..., 4cc4d58..., 1ff92b2..., route wording 2337c64..., regression precision 99da161....
+- Found a review-coverage defect: diagnostic_route.yaml message_ru values are learner-visible but were outside the bounded YAML fingerprint. Expanded the guard in fd8f7bf... to include all default/rule route messages.
+- CI 37304672691 then failed closed exactly on two expected fingerprint assertions (macOS 2 failed / 187 passed), exposing YAML SHA-256 `852ccdcaa0c2a243a06335dccaa5cd9a33f93953ab85013c60527f7a370c6258` and UI SHA-256 `39ffd7cc0e2a0fae1be9613e3722e17d90f0846bfa6b49fe86faba70ec42b438`.
+- Pinned both fingerprints in 2a98f88.... Retired stale e017aa... artifact references from the manual audit packet/records (95fed83..., f6029b4..., f44db71..., 27b5cef...). No human reviewed/rehearsed/observed field was filled.
+- Replacement audit candidate is still NOT NOMINATED until a fresh exact same-SHA CI + Windows/macOS Pilot Build passes after this stabilized documentation state. Final candidate remains NOT NOMINATED; PR-08/PR-10/PR-14 BLOCKED; Stage 8 open.
