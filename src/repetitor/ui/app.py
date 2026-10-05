@@ -185,7 +185,7 @@ class RepetitorWindow(QMainWindow):
         self.remediation_feedback = QLabel()
         self.remediation_feedback.setWordWrap(True)
         self.remediation_feedback.setAccessibleName("Результат восстановительной задачи")
-        check = QPushButton("Проверить и вернуться")
+        check = QPushButton("Проверить ответ")
         check.clicked.connect(self._submit_remediation)
         for widget in (
             self.remediation_title, self.remediation_explanation,
@@ -411,7 +411,7 @@ class RepetitorWindow(QMainWindow):
                 self.answer.clear()
                 self.hint_level = None
                 self.feedback.setText(
-                    self.feedback.text() + "\n\nТекущий навык устойчив. Переходим к следующему связанному навыку."
+                    self.feedback.text() + "\n\nТекущий навык освоен достаточно уверенно. Переходим к следующему связанному навыку."
                 )
                 self._save_session(phase="learning", problem_id=self.problem.id)
             else:
