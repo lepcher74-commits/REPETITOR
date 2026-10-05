@@ -2,7 +2,7 @@
 
 Status: PREPARED / NOT HUMAN-REVIEWED. Scope is the current grade-6 fractions pilot content. This inventory makes the PR-10 human review bounded and reproducible; it is not an age-appropriateness approval.
 
-Previous prepared audit candidate `e017aaaff1f5d30c188775a552240a829d9685fc` is SUPERSEDED for runtime UI review after learner-visible wording changes. Replacement audit candidate: NOT YET NOMINATED. This inventory remains NOT HUMAN-REVIEWED.
+Previous prepared audit candidate `e017aaaff1f5d30c188775a552240a829d9685fc` is superseded. Replacement audit candidate prepared for review: `983d04c564879f9ff8b6de110497901279073aeb` (CI `37304924020`; Pilot Build `37304924030`). This inventory remains NOT HUMAN-REVIEWED.
 
 ## Review method
 
