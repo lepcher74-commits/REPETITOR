@@ -84,3 +84,11 @@ No efficacy, WCAG conformance, legal compliance, code-signing or notarization cl
 
 - This documentation-only descendant exists solely to obtain PR-triggered CI evidence after pinning the runtime UI review fingerprint. It does not change `src/repetitor/ui/app.py`, learner-visible YAML, manual gate status, or candidate nomination state.
 - A green CI run on this branch is acceptable recovery evidence for the fingerprint guard because the guarded runtime/content inputs are unchanged from the pinned-fingerprint revision. It is **not** PR-14 final-candidate evidence and does not satisfy PR-08 or operational/content PR-10.
+
+
+## 2026-10-05 runtime UI fingerprint recovery confirmed
+
+- PR-triggered CI run **37300233581** on head `e2e0f49b109dd25b1fb2b594b100a1351ed6688b` completed **SUCCESS** on Windows, macOS and Ubuntu after normalizing the runtime UI source fingerprint across checkout line endings.
+- The normalization changed only the test guard/documentation; `src/repetitor/ui/app.py` and learner-visible YAML remained unchanged, so the pinned runtime UI fingerprint `37be23a5802cf7902aeaa3a1ed2fd7d16bf4c4788a2e971183aa91fe9ad664a8` remains the canonical review binding.
+- The runtime UI fingerprint **recovery CI gate is PASS**. This does not nominate a final candidate and does not complete manual PR-08 or operational/content PR-10.
+- Per the closeout plan, an audit candidate still requires a successful Windows/macOS Pilot Build on the same candidate SHA before manual execution begins.
