@@ -531,3 +531,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Confirmed `PILOT_CONTENT_REVIEW_INVENTORY.md` on main contains that exact runtime UI source fingerprint, introduced by 19936c5848fc9ad820cbce41b801b1ffc87282aa, alongside the previously pinned learner-visible YAML fingerprint.
 - This proves the intended fail-closed detection and repository-side remediation are traceable. It does NOT prove recovery CI green: no exact recovery workflow run was available through the current commit-run/status interface, so CI PASS is deliberately not inferred.
 - Final candidate remains NOT NOMINATED. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 remains open. Next technical evidence gate is an exact CI run showing the fingerprint-pinned revision (or a descendant with unchanged guarded inputs) green.
+
+
+## 2026-10-05 — evidence matrix blocks audit-candidate nomination until recovery CI
+- Added explicit runtime UI fingerprint gate to STAGE_8_EVIDENCE_MATRIX.md (2c63b9b...). It records fail-closed CI 37287549563, the derived/pinned UI SHA-256, and marks recovery CI UNVERIFIED rather than inferring PASS from the matching inventory value.
+- Audit candidate nomination is therefore blocked until an exact green CI run is captured for the fingerprint-pinned revision or an unchanged-input descendant. This does not alter any manual result.
+- PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; final candidate NOT NOMINATED; Stage 8 open.
