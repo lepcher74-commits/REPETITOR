@@ -550,3 +550,11 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - PR CI run 37300233581 on e2e0f49b109dd25b1fb2b594b100a1351ed6688b completed SUCCESS on Windows, macOS and Ubuntu after the cross-platform newline normalization fix.
 - Recovery CI blocker is closed. Runtime/content guarded inputs did not change; pinned UI fingerprint remains 37be23a5802cf7902aeaa3a1ed2fd7d16bf4c4788a2e971183aa91fe9ad664a8.
 - Audit candidate is still NOT NOMINATED because the closeout process also requires a same-SHA Windows/macOS Pilot Build before manual PR-08/PR-10 execution. Final candidate remains NOT NOMINATED; PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-05 — audit candidate nominated after same-SHA CI + Pilot Build
+- Direct Actions collection lookup confirmed push runs for `e017aaaff1f5d30c188775a552240a829d9685fc`: CI **37301914433** SUCCESS on Windows/macOS/Ubuntu and Pilot Build **37301914518** SUCCESS on Windows/macOS.
+- Pilot Build jobs passed bundled offline-content verification, packaged executable smoke, exact build-SHA verification and upload. Artifacts: Windows **11341429699** (`repetitor-windows`), macOS **11341924295** (`repetitor-macos`), both unexpired when checked.
+- `e017aaaff1f5d30c188775a552240a829d9685fc` is now nominated as the **audit candidate** for manual PR-08/PR-10 execution. It is NOT the final candidate and does not satisfy PR-14.
+- STAGE_8_EVIDENCE_MATRIX.md updated in 189d2fe...; STAGE_8_MANUAL_AUDIT_PACKET.md bound to this audit candidate/run/artifact set in 273a574.... No manual observation was inferred or marked PASS.
+- Next: execute/record manual accessibility and operational/content review against the pinned audit artifacts. Relevant code/content fixes require a replacement audit candidate. Final candidate remains NOT NOMINATED; PR-08 BLOCKED; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open.
