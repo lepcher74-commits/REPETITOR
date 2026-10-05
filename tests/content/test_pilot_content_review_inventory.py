@@ -1,3 +1,5 @@
+import hashlib
+import json
 import re
 from pathlib import Path
 
@@ -34,6 +36,19 @@ def _hint_count() -> int:
     return total
 
 
+def _learner_visible_fingerprint() -> str:
+    visible = []
+    for path in PROBLEM_FILES:
+        data = yaml.safe_load(path.read_text(encoding='utf-8'))
+        for problem in data['problems']:
+            visible.append({'id': problem['id'], 'prompt_ru': problem['prompt_ru'], 'choices': problem.get('choices', []), 'hints': [hint['text_ru'] for hint in problem.get('hints', [])]})
+    remediation = yaml.safe_load(REMEDIATION.read_text(encoding='utf-8'))
+    for route in remediation['remediations']:
+        visible.append({'skill_id': route['skill_id'], 'title_ru': route['title_ru'], 'explanation_ru': route['explanation_ru'], 'problems': [{'id': problem['id'], 'prompt_ru': problem['prompt_ru']} for problem in route['problems']]})
+    canonical = json.dumps(visible, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
+    return hashlib.sha256(canonical.encode('utf-8')).hexdigest()
+
+
 def test_review_inventory_tracks_every_pilot_problem_id():
     text = INVENTORY.read_text(encoding='utf-8')
     inventoried = set(re.findall(r'`((?:frac\.)[^`]+)`', text))
@@ -52,3 +67,12 @@ def test_review_inventory_declared_counts_match_authored_content():
 
     assert f'Problems: {actual_problems} total' in text
     assert f'Hints: {actual_hints} authored hints' in text
+
+
+def test_review_inventory_fingerprint_matches_learner_visible_yaml():
+    text = INVENTORY.read_text(encoding='utf-8')
+    fingerprint = _learner_visible_fingerprint()
+    assert f'Learner-visible YAML fingerprint (SHA-256): `{fingerprint}`' in text, (
+        'Learner-visible pilot wording changed without refreshing the human-review inventory. '
+        'Update the fingerprint and repeat affected semantic review; a matching hash is not approval.'
+    )
