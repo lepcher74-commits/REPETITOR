@@ -2,7 +2,7 @@
 
 Status: PREPARED / NOT HUMAN-REVIEWED. Scope is the current grade-6 fractions pilot content. This inventory makes the PR-10 human review bounded and reproducible; it is not an age-appropriateness approval.
 
-Prepared audit candidate for review: `e017aaaff1f5d30c188775a552240a829d9685fc` (CI `37301914433`; Pilot Build `37301914518`). This identifies what must be reviewed; it does not mean the review has been performed.
+Previous prepared audit candidate `e017aaaff1f5d30c188775a552240a829d9685fc` is SUPERSEDED for runtime UI review after learner-visible wording changes. Replacement audit candidate: NOT YET NOMINATED. This inventory remains NOT HUMAN-REVIEWED.
 
 ## Review method
 
@@ -88,7 +88,7 @@ Also review the UI wording in `src/repetitor/ui/app.py`: onboarding/diagnostic/r
 
 Learner-visible YAML fingerprint (SHA-256): `4d5bcb49392cd8e2119a0c1cc588aebb0fce62282704a33b0022aefef27ac9df`
 
-Runtime UI source fingerprint (SHA-256): `37be23a5802cf7902aeaa3a1ed2fd7d16bf4c4788a2e971183aa91fe9ad664a8`
+Runtime UI source fingerprint (SHA-256): `47d78e92438dcb327ff9687ee5bb8287b153efb2912026e651460bb0a13edeaa`
 
 This fingerprint covers problem prompts, multiple-choice labels, authored hint text, remediation titles/explanations and remediation problem prompts in the bounded YAML pilot scope. The runtime fingerprint covers the full `src/repetitor/ui/app.py` file conservatively, so even non-text UI source changes invalidate this review binding. These fingerprints are drift detectors only: matching values do **not** establish age appropriateness, safety, accessibility, clarity or human approval. If the fingerprint changes, refresh this inventory and repeat the affected semantic review before final candidate nomination.
 
