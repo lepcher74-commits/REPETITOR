@@ -2,7 +2,7 @@
 
 Complete before real-user enrollment.
 
-Candidate SHA: `87eceb5ca1e48bdd52943f65b594495d25af6998`
+Candidate SHA: [FILL AT FINAL CANDIDATE NOMINATION]
 Pilot operator: [FILL]
 Jurisdiction: [FILL]
 
@@ -17,12 +17,20 @@ Support contact: [FILL]
 ## Data transfer
 Default candidate: local/offline core.
 
-Any external transfer enabled? **NO for candidate 87eceb5...**. Default core is local/offline and no production network AI provider is configured.
+Any external transfer enabled? [OPERATOR TO VERIFY ON EXACT CANDIDATE]. The current documented architecture is local/offline, but this record must not inherit that answer across candidate changes. Before enrollment, verify the exact candidate source/build and record YES/NO here.
 If YES, pilot is blocked until the destination, exact fields, purpose, authorization, retention, deletion path, security/authentication and child-safety review are documented and approved.
 
 ## Incident handling
 Person/role receiving incident reports: [OPERATOR TO ASSIGN]
 How affected local data is preserved without unnecessary copying: stop the affected session; preserve the original `~/.repetitor` data directory (or configured `--data-dir`) in place where feasible; use the tested backup procedure when a recovery copy is required; do not paste learner data into issue text.
 How participant/guardian communication is handled when required: [OPERATOR TO DEFINE FOR JURISDICTION/SETTING]
+
+## Candidate verification checklist
+- [ ] Exact candidate SHA/build recorded above.
+- [ ] `--data-dir` behavior and actual deployment data directory verified.
+- [ ] Primary SQLite database and startup-log locations verified on deployed build.
+- [ ] Backup/restore rehearsal completed with synthetic data using `DATA_BACKUP_RECOVERY.md`.
+- [ ] Network/external-transfer behavior verified on the exact candidate; destinations/fields documented if any.
+- [ ] Retention, deletion/withdrawal, support and incident roles filled by the real operator.
 
 Status: [BLOCKED / APPROVED FOR STATED PILOT]
