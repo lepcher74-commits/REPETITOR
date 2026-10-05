@@ -511,3 +511,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - CI-derived canonical fingerprint for the current bounded YAML learner-visible fields is `4d5bcb49392cd8e2119a0c1cc588aebb0fce62282704a33b0022aefef27ac9df`.
 - Pinned that fingerprint in PILOT_CONTENT_REVIEW_INVENTORY.md (a980ecc...) and documented its exact scope and limitation: drift detection only, never semantic/age/safety approval. A changed fingerprint requires inventory refresh and affected human review before final nomination.
 - Runtime UI wording remains a separately listed human-review scope and is not claimed to be covered by this YAML fingerprint. Fresh CI pending. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-05 — runtime UI drift guard added
+- Confirmed YAML fingerprint inventory recovery CI SUCCESS: a980ecc... run 37287278707; journal fe7b832... run 37287302126.
+- Added a second conservative review guard (ca5ac15...) that hashes the full `src/repetitor/ui/app.py` source and requires its fingerprint in PILOT_CONTENT_REVIEW_INVENTORY.md. This intentionally invalidates the review record on any runtime UI source change, including non-text changes, rather than risk silently missing learner-visible wording/behavior drift.
+- The guard is expected to fail until the current source fingerprint is pinned in the inventory. Matching fingerprint remains drift evidence only, not semantic/accessibility approval. PR-08 BLOCKED/deferred; PR-10 BLOCKED; PR-14 BLOCKED; Stage 8 open.
