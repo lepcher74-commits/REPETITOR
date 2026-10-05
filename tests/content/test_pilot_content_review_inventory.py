@@ -15,6 +15,7 @@ PROBLEM_FILES = (
     ROOT / 'content/mathematics/fractions/subtract_unlike/problems.yaml',
 )
 REMEDIATION = ROOT / 'content/mathematics/fractions/add_unlike/remediation.yaml'
+DIAGNOSTIC_ROUTE = ROOT / 'content/mathematics/fractions/add_unlike/diagnostic_route.yaml'
 RUNTIME_UI = ROOT / 'src/repetitor/ui/app.py'
 
 
@@ -46,6 +47,11 @@ def _learner_visible_fingerprint() -> str:
     remediation = yaml.safe_load(REMEDIATION.read_text(encoding='utf-8'))
     for route in remediation['remediations']:
         visible.append({'skill_id': route['skill_id'], 'title_ru': route['title_ru'], 'explanation_ru': route['explanation_ru'], 'problems': [{'id': problem['id'], 'prompt_ru': problem['prompt_ru']} for problem in route['problems']]})
+    diagnostic_route = yaml.safe_load(DIAGNOSTIC_ROUTE.read_text(encoding='utf-8'))
+    visible.append({
+        'diagnostic_default_message_ru': diagnostic_route['default']['message_ru'],
+        'diagnostic_rule_messages_ru': [rule['message_ru'] for rule in diagnostic_route['rules']],
+    })
     canonical = json.dumps(visible, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
     return hashlib.sha256(canonical.encode('utf-8')).hexdigest()
 
