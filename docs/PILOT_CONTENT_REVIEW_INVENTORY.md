@@ -2,6 +2,8 @@
 
 Status: PREPARED / NOT HUMAN-REVIEWED. Scope is the current grade-6 fractions pilot content. This inventory makes the PR-10 human review bounded and reproducible; it is not an age-appropriateness approval.
 
+Prepared audit candidate for review: `e017aaaff1f5d30c188775a552240a829d9685fc` (CI `37301914433`; Pilot Build `37301914518`). This identifies what must be reviewed; it does not mean the review has been performed.
+
 ## Review method
 
 Reviewer must inspect every item below in the exact candidate revision and record PASS/FAIL plus issue disposition. Check understandable Russian for intended age/grade, mathematical semantic clarity, non-humiliating/non-manipulative wording, absence of unsupported factual claims, and absence of pressure to continue. Formal verifier tests do not replace this semantic review.
