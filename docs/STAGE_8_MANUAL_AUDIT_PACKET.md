@@ -4,6 +4,8 @@
 
 ## Artifact to inspect
 
+Machine-readable candidate binding: `docs/STAGE_8_AUDIT_CANDIDATE_MANIFEST.json`. If this manifest disagrees with the packet or worksheets, STOP and reconcile the documents before manual execution.
+
 Do **not** use the historical 2026-10-02 baseline as final-gate evidence. It predates later accessibility and gate-hardening changes and its workflow artifacts may expire.
 
 For manual execution, first pin an exact **audit candidate SHA** and obtain a successful Windows/macOS Pilot Build for that SHA. After all required observations/decisions and any resulting fixes are complete, nominate the separate **final candidate SHA** for PR-14 same-SHA verification. For the audit candidate record:
