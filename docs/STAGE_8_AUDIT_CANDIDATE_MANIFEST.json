@@ -8,7 +8,11 @@
   "ci": {
     "run_id": 37304924020,
     "conclusion": "success",
-    "platforms": ["windows", "macos", "ubuntu"]
+    "platforms": [
+      "windows",
+      "macos",
+      "ubuntu"
+    ]
   },
   "pilot_build": {
     "run_id": 37304924030,
@@ -36,5 +40,10 @@
     "pr_08_accessibility": "blocked_not_tested",
     "pr_10_content_operations": "blocked_not_tested",
     "pr_14_final_candidate": "blocked_not_nominated"
+  },
+  "tracking_issues": {
+    "pr_08_accessibility": 2,
+    "pr_10_content_operations": 3,
+    "pr_14_final_candidate": 4
   }
 }
