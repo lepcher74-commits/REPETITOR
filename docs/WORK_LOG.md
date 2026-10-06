@@ -620,3 +620,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Added archive-integrity verification and STOP conditions to the manual audit packet (fb07bab...): Windows/macOS downloaded ZIP SHA-256 must match the GitHub Actions artifact digests before execution.
 - Added `docs/STAGE_8_AUDIT_EXECUTION_CHECKLIST.md` (42d0d71...) with exact Windows/macOS PR-08 flow, bounded PR-10 content review, operations/data fields, failure capture rules and invalidation rules. Linked it from the packet in c001cef....
 - These are audit-support docs only. No human PASS/result was generated. PR-08/PR-10 remain BLOCKED; final candidate NOT NOMINATED; PR-14 BLOCKED.
+
+
+## 2026-10-06 — hardened audit handoff CI confirmed
+- Docs-only handoff HEAD `fe502389e833c1964c6ee5d4f3a3731ed5617a05` completed CI **37428939983** with **SUCCESS**. This confirms the manual-audit documentation/checklist changes did not break repository checks.
+- The runtime/content audit candidate remains `983d04c564879f9ff8b6de110497901279073aeb`; the docs-only HEAD is not a replacement runtime candidate and does not require a new Pilot Build.
+- Conservative preflight still reports 12 unresolved human/operational markers. No manual PASS/FAIL was inferred.
+- Next valid progress requires human PR-08 accessibility execution and PR-10 content/operator/data-operations review on the verified `983d04c...` artifacts. Final candidate remains NOT NOMINATED; PR-14 BLOCKED; Stage 8 open.
