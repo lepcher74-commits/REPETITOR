@@ -32,6 +32,7 @@ Historical reference only: baseline `714e96ed19ce4c0d44d23bdc5646b28d6880ad96`, 
 
 Use `docs/STAGE_8_AUDIT_EXECUTION_CHECKLIST.md` as the operator-facing step sequence for this candidate.
 Use `docs/STAGE_8_ACCESSIBILITY_OBSERVATION_WORKSHEET.md` to record PR-08 Windows/macOS observations row by row.
+Use `docs/STAGE_8_OPERATOR_DATA_DECISION_WORKSHEET.md` for PR-10 operator/authorization/data-lifecycle decisions and rehearsal evidence.
 
 ## Operator observation sequence
 
