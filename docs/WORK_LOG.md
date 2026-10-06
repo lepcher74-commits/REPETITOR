@@ -649,3 +649,11 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - All operator-controlled values remain [FILL], NOT TESTED or BLOCKED. Repository architecture facts are labeled as supporting facts only and are not promoted into operational approval.
 - Creation commit: 05e0931.... Manual audit packet linked to it in a2313ab....
 - This completes the prepared manual-execution support set; PR-10 remains BLOCKED until a real operator/reviewer completes the required records.
+
+
+## 2026-10-06 — manual execution support set complete
+- Stage 8 now has dedicated exact-candidate worksheets for all remaining human work on `983d04c...`: accessibility observations, 135-row learner-visible content review, and operator/data decisions.
+- The packet requires artifact digest verification before execution and links all worksheets. Evidence matrix records the completed support set in 0ba2bbb....
+- These files intentionally retain NOT TESTED / FILL / BLOCKED values. They do not satisfy PR-08 or PR-10.
+- Latest docs-only CI for 420604c... was queued/in progress when checked; prior hardened-handoff docs CI 37428939983 is SUCCESS. Runtime/content audit candidate and its green same-SHA CI/Pilot Build remain unchanged.
+- Final candidate NOT NOMINATED; PR-14 BLOCKED; Stage 8 open pending real human execution.
