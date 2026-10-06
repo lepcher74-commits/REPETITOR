@@ -178,3 +178,10 @@ Conservative preflight remains blocked on unresolved human/operational markers. 
 - Added `STAGE_8_AUDIT_ARTIFACT_PRESERVATION.md` (df0f60a...) because the original GitHub Actions artifacts expire on 2026-10-19.
 - If renewal becomes necessary, acceptable renewal must build the exact preserved SHA, pass Windows/macOS Pilot Build including embedded exact-SHA verification, and record new artifact IDs/digests before use. A newer `main` build is not a substitute.
 - Artifact renewal from the exact same commit does not nominate a new candidate. Any runtime/content change returns to the replacement-audit-candidate lifecycle.
+
+
+## 2026-10-06 audit-candidate manifest guard CI green
+
+- CI run **37441397677** on docs/evidence HEAD `27eba79385020f70ada96c25d550d056ee9361b3` completed **SUCCESS** on Windows, macOS and Ubuntu.
+- This run includes `tests/content/test_stage8_audit_candidate_manifest.py`, which verifies that the manual packet/records remain bound to audit candidate `983d04c564879f9ff8b6de110497901279073aeb`, matching CI/Pilot Build IDs, artifact IDs/digests and review fingerprints, while PR-08/PR-10/PR-14 remain blocked/not nominated.
+- This is documentation/evidence consistency proof only. It does not replace manual accessibility/content/operator execution.
