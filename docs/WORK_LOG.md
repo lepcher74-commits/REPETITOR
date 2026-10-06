@@ -627,3 +627,11 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - The runtime/content audit candidate remains `983d04c564879f9ff8b6de110497901279073aeb`; the docs-only HEAD is not a replacement runtime candidate and does not require a new Pilot Build.
 - Conservative preflight still reports 12 unresolved human/operational markers. No manual PASS/FAIL was inferred.
 - Next valid progress requires human PR-08 accessibility execution and PR-10 content/operator/data-operations review on the verified `983d04c...` artifacts. Final candidate remains NOT NOMINATED; PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-06 — exact-candidate human content review worksheet prepared
+- Generated `docs/STAGE_8_HUMAN_CONTENT_REVIEW_WORKSHEET.md` from exact runtime/content audit candidate `983d04c564879f9ff8b6de110497901279073aeb`.
+- Worksheet contains **135 extracted learner-visible rows** spanning bounded problem prompts, choices, hints, remediation titles/explanations/prompts, diagnostic-route messages and Cyrillic runtime UI strings. Every row starts NOT TESTED with an empty issue/notes field.
+- The worksheet is bound to CI 37304924020, Pilot Build 37304924030, YAML fingerprint 852ccdc... and UI fingerprint 39ffd7cc.... It has explicit STOP/refresh rules if source/fingerprint changes.
+- Creation commit: c713991.... Manual audit packet linked to it in ebe8ec7....
+- This reduces omission risk only; it is not human PR-10 review evidence. PR-08/PR-10 remain BLOCKED; final candidate NOT NOMINATED; PR-14 BLOCKED; Stage 8 open.
