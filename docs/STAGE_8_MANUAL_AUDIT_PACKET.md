@@ -5,6 +5,7 @@
 ## Artifact to inspect
 
 Machine-readable candidate binding: `docs/STAGE_8_AUDIT_CANDIDATE_MANIFEST.json`. If this manifest disagrees with the packet or worksheets, STOP and reconcile the documents before manual execution.
+Gate tracking: PR-08 = GitHub issue #2; PR-10 = issue #3; PR-14 = issue #4 (BLOCKED until #2 and #3 are reconciled).
 
 Do **not** use the historical 2026-10-02 baseline as final-gate evidence. It predates later accessibility and gate-hardening changes and its workflow artifacts may expire.
 
