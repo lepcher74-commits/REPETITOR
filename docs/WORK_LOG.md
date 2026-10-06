@@ -671,3 +671,9 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Added CI guard `tests/content/test_stage8_audit_candidate_manifest.py` (986daf2...) to fail if the manual packet/records drift to a different candidate or mismatched run/artifact/fingerprint binding.
 - Manual audit packet linked the manifest and adds a STOP rule on disagreement in d4d6127....
 - This guard is documentation/evidence consistency only; it does not execute or satisfy PR-08/PR-10.
+
+
+## 2026-10-06 — audit-candidate manifest guard CI green
+- CI **37441397677** completed SUCCESS on Windows/macOS/Ubuntu for docs/evidence HEAD 27eba793....
+- The new manifest-consistency tests passed, confirming all bound manual records still point to audit candidate 983d04c... with matching run/artifact/fingerprint values and explicit blocked/not-nominated manual state.
+- No manual result changed. Evidence matrix updated in 3dc5bbd....
