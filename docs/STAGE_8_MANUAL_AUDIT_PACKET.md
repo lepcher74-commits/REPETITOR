@@ -38,7 +38,7 @@ Use `docs/STAGE_8_AUDIT_EXECUTION_CHECKLIST.md` as the operator-facing step sequ
 2. Complete onboarding → diagnostic → answer → remediation → progress using only keyboard. Observe visible focus and 200% scaling. Repeat with Narrator; record spoken names/states and how feedback is discovered.
 3. Repeat the same flow on the intended macOS machine using keyboard and VoiceOver. Record OS/VoiceOver versions and observations.
 4. For each row in `docs/PILOT_MANUAL_GATE_RECORD.md` and `docs/ACCESSIBILITY_PILOT_AUDIT_RECORD.md`, enter PASS, FAIL, or NOT TESTED separately for Windows/macOS. For FAIL, capture reproducible steps and issue link; for NOT TESTED, state the limitation. Do not include child personal data.
-5. Independently review all learner-visible pilot content for age suitability and mathematical clarity; record reviewer and observed issues. Fill real operator, guardian authorization, support, incident, retention and deletion decisions in the two operational records. Do not enable child sync/public recovery to perform this audit.
+5. Independently review all learner-visible pilot content for age suitability and mathematical clarity using `docs/STAGE_8_HUMAN_CONTENT_REVIEW_WORKSHEET.md` (135 extracted learner-visible rows bound to the exact audit candidate); record reviewer and observed issues. Fill real operator, guardian authorization, support, incident, retention and deletion decisions in the two operational records. Do not enable child sync/public recovery to perform this audit.
 
 ## Return package
 
