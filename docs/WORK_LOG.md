@@ -612,3 +612,11 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Rechecked the four mandatory manual records after binding replacement candidate 983d04c.... Conservative preflight still reports **12 unresolved markers**, all in human/operational categories (NOT TESTED/FILL/operator/reviewer/BLOCKED/manual-testing/human-review markers).
 - This is expected and confirms the technical verification did not accidentally clear PR-08/PR-10. Evidence matrix updated in dccf59d....
 - No further automated result may be substituted for these observations/decisions. Final candidate remains NOT NOMINATED; PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-06 — manual audit execution handoff hardened
+- Kept runtime/content audit candidate `983d04c564879f9ff8b6de110497901279073aeb` frozen; no learner-visible/runtime changes were made.
+- Corrected literal `\\n` formatting defects in the manual gate/data-operation templates (0f9e55c..., 6325d53...).
+- Added archive-integrity verification and STOP conditions to the manual audit packet (fb07bab...): Windows/macOS downloaded ZIP SHA-256 must match the GitHub Actions artifact digests before execution.
+- Added `docs/STAGE_8_AUDIT_EXECUTION_CHECKLIST.md` (42d0d71...) with exact Windows/macOS PR-08 flow, bounded PR-10 content review, operations/data fields, failure capture rules and invalidation rules. Linked it from the packet in c001cef....
+- These are audit-support docs only. No human PASS/result was generated. PR-08/PR-10 remain BLOCKED; final candidate NOT NOMINATED; PR-14 BLOCKED.
