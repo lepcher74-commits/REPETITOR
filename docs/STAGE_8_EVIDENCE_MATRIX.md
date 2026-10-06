@@ -170,3 +170,11 @@ For verified audit candidate `983d04c564879f9ff8b6de110497901279073aeb`, the rep
 The manual audit packet also requires downloaded-artifact SHA-256 verification before execution and links all three worksheets. These materials reduce omission and wrong-artifact risk only; they do not constitute PR-08 or PR-10 evidence of execution.
 
 Conservative preflight remains blocked on unresolved human/operational markers. Final candidate is still NOT NOMINATED and PR-14 remains BLOCKED.
+
+
+## 2026-10-06 audit artifact preservation
+
+- Created preservation branch `stage8/audit-candidate-983d04c` pointing exactly to verified audit candidate `983d04c564879f9ff8b6de110497901279073aeb`.
+- Added `STAGE_8_AUDIT_ARTIFACT_PRESERVATION.md` (df0f60a...) because the original GitHub Actions artifacts expire on 2026-10-19.
+- If renewal becomes necessary, acceptable renewal must build the exact preserved SHA, pass Windows/macOS Pilot Build including embedded exact-SHA verification, and record new artifact IDs/digests before use. A newer `main` build is not a substitute.
+- Artifact renewal from the exact same commit does not nominate a new candidate. Any runtime/content change returns to the replacement-audit-candidate lifecycle.
