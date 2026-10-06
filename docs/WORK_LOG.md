@@ -635,3 +635,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - The worksheet is bound to CI 37304924020, Pilot Build 37304924030, YAML fingerprint 852ccdc... and UI fingerprint 39ffd7cc.... It has explicit STOP/refresh rules if source/fingerprint changes.
 - Creation commit: c713991.... Manual audit packet linked to it in ebe8ec7....
 - This reduces omission risk only; it is not human PR-10 review evidence. PR-08/PR-10 remain BLOCKED; final candidate NOT NOMINATED; PR-14 BLOCKED; Stage 8 open.
+
+
+## 2026-10-06 — exact-candidate accessibility observation worksheet prepared
+- Added `docs/STAGE_8_ACCESSIBILITY_OBSERVATION_WORKSHEET.md` for audit candidate `983d04c...` with explicit Windows/macOS environment fields, full keyboard-flow steps, visible-focus/200%-scaling checks, Narrator/VoiceOver observation rows and sanitized defect capture rules.
+- All human cells are initialized as NOT TESTED / BLOCKED; no automated PASS was copied into human-result cells.
+- Creation commit: b629b3b.... Manual audit packet linked to it in d462b76....
+- This is execution support only. PR-08 remains BLOCKED until a human completes the worksheet on the verified artifacts.
