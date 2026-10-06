@@ -20,6 +20,15 @@ DOCS_WITH_CANDIDATE = (
 def _manifest() -> dict:
     return json.loads(MANIFEST.read_text(encoding="utf-8"))
 
+def test_stage8_manifest_tracks_manual_and_final_gate_issues() -> None:
+    data = _manifest()
+    assert data["tracking_issues"] == {
+        "pr_08_accessibility": 2,
+        "pr_10_content_operations": 3,
+        "pr_14_final_candidate": 4,
+    }
+
+
 def test_stage8_audit_candidate_manifest_is_not_final_candidate() -> None:
     data = _manifest()
     assert data["status"] == "audit_candidate"
