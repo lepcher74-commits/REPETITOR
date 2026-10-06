@@ -657,3 +657,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - These files intentionally retain NOT TESTED / FILL / BLOCKED values. They do not satisfy PR-08 or PR-10.
 - Latest docs-only CI for 420604c... was queued/in progress when checked; prior hardened-handoff docs CI 37428939983 is SUCCESS. Runtime/content audit candidate and its green same-SHA CI/Pilot Build remain unchanged.
 - Final candidate NOT NOMINATED; PR-14 BLOCKED; Stage 8 open pending real human execution.
+
+
+## 2026-10-06 — audit artifact expiry risk controlled
+- Original audit artifacts for `983d04c...` expire 2026-10-19. Created preservation branch `stage8/audit-candidate-983d04c` at the exact verified commit.
+- Added fail-closed renewal procedure `STAGE_8_AUDIT_ARTIFACT_PRESERVATION.md` in df0f60a...: renewal must rebuild exact `983d04c...`, pass both platform Pilot Build jobs and record new IDs/digests; current main must not be substituted.
+- Manual packet linked the procedure in 564dd81...; evidence matrix recorded the control in 6233aa3....
+- No runtime/content or manual result changed. PR-08/PR-10 BLOCKED; final candidate NOT NOMINATED; PR-14 BLOCKED.
