@@ -185,3 +185,12 @@ Conservative preflight remains blocked on unresolved human/operational markers. 
 - CI run **37441397677** on docs/evidence HEAD `27eba79385020f70ada96c25d550d056ee9361b3` completed **SUCCESS** on Windows, macOS and Ubuntu.
 - This run includes `tests/content/test_stage8_audit_candidate_manifest.py`, which verifies that the manual packet/records remain bound to audit candidate `983d04c564879f9ff8b6de110497901279073aeb`, matching CI/Pilot Build IDs, artifact IDs/digests and review fingerprints, while PR-08/PR-10/PR-14 remain blocked/not nominated.
 - This is documentation/evidence consistency proof only. It does not replace manual accessibility/content/operator execution.
+
+
+## 2026-10-06 Stage 8 gate tracking issues established
+
+- GitHub issue **#2** tracks PR-08 manual accessibility execution on audit candidate `983d04c564879f9ff8b6de110497901279073aeb`.
+- GitHub issue **#3** tracks PR-10 human content/operator/data execution on the same audit candidate.
+- GitHub issue **#4** tracks PR-14 and is explicitly BLOCKED until #2 and #3 are reconciled and any resulting fixes/retests are complete.
+- `STAGE_8_AUDIT_CANDIDATE_MANIFEST.json` now records these issue numbers; the manifest CI guard asserts the mapping so gate tracking cannot silently drift.
+- Issue creation/tracking does not satisfy any manual gate and does not nominate a final candidate.
