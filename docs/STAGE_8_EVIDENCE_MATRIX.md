@@ -157,3 +157,16 @@ No efficacy, WCAG conformance, legal compliance, code-signing or notarization cl
 - After rebinding all four required manual records to replacement audit candidate `983d04c564879f9ff8b6de110497901279073aeb`, the conservative textual preflight still finds **12 unresolved markers**.
 - Remaining marker classes are exclusively manual/operational: NOT TESTED, [FILL], reviewer/operator placeholders, [BLOCKED], MANUAL TESTING REQUIRED and NOT HUMAN-REVIEWED.
 - This is the intended fail-closed state. Same-SHA CI/Pilot Build and prepared artifacts do not authorize a pilot, do not complete PR-08/PR-10, and do not permit final-candidate nomination.
+
+
+## 2026-10-06 manual-execution support set complete
+
+For verified audit candidate `983d04c564879f9ff8b6de110497901279073aeb`, the repository now contains three dedicated human-execution worksheets:
+
+- `STAGE_8_ACCESSIBILITY_OBSERVATION_WORKSHEET.md` — Windows/macOS PR-08 keyboard, focus, scaling and Narrator/VoiceOver observations; all human cells NOT TESTED.
+- `STAGE_8_HUMAN_CONTENT_REVIEW_WORKSHEET.md` — 135 extracted learner-visible rows bound to the exact candidate/fingerprints; all rows NOT TESTED.
+- `STAGE_8_OPERATOR_DATA_DECISION_WORKSHEET.md` — operator/jurisdiction/authorization, retention/deletion/support, backup/restore rehearsal, exact-build external-transfer and incident decisions; all operator-controlled fields remain FILL/NOT TESTED/BLOCKED.
+
+The manual audit packet also requires downloaded-artifact SHA-256 verification before execution and links all three worksheets. These materials reduce omission and wrong-artifact risk only; they do not constitute PR-08 or PR-10 evidence of execution.
+
+Conservative preflight remains blocked on unresolved human/operational markers. Final candidate is still NOT NOMINATED and PR-14 remains BLOCKED.
