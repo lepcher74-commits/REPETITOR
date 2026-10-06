@@ -642,3 +642,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - All human cells are initialized as NOT TESTED / BLOCKED; no automated PASS was copied into human-result cells.
 - Creation commit: b629b3b.... Manual audit packet linked to it in d462b76....
 - This is execution support only. PR-08 remains BLOCKED until a human completes the worksheet on the verified artifacts.
+
+
+## 2026-10-06 — operator/data decision worksheet prepared
+- Added `docs/STAGE_8_OPERATOR_DATA_DECISION_WORKSHEET.md` for candidate `983d04c...`, separating jurisdiction/operator/authorization decisions, local-data lifecycle/backup rehearsal, exact-build external-transfer verification and incident handling from accessibility/content review.
+- All operator-controlled values remain [FILL], NOT TESTED or BLOCKED. Repository architecture facts are labeled as supporting facts only and are not promoted into operational approval.
+- Creation commit: 05e0931.... Manual audit packet linked to it in a2313ab....
+- This completes the prepared manual-execution support set; PR-10 remains BLOCKED until a real operator/reviewer completes the required records.
