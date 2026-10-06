@@ -30,6 +30,8 @@ If any code or learner-visible content changes after these observations, repeat 
 
 Historical reference only: baseline `714e96ed19ce4c0d44d23bdc5646b28d6880ad96`, CI run `36978627964`, Pilot Build run `36978627923`. These runs are not valid substitutes for final-candidate verification.
 
+Use `docs/STAGE_8_AUDIT_EXECUTION_CHECKLIST.md` as the operator-facing step sequence for this candidate.
+
 ## Operator observation sequence
 
 1. Extract/run the unsigned artifact on the intended Windows machine. Record OS version, display scale, artifact name/SHA, reviewer, date, keyboard layout, and Narrator version. Record any platform warnings; do not bypass organizational security policy.
