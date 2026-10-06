@@ -664,3 +664,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Added fail-closed renewal procedure `STAGE_8_AUDIT_ARTIFACT_PRESERVATION.md` in df0f60a...: renewal must rebuild exact `983d04c...`, pass both platform Pilot Build jobs and record new IDs/digests; current main must not be substituted.
 - Manual packet linked the procedure in 564dd81...; evidence matrix recorded the control in 6233aa3....
 - No runtime/content or manual result changed. PR-08/PR-10 BLOCKED; final candidate NOT NOMINATED; PR-14 BLOCKED.
+
+
+## 2026-10-06 — machine-readable audit-candidate binding added
+- Added `docs/STAGE_8_AUDIT_CANDIDATE_MANIFEST.json` (41d61b9...) containing the exact audit SHA, CI/Pilot Build IDs, artifact IDs/digests/expiry, review fingerprints and explicit blocked/not-nominated manual-gate state.
+- Added CI guard `tests/content/test_stage8_audit_candidate_manifest.py` (986daf2...) to fail if the manual packet/records drift to a different candidate or mismatched run/artifact/fingerprint binding.
+- Manual audit packet linked the manifest and adds a STOP rule on disagreement in d4d6127....
+- This guard is documentation/evidence consistency only; it does not execute or satisfy PR-08/PR-10.
