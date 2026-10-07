@@ -12,23 +12,23 @@ This worksheet captures PR-10 operational decisions. It is not legal advice or a
 
 | Field | Decision |
 |---|---|
-| Pilot operator/controller legal or organizational role | [FILL] |
-| Jurisdiction / setting | [FILL] |
-| Intended participant age range | [FILL] |
-| Intended pilot size | [FILL] |
-| Responsible support contact | [FILL] |
-| Incident-response owner | [FILL] |
+| Pilot operator/controller legal or organizational role | APPROVED — самостоятельное домашнее обучение; без отдельной организации-оператора |
+| Jurisdiction / setting | Setting APPROVED — самостоятельное домашнее обучение; legal jurisdiction [FILL] |
+| Intended participant age range | APPROVED — школьные классы 5–11 |
+| Intended pilot size | [FILL — численный максимум не указан Controller] |
+| Responsible support contact | APPROVED — родитель(и)/законный представитель(и), дающие согласие до начала обучения |
+| Incident-response owner | APPROVED — родитель(и)/законный представитель(и), дающие согласие до начала обучения |
 
 ## Authorization
 
 | Decision | Result / procedure |
 |---|---|
-| Participant/guardian authorization required? | [FILL] |
-| Who is authorized to give it? | [FILL] |
-| How authorization is obtained before enrollment | [FILL] |
-| How authorization is recorded | [FILL] |
-| How withdrawal is requested | [FILL] |
-| What happens immediately after withdrawal | [FILL] |
+| Participant/guardian authorization required? | YES — APPROVED (B1) |
+| Who is authorized to give it? | Родитель/законный представитель |
+| How authorization is obtained before enrollment | Явное разрешение родителя/законного представителя до включения ребёнка |
+| How authorization is recorded | Оператор/родитель фиксирует согласие вне child-facing приложения |
+| How withdrawal is requested | Запрос родителя/законного представителя |
+| What happens immediately after withdrawal | Участник прекращает участие; данные удаляются по утверждённой процедуре |
 
 STOP enrollment until the applicable authorization process is explicitly defined for the intended jurisdiction/setting.
 
@@ -39,15 +39,15 @@ Known repository fact: default local data location is `~/.repetitor` unless laun
 | Decision / rehearsal | Result |
 |---|---|
 | Actual deployment data directory verified | NOT TESTED |
-| Backup owner assigned | [FILL] |
+| Backup owner assigned | APPROVED POLICY — только synthetic/test backup; production learner-data backup требует отдельного одобрения |
 | Synthetic backup executed | NOT TESTED |
 | Synthetic restore executed | NOT TESTED |
 | Restored application state verified | NOT TESTED |
-| Retention period | [FILL] |
-| Deletion trigger | [FILL] |
-| Deletion procedure | [FILL] |
-| Withdrawal/deletion request route | [FILL] |
-| Support route | [FILL] |
+| Retention period | APPROVED — активный пилот + 30 дней |
+| Deletion trigger | APPROVED — окончание retention, withdrawal/request или выход из пилота |
+| Deletion procedure | APPROVED — удалить локальную SQLite DB и любые одобренные копии/диагностические материалы, содержащие данные участника |
+| Withdrawal/deletion request route | APPROVED — через родителя/законного представителя |
+| Support route | APPROVED — через родителя/законного представителя, давшего согласие |
 
 ## Exact-build external-transfer check
 
@@ -57,11 +57,11 @@ Repository design indicates a local/offline core, but that is not sufficient for
 |---|---|
 | Exact candidate launched from verified artifact | NOT TESTED |
 | Unexpected outbound connection observed during normal learning flow | NOT TESTED |
-| External child/learner data transfer enabled | [FILL YES/NO] |
-| If YES: destination/provider | [FILL / N/A] |
-| If YES: exact fields transferred | [FILL / N/A] |
-| If YES: purpose and authorization | [FILL / N/A] |
-| If YES: retention/deletion path | [FILL / N/A] |
+| External child/learner data transfer enabled | PROHIBITED BY APPROVED POLICY; exact-build observation still NOT TESTED |
+| If YES: destination/provider | N/A under approved policy |
+| If YES: exact fields transferred | N/A under approved policy |
+| If YES: purpose and authorization | N/A under approved policy |
+| If YES: retention/deletion path | N/A under approved policy |
 
 If any unreviewed production network AI or child-data destination is enabled, STOP the pilot until separately reviewed and approved.
 
@@ -69,11 +69,11 @@ If any unreviewed production network AI or child-data destination is enabled, ST
 
 | Field | Decision |
 |---|---|
-| How an incident is reported | [FILL] |
-| Who receives it | [FILL] |
-| How affected local data is preserved without unnecessary copying | [FILL] |
-| How participant/guardian communication is handled if required | [FILL] |
-| How learner data is kept out of issue trackers/screenshots/log excerpts | [FILL] |
+| How an incident is reported | APPROVED — участник/родитель сообщает родителю/законному представителю, ведущему домашнее обучение |
+| Who receives it | APPROVED — родитель(и)/законный представитель(и), давшие согласие |
+| How affected local data is preserved without unnecessary copying | APPROVED — остановить затронутую сессию; сохранять исходные локальные данные на месте где возможно; использовать tested backup только при необходимости |
+| How participant/guardian communication is handled if required | APPROVED — через родителя/законного представителя; legal-jurisdiction-specific obligations remain [FILL] |
+| How learner data is kept out of issue trackers/screenshots/log excerpts | APPROVED — не включать персональные данные ребёнка; редактировать/обезличивать перед передачей |
 
 ## Completion
 
