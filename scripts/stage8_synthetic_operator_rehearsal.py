@@ -4,7 +4,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import shutil
 import sqlite3
 import sys
 from contextlib import closing
@@ -85,11 +84,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--expected-build-sha", required=True)
     parser.add_argument("--observed-build-sha", required=True)
     parser.add_argument("--evidence-json", required=True, type=Path)
-    parser.add_argument(
-        "--delete-synthetic-data",
-        action="store_true",
-        help="After successful backup/restore verification, delete synthetic source/backup/restore data.",
-    )
     return parser.parse_args()
 
 
@@ -138,17 +132,8 @@ def main() -> int:
         "backup_sha256": backup_hash,
         "restored_sha256": restored_hash,
         "backup_restore_verified": True,
-        "delete_requested": bool(args.delete_synthetic_data),
-        "delete_verified": False,
+        "withdrawal_deletion_not_performed_by_helper": True,
     }
-
-    if args.delete_synthetic_data:
-        shutil.rmtree(data_dir)
-        shutil.rmtree(backup_dir)
-        shutil.rmtree(restore_dir)
-        result["delete_verified"] = not any(
-            p.exists() for p in (data_dir, backup_dir, restore_dir)
-        )
 
     args.evidence_json.parent.mkdir(parents=True, exist_ok=True)
     args.evidence_json.write_text(
