@@ -11,9 +11,9 @@ This packet collects only decisions that cannot be derived safely from source co
 Please approve/fill:
 
 - Pilot operator/controller role: **APPROVED — самостоятельное домашнее обучение; без отдельной организации-оператора**.
-- Pilot setting: **APPROVED — самостоятельное домашнее обучение**. Legal jurisdiction (country/region): **[FILL — not specified by Controller]**.
+- Pilot setting: **APPROVED — самостоятельное домашнее обучение**. Legal jurisdiction (country/region): **APPROVED — Russia**.
 - Intended participant range: **APPROVED — school grades 5 through 11**.
-- Intended pilot size (maximum simultaneous/total participants): **[FILL — not specified by Controller]**.
+- Intended pilot size (maximum simultaneous/total participants): **APPROVED — maximum 10 participants**.
 - Responsible support role: **APPROVED — parent(s)/guardian(s) who provide authorization at the start of learning**.
 - Incident-response role: **APPROVED — parent(s)/guardian(s) who provide authorization at the start of learning**.
 
@@ -86,7 +86,7 @@ After the Controller supplies/approves A–E, the assistant may:
 - update issue #3 with the approved Controller decisions;
 - keep operational PR-10 BLOCKED until actual synthetic backup/restore and exact-build external-transfer checks are performed.
 
-Controller decision: **PARTIALLY APPROVED / RECORDED** — A–E approved as above except legal jurisdiction and maximum pilot size remain unresolved. Human content reviewer: **Controller (user) or another reviewer explicitly appointed by the Controller**.
+Controller decision: **APPROVED / RECORDED for policy and pilot scope** — legal jurisdiction: Russia; maximum pilot size: 10 participants. Human content reviewer: **Controller (user) or another reviewer explicitly appointed by the Controller**. Execution-dependent checks remain separate and NOT TESTED until performed.
 
 ## What this does not approve
 
