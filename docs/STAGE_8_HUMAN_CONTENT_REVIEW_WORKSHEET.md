@@ -4,6 +4,8 @@ Status: PREPARED / NOT REVIEWED. This worksheet is generated from exact audit ca
 
 Review each row for: age/grade clarity, mathematical semantic clarity, non-humiliating/non-manipulative wording, unsupported claims, pressure-to-continue, and consistency with actual behavior. Enter PASS or FAIL only after a human reads the exact text in context.
 
+Optional local review helper: `python scripts/stage8_content_review_cli.py review stage8-content-review.json`. It saves progress and validates all 135 rows fail-closed; it does not perform the human review automatically.
+
 Candidate bindings:
 - CI `37304924020`
 - Pilot Build `37304924030`
