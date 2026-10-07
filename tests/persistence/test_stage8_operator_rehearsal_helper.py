@@ -41,7 +41,6 @@ def test_stage8_rehearsal_helper_backup_restore_and_delete(tmp_path: Path) -> No
             CANDIDATE,
             "--evidence-json",
             str(evidence),
-            "--delete-synthetic-data",
         ],
         cwd=ROOT,
         text=True,
@@ -52,11 +51,13 @@ def test_stage8_rehearsal_helper_backup_restore_and_delete(tmp_path: Path) -> No
     assert result.returncode == 0, result.stderr
     record = json.loads(evidence.read_text(encoding="utf-8"))
     assert record["backup_restore_verified"] is True
-    assert record["delete_verified"] is True
+    assert record["withdrawal_deletion_not_performed_by_helper"] is True
     assert record["expected_build_sha"] == CANDIDATE
     assert record["observed_build_sha"] == CANDIDATE
     assert record["synthetic_only"] is True
-    assert not data_dir.exists()
+    assert data_dir.exists()
+    assert (tmp_path / "synthetic-data-stage8-backup" / "repetitor.sqlite3").exists()
+    assert (tmp_path / "synthetic-data-stage8-restore" / "repetitor.sqlite3").exists()
 
 
 def test_stage8_rehearsal_helper_fails_closed_on_build_sha_mismatch(tmp_path: Path) -> None:
