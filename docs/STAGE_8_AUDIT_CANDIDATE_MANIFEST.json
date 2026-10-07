@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "stage": 8,
   "status": "audit_candidate",
   "final_candidate_nominated": false,
@@ -45,5 +45,30 @@
     "pr_08_accessibility": 2,
     "pr_10_content_operations": 3,
     "pr_14_final_candidate": 4
+  },
+  "controller_scope": {
+    "jurisdiction": "Russia",
+    "setting": "independent_home_learning",
+    "participant_grades": {
+      "min": 5,
+      "max": 11
+    },
+    "max_participants": 10,
+    "authorization_model": "B1_guardian_before_enrollment",
+    "retention": {
+      "active_pilot_plus_days": 30,
+      "early_deletion_on_withdrawal_or_request": true
+    },
+    "backups": "synthetic_test_only_unless_separately_approved",
+    "prohibited_network_data_uses": [
+      "production_child_sync",
+      "public_recovery",
+      "external_ai_llm_with_learner_data",
+      "external_learner_data_telemetry_analytics"
+    ],
+    "support_incident_role": "authorizing_parent_or_legal_guardian",
+    "human_content_reviewer": "controller_or_controller_appointee",
+    "policy_scope_status": "approved",
+    "execution_status": "pending_manual_evidence"
   }
 }
