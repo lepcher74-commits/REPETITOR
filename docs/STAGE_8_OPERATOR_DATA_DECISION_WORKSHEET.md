@@ -13,9 +13,9 @@ This worksheet captures PR-10 operational decisions. It is not legal advice or a
 | Field | Decision |
 |---|---|
 | Pilot operator/controller legal or organizational role | APPROVED — самостоятельное домашнее обучение; без отдельной организации-оператора |
-| Jurisdiction / setting | Setting APPROVED — самостоятельное домашнее обучение; legal jurisdiction [FILL] |
+| Jurisdiction / setting | APPROVED — Russia; самостоятельное домашнее обучение |
 | Intended participant age range | APPROVED — школьные классы 5–11 |
-| Intended pilot size | [FILL — численный максимум не указан Controller] |
+| Intended pilot size | APPROVED — maximum 10 participants |
 | Responsible support contact | APPROVED — родитель(и)/законный представитель(и), дающие согласие до начала обучения |
 | Incident-response owner | APPROVED — родитель(и)/законный представитель(и), дающие согласие до начала обучения |
 
@@ -72,7 +72,7 @@ If any unreviewed production network AI or child-data destination is enabled, ST
 | How an incident is reported | APPROVED — участник/родитель сообщает родителю/законному представителю, ведущему домашнее обучение |
 | Who receives it | APPROVED — родитель(и)/законный представитель(и), давшие согласие |
 | How affected local data is preserved without unnecessary copying | APPROVED — остановить затронутую сессию; сохранять исходные локальные данные на месте где возможно; использовать tested backup только при необходимости |
-| How participant/guardian communication is handled if required | APPROVED — через родителя/законного представителя; legal-jurisdiction-specific obligations remain [FILL] |
+| How participant/guardian communication is handled if required | APPROVED — через родителя/законного представителя; jurisdiction: Russia; applicable legal notification obligations must be followed by the operator |
 | How learner data is kept out of issue trackers/screenshots/log excerpts | APPROVED — не включать персональные данные ребёнка; редактировать/обезличивать перед передачей |
 
 ## Completion
