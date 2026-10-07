@@ -7,6 +7,7 @@ import json
 import shutil
 import sqlite3
 import sys
+from contextlib import closing
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -23,7 +24,7 @@ def db_health(path: Path) -> dict:
     if not path.is_file():
         raise DrillError(f"Database does not exist: {path}")
     try:
-        with sqlite3.connect(path) as connection:
+        with closing(sqlite3.connect(path)) as connection:
             integrity = connection.execute("PRAGMA integrity_check").fetchone()
             tables = {
                 str(row[0])
@@ -56,7 +57,7 @@ def sqlite_backup(source: Path, destination: Path) -> None:
     if destination.exists():
         raise DrillError(f"Backup destination already exists: {destination}")
     destination.parent.mkdir(parents=True, exist_ok=True)
-    with sqlite3.connect(source) as source_db, sqlite3.connect(destination) as backup_db:
+    with closing(sqlite3.connect(source)) as source_db, closing(sqlite3.connect(destination)) as backup_db:
         source_db.backup(backup_db)
     db_health(destination)
 
@@ -67,7 +68,7 @@ def sqlite_restore(backup: Path, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     temp = destination.with_name(destination.name + ".restore.tmp")
     temp.unlink(missing_ok=True)
-    with sqlite3.connect(backup) as backup_db, sqlite3.connect(temp) as restored_db:
+    with closing(sqlite3.connect(backup)) as backup_db, closing(sqlite3.connect(temp)) as restored_db:
         backup_db.backup(restored_db)
     db_health(temp)
     temp.replace(destination)
