@@ -10,7 +10,7 @@ Candidate bindings:
 - learner-visible YAML fingerprint `852ccdcaa0c2a243a06335dccaa5cd9a33f93953ab85013c60527f7a370c6258`
 - runtime UI fingerprint `39ffd7cc0e2a0fae1be9613e3722e17d90f0846bfa6b49fe86faba70ec42b438`
 
-Reviewer: [FILL]
+Reviewer: [FILL actual reviewer — Controller or reviewer explicitly appointed by Controller]
 Review date: [FILL]
 Intended age/grade context: [FILL]
 
