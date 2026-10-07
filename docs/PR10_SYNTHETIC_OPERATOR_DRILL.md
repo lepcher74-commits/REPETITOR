@@ -35,8 +35,8 @@ Stop and mark FAIL if any step risks a real participant's data. Do not use autom
 
 ## C. Admission and content gates
 
-- Pilot owner/role: APPROVED — independent home learning, parent/legal guardian operator. Setting: APPROVED — home learning. Legal jurisdiction (country/region): [FILL].
-- Participant scope: APPROVED — school grades 5–11. Numeric pilot-size maximum, actual location/jurisdiction and supported OS/assistive-technology combinations: [FILL / NOT TESTED].
+- Pilot owner/role: APPROVED — independent home learning, parent/legal guardian operator. Setting: APPROVED — home learning. Legal jurisdiction: APPROVED — Russia.
+- Participant scope: APPROVED — school grades 5–11. Numeric pilot-size maximum: APPROVED — 10 participants. Supported OS/assistive-technology combinations remain NOT TESTED.
 - Guardian-authority model: APPROVED B1 — explicit parent/legal-guardian authorization before enrollment, recorded outside the child-facing app; withdrawal route through parent/legal guardian. Actual per-participant execution: NOT TESTED.
 - Human content reviewer: APPROVED ROLE — Controller or reviewer explicitly appointed by Controller. Exact candidate/content binding is prepared; 135-row human review remains NOT TESTED.
 - Data-transfer policy: APPROVED — no production child sync, public recovery, external AI/LLM with learner data, or external learner-data telemetry/analytics. Exact-build operational observation remains NOT TESTED.
