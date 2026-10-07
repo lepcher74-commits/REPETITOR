@@ -33,10 +33,10 @@ plus 30 days with earlier withdrawal/request deletion; synthetic/test backups
 only unless separately approved; and no production child sync, public recovery,
 external AI/LLM with learner data, or external learner-data telemetry/analytics.
 Support/incident role is the parent/legal guardian providing authorization.
-The operator must still record legal jurisdiction (country/region), numeric
-pilot-size maximum, actual contact/channel details, exact-build network
-observation, synthetic backup/restore rehearsal and the completed human content
-review. Use PILOT_MANUAL_GATE_RECORD.md, PILOT_DATA_OPERATIONS_TEMPLATE.md and
+Legal jurisdiction is approved as Russia and maximum pilot size is approved as
+10 participants. The operator must still record actual contact/channel details,
+exact-build network observation, synthetic backup/restore rehearsal and the
+completed human content review. Use PILOT_MANUAL_GATE_RECORD.md, PILOT_DATA_OPERATIONS_TEMPLATE.md and
 STAGE_8_CONTROLLER_DECISION_PACKET.md. Do not treat mailbox ownership alone as
 guardian authority and do not enable prohibited network features.
 
