@@ -98,7 +98,7 @@ This fingerprint covers problem prompts, multiple-choice labels, authored hint t
 
 Audit candidate SHA reviewed: [FILL]
 
-Reviewer / role: [FILL]
+Reviewer / role: [FILL actual reviewer — Controller or reviewer explicitly appointed by Controller]
 
 Review date: [FILL]
 
