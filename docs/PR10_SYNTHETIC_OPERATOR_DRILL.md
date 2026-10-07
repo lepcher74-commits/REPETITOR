@@ -2,6 +2,8 @@
 
 Status: NOT EXECUTED. Use only invented test records, never a real child's profile. This worksheet does not replace guardian verification, legal review, actual content sign-off or accessibility audit.
 
+Optional helper: `python scripts/stage8_operator_drill_cli.py init stage8-operator-drill.json`, then record verified Windows/macOS artifacts and run `review`. The helper remains fail-closed and does not perform the observations for the operator.
+
 ## Before starting
 
 - Operator/reviewer: parent/legal guardian conducting independent home learning [APPROVED ROLE]; date: [FILL]; audit candidate SHA: `983d04c564879f9ff8b6de110497901279073aeb`; artifact ID: [FILL WINDOWS/MACOS USED].
