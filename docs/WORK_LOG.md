@@ -707,3 +707,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Updated `STAGE_8_OPERATOR_HANDOFF.md` to distinguish already approved Controller policy from remaining execution items: jurisdiction, numeric pilot maximum, actual contact/channel details, exact-build network observation, synthetic backup/restore rehearsal and 135-row human content review.
 - Exact-candidate CI `37304924020` previously ran `pytest -q` with **189 passed**, including the repository's backup/restore tests. This remains supporting mechanism evidence only and does not replace the operator drill.
 - No runtime/content candidate changed; `983d04c...` remains the audit candidate. PR-08/PR-10 remain BLOCKED pending human execution; final candidate remains NOT NOMINATED.
+
+
+## 2026-10-07 — Controller pilot scope completed
+- Controller finalized legal jurisdiction as **Russia** and maximum pilot size as **10 participants**.
+- Reconciled both values into all current PR-10 Controller/operator records: STAGE_8_CONTROLLER_DECISION_PACKET.md, STAGE_8_OPERATOR_DATA_DECISION_WORKSHEET.md, PILOT_DATA_OPERATIONS_TEMPLATE.md, PILOT_MANUAL_GATE_RECORD.md, PR10_SYNTHETIC_OPERATOR_DRILL.md, STAGE_8_PR10_OPERATOR_DECISION_PACKET.md and STAGE_8_OPERATOR_HANDOFF.md.
+- Controller policy/scope is now fully specified. Remaining PR-10 blockers are execution evidence only: 135-row human content review, synthetic operator drill, exact-build network observation and actual rehearsal/contact-channel evidence.
+- PR-08 manual Windows Narrator/macOS VoiceOver observation remains independent. Final candidate remains NOT NOMINATED; PR-14 remains BLOCKED.
