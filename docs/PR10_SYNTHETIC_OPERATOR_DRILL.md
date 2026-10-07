@@ -4,9 +4,9 @@ Status: NOT EXECUTED. Use only invented test records, never a real child's profi
 
 ## Before starting
 
-- Operator/reviewer: [FILL]; date: [FILL]; audit candidate SHA and artifact ID: [FILL].
+- Operator/reviewer: parent/legal guardian conducting independent home learning [APPROVED ROLE]; date: [FILL]; audit candidate SHA: `983d04c564879f9ff8b6de110497901279073aeb`; artifact ID: [FILL WINDOWS/MACOS USED].
 - Approved test machine and OS: [FILL]; test data directory (not a real participant's directory): [FILL].
-- Planned backup location and owner: [FILL]; approved local retention period: [FILL]; support and incident contacts: [FILL].
+- Planned backup location and owner: synthetic/test only unless separately approved [POLICY APPROVED]; approved local retention period: active pilot + 30 days with earlier withdrawal/request deletion; support and incident role: parent(s)/legal guardian(s) who provided authorization.
 - Keep all evidence sanitized. Do not commit names of children, parent emails, SQLite databases, logs containing personal data or recovery tokens.
 
 ## A. Local data, backup, restore and withdrawal rehearsal
@@ -35,11 +35,11 @@ Stop and mark FAIL if any step risks a real participant's data. Do not use autom
 
 ## C. Admission and content gates
 
-- Pilot owner, role and jurisdiction: [FILL / NOT APPROVED].
-- Participant age range, locations, OS/assistive technology support: [FILL / NOT APPROVED].
-- Documented guardian-authority verification and withdrawal process (mailbox ownership alone is insufficient): [FILL / NOT APPROVED].
-- Complete learner-visible content reviewer, exact content SHA, reviewed prompts/hints/explanations/feedback and disposition of issues: [FILL / NOT APPROVED].
-- Data-transfer inventory: default offline only; any proposed network recovery, sync or AI integration requires separate explicit review. [CONFIRM / NOT APPROVED].
+- Pilot owner/role: APPROVED — independent home learning, parent/legal guardian operator. Setting: APPROVED — home learning. Legal jurisdiction (country/region): [FILL].
+- Participant scope: APPROVED — school grades 5–11. Numeric pilot-size maximum, actual location/jurisdiction and supported OS/assistive-technology combinations: [FILL / NOT TESTED].
+- Guardian-authority model: APPROVED B1 — explicit parent/legal-guardian authorization before enrollment, recorded outside the child-facing app; withdrawal route through parent/legal guardian. Actual per-participant execution: NOT TESTED.
+- Human content reviewer: APPROVED ROLE — Controller or reviewer explicitly appointed by Controller. Exact candidate/content binding is prepared; 135-row human review remains NOT TESTED.
+- Data-transfer policy: APPROVED — no production child sync, public recovery, external AI/LLM with learner data, or external learner-data telemetry/analytics. Exact-build operational observation remains NOT TESTED.
 
 ## Evidence disposition
 
