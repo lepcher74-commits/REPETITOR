@@ -6,8 +6,8 @@ Audit candidate SHA observed: [FILL]
 Final candidate SHA after any required fixes: [FILL AT FINAL CANDIDATE NOMINATION]
 Date: [FILL WHEN FINAL MANUAL GATE IS EXECUTED]
 Reviewer/operator: [ROLE OR IDENTIFIER]
-Pilot jurisdiction: [FILL]
-Intended participant age range: [FILL]
+Pilot jurisdiction: [FILL — legal country/region not specified]; setting: самостоятельное домашнее обучение
+Intended participant age range: APPROVED — школьные классы 5–11
 
 Use PASS, FAIL, or NOT TESTED. A NOT TESTED or FAIL required row blocks pilot release. Historical observations belong in dated audit/evidence records; this file represents only the final nominated candidate.
 
@@ -42,12 +42,12 @@ Reviewer reads every learner-visible prompt, hint, explanation and feedback in t
 
 | Requirement | Result | Recorded decision |
 |---|---|---|
-| Operator/controller role identified | NOT TESTED | [FILL] |
-| Applicable participant/guardian authorization process defined | NOT TESTED | [FILL] |
-| Support contact defined | NOT TESTED | [FILL] |
-| Local-data retention period defined | NOT TESTED | [FILL] |
-| Withdrawal/deletion procedure defined | NOT TESTED | [FILL] |
-| No unreviewed production network AI provider enabled | NOT TESTED | Verify the exact final candidate/build; do not inherit an earlier candidate result |
+| Operator/controller role identified | PASS | Самостоятельное домашнее обучение; без отдельной организации-оператора |
+| Applicable participant/guardian authorization process defined | PASS | B1: явное разрешение родителя/законного представителя до включения ребёнка; согласие фиксируется вне child-facing приложения |
+| Support contact defined | PASS | Родитель(и)/законный представитель(и), давшие согласие |
+| Local-data retention period defined | PASS | Активный пилот + 30 дней; досрочно удалить по withdrawal/request или при выходе из пилота |
+| Withdrawal/deletion procedure defined | PASS | Запрос через родителя/законного представителя; удалить локальные данные и одобренные копии/диагностические материалы участника |
+| No unreviewed production network AI provider enabled | NOT TESTED | Policy APPROVED: production child sync/public recovery/external AI-LLM with learner data/external learner-data telemetry are prohibited. Exact-build operational verification still required |
 
 ## Release decision
 
