@@ -26,13 +26,19 @@ and visible focus.
 
 ## 3. PR-10 operational and child-safety evidence
 
-The operator must enter its actual identity/role, applicable jurisdiction,
-intended pilot participants, verified legal guardian authorization process,
-support and incident contacts, retention period, withdrawal/deletion workflow,
-and complete age-appropriateness review of every learner-visible pilot item.
-Use PILOT_MANUAL_GATE_RECORD.md and PILOT_DATA_OPERATIONS_TEMPLATE.md.
-Record who approved each decision and when. A mailbox challenge is not
-guardian verification; do not enable cloud sync or public recovery.
+Controller-approved PR-10 policy is already recorded: independent home learning
+with parent/legal-guardian operator role; school grades 5–11; B1 explicit
+guardian authorization before enrollment; local retention for active pilot
+plus 30 days with earlier withdrawal/request deletion; synthetic/test backups
+only unless separately approved; and no production child sync, public recovery,
+external AI/LLM with learner data, or external learner-data telemetry/analytics.
+Support/incident role is the parent/legal guardian providing authorization.
+The operator must still record legal jurisdiction (country/region), numeric
+pilot-size maximum, actual contact/channel details, exact-build network
+observation, synthetic backup/restore rehearsal and the completed human content
+review. Use PILOT_MANUAL_GATE_RECORD.md, PILOT_DATA_OPERATIONS_TEMPLATE.md and
+STAGE_8_CONTROLLER_DECISION_PACKET.md. Do not treat mailbox ownership alone as
+guardian authority and do not enable prohibited network features.
 
 ## 4. Submit evidence and freeze
 
