@@ -8,6 +8,8 @@ macOS artifact: `11342674307`
 
 Purpose: verify the packaged application does not create unexpected outbound connections during the approved offline learning flow. This is an operational observation, not a source-code inference.
 
+Artifact verification/evidence helper: `python scripts/stage8_operator_drill_cli.py record-artifact stage8-operator-drill.json <windows|macos> <artifact.zip>`. Network observations themselves must still be made by the operator.
+
 ## Why observation is required
 
 The packaged Python/PySide runtime contains generic networking-capable libraries (for example Python socket/SSL components and QtNetwork) as transitive runtime dependencies. Their presence does not prove network use, but it means absence of an explicit application HTTP client dependency is not sufficient evidence by itself.
