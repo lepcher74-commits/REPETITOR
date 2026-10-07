@@ -1,6 +1,6 @@
 # Stage 8 PR-10 — operator decision packet (draft, not authorization)
 
-Status: PARTIALLY APPROVED / EXECUTION PENDING. Controller-approved setting: independent home learning; participant scope: school grades 5–11. Legal jurisdiction (country/region) and numeric pilot-size maximum remain unresolved. This packet is a decision aid, not evidence of legal compliance or consent.
+Status: POLICY/SCOPE APPROVED / EXECUTION PENDING. Controller-approved setting: independent home learning; participant scope: school grades 5–11; legal jurisdiction: Russia; maximum pilot size: 10 participants. This packet is a decision aid, not evidence of legal compliance or consent.
 
 ## 1. Required named decisions
 
@@ -9,7 +9,7 @@ Record each decision in `PILOT_MANUAL_GATE_RECORD.md` and `PILOT_DATA_OPERATIONS
 | Decision | Operator must supply | Gate condition |
 |---|---|---|
 | Pilot owner | APPROVED role: parent/legal guardian conducting independent home learning; no separate organization-operator | Identified and accepted |
-| Population | APPROVED: school grades 5–11; numeric maximum and actual jurisdiction/location remain to be recorded | Partially bounded |
+| Population | APPROVED: school grades 5–11; maximum 10 participants; jurisdiction Russia | Bounded and recorded |
 | Guardian authority | APPROVED B1: explicit parent/legal-guardian authorization before enrollment, recorded outside child-facing app; withdrawal via parent/legal guardian | Policy approved; per-participant execution pending |
 | Pilot support | APPROVED role: parent(s)/legal guardian(s) providing authorization; actual contact/channel and rehearsal still required | Execution pending |
 | Local data | Data inventory, storage device ownership, access controls, retention trigger/period and secure disposal workflow | Documented and rehearsed with synthetic data |
