@@ -6,7 +6,7 @@ Audit candidate SHA observed: [FILL]
 Final candidate SHA after any required fixes: [FILL AT FINAL CANDIDATE NOMINATION]
 Date: [FILL WHEN FINAL MANUAL GATE IS EXECUTED]
 Reviewer/operator: [ROLE OR IDENTIFIER]
-Pilot jurisdiction: [FILL — legal country/region not specified]; setting: самостоятельное домашнее обучение
+Pilot jurisdiction: APPROVED — Russia; setting: самостоятельное домашнее обучение
 Intended participant age range: APPROVED — школьные классы 5–11
 
 Use PASS, FAIL, or NOT TESTED. A NOT TESTED or FAIL required row blocks pilot release. Historical observations belong in dated audit/evidence records; this file represents only the final nominated candidate.
