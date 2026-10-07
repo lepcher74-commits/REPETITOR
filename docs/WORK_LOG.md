@@ -684,3 +684,10 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Bound issue numbers into STAGE_8_AUDIT_CANDIDATE_MANIFEST.json in 91ac206... and added CI assertion in 6de3390....
 - Evidence matrix recorded the tracking structure in 5367577....
 - No human result was inferred and no final candidate was nominated.
+
+
+## 2026-10-07 — Stage 8 Controller decision packet prepared
+- Added `docs/STAGE_8_CONTROLLER_DECISION_PACKET.md` (406d978...) to collect only decisions that cannot be derived from code/CI/artifacts: operator role, jurisdiction/setting, participant age/pilot size, authorization model, retention/deletion, external-transfer restriction, support and incident ownership/process.
+- Packet proposes minimal-risk defaults for Controller approval/replacement but does not mark them approved.
+- Linked the packet from the manual audit packet in 9dcc52d... and referenced it in PR-10 issue #3.
+- Operational PR-10 remains BLOCKED until Controller decisions are supplied and actual rehearsal/network checks are performed. PR-08 remains manual-only; final candidate remains NOT NOMINATED.
