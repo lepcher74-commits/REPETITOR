@@ -4,6 +4,7 @@ import json
 import sqlite3
 import subprocess
 import sys
+from contextlib import closing
 from pathlib import Path
 
 from repetitor.persistence import SQLiteLearningRepository, SQLiteProfileRepository
@@ -16,9 +17,10 @@ CANDIDATE = "983d04c564879f9ff8b6de110497901279073aeb"
 def make_db(path: Path) -> None:
     SQLiteLearningRepository(path).initialize()
     SQLiteProfileRepository(path).initialize()
-    with sqlite3.connect(path) as connection:
+    with closing(sqlite3.connect(path)) as connection:
         connection.execute("CREATE TABLE rehearsal_probe (value TEXT NOT NULL)")
         connection.execute("INSERT INTO rehearsal_probe VALUES ('synthetic')")
+        connection.commit()
 
 
 def test_stage8_rehearsal_helper_backup_restore_and_delete(tmp_path: Path) -> None:
