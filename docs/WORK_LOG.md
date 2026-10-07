@@ -699,3 +699,11 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Applied decisions to STAGE_8_CONTROLLER_DECISION_PACKET.md (7503dae...), STAGE_8_OPERATOR_DATA_DECISION_WORKSHEET.md (050e897...), PILOT_DATA_OPERATIONS_TEMPLATE.md (aa4ee40...) and PILOT_MANUAL_GATE_RECORD.md (a326e0e...).
 - Deliberately left legal jurisdiction (country/region), numeric pilot-size maximum, exact-build operational network observation, backup/restore rehearsal, human 135-row content review and PR-08 accessibility observations unresolved/not tested.
 - Operational policy rows that were genuinely decided by the Controller are marked PASS in PILOT_MANUAL_GATE_RECORD; overall manual gate remains BLOCKED.
+
+
+## 2026-10-07 — stale PR-10 handoff assumptions removed
+- Reconciled older PR-10 execution documents with the Controller-approved policy. `PR10_SYNTHETIC_OPERATOR_DRILL.md` now carries the exact audit candidate and approved operator/authorization/retention/network/support policy while leaving actual drill observations NOT TESTED.
+- Removed the unapproved "Russian pilot" jurisdiction assumption from `STAGE_8_PR10_OPERATOR_DECISION_PACKET.md`; legal country/region and numeric pilot-size maximum remain explicitly unresolved.
+- Updated `STAGE_8_OPERATOR_HANDOFF.md` to distinguish already approved Controller policy from remaining execution items: jurisdiction, numeric pilot maximum, actual contact/channel details, exact-build network observation, synthetic backup/restore rehearsal and 135-row human content review.
+- Exact-candidate CI `37304924020` previously ran `pytest -q` with **189 passed**, including the repository's backup/restore tests. This remains supporting mechanism evidence only and does not replace the operator drill.
+- No runtime/content candidate changed; `983d04c...` remains the audit candidate. PR-08/PR-10 remain BLOCKED pending human execution; final candidate remains NOT NOMINATED.
