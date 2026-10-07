@@ -34,7 +34,7 @@ How participant/guardian communication is handled when required: APPROVED ROLE â
 - [ ] `--data-dir` behavior and actual deployment data directory verified.
 - [ ] Primary SQLite database and startup-log locations verified on deployed build.
 - [ ] Backup/restore rehearsal completed with synthetic data using `DATA_BACKUP_RECOVERY.md`.
-- [ ] Network/external-transfer behavior verified on the exact candidate; destinations/fields documented if any.
+- [ ] Network/external-transfer behavior verified on the exact candidate using `STAGE_8_EXACT_BUILD_NETWORK_OBSERVATION.md`; destinations/fields documented if any.
 - [ ] Retention, deletion/withdrawal, support and incident roles filled by the real operator.
 
 Status: [BLOCKED / APPROVED FOR STATED PILOT]
