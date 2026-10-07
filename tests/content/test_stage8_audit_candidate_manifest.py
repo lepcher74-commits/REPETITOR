@@ -63,3 +63,38 @@ def test_stage8_review_inventory_matches_manifest_fingerprints() -> None:
     text = (ROOT / "docs/PILOT_CONTENT_REVIEW_INVENTORY.md").read_text(encoding="utf-8")
     assert data["review_bindings"]["learner_visible_yaml_sha256"] in text
     assert data["review_bindings"]["runtime_ui_source_sha256"] in text
+
+
+def test_stage8_manifest_binds_controller_scope_without_claiming_execution() -> None:
+    data = _manifest()
+    scope = data["controller_scope"]
+    assert data["schema_version"] >= 2
+    assert scope["jurisdiction"] == "Russia"
+    assert scope["setting"] == "independent_home_learning"
+    assert scope["participant_grades"] == {"min": 5, "max": 11}
+    assert scope["max_participants"] == 10
+    assert scope["authorization_model"] == "B1_guardian_before_enrollment"
+    assert scope["retention"] == {
+        "active_pilot_plus_days": 30,
+        "early_deletion_on_withdrawal_or_request": True,
+    }
+    assert scope["backups"] == "synthetic_test_only_unless_separately_approved"
+    assert set(scope["prohibited_network_data_uses"]) == {
+        "production_child_sync",
+        "public_recovery",
+        "external_ai_llm_with_learner_data",
+        "external_learner_data_telemetry_analytics",
+    }
+    assert scope["support_incident_role"] == "authorizing_parent_or_legal_guardian"
+    assert scope["human_content_reviewer"] == "controller_or_controller_appointee"
+    assert scope["policy_scope_status"] == "approved"
+    assert scope["execution_status"] == "pending_manual_evidence"
+
+    decision_packet = (ROOT / "docs/STAGE_8_CONTROLLER_DECISION_PACKET.md").read_text(encoding="utf-8")
+    operator_sheet = (ROOT / "docs/STAGE_8_OPERATOR_DATA_DECISION_WORKSHEET.md").read_text(encoding="utf-8")
+    manual_gate = (ROOT / "docs/PILOT_MANUAL_GATE_RECORD.md").read_text(encoding="utf-8")
+
+    for text in (decision_packet, operator_sheet, manual_gate):
+        assert "Russia" in text
+    assert "10 participants" in decision_packet
+    assert "10 participants" in operator_sheet
