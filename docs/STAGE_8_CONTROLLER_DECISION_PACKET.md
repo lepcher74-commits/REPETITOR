@@ -10,12 +10,12 @@ This packet collects only decisions that cannot be derived safely from source co
 
 Please approve/fill:
 
-- Pilot operator/controller legal or organizational role: [DECIDE]
-- Jurisdiction / setting in which the pilot will run: [DECIDE]
-- Intended participant age range: [DECIDE]
-- Intended pilot size (maximum simultaneous/total participants): [DECIDE]
-- Responsible support contact or role: [DECIDE]
-- Incident-response owner or role: [DECIDE]
+- Pilot operator/controller role: **APPROVED — самостоятельное домашнее обучение; без отдельной организации-оператора**.
+- Pilot setting: **APPROVED — самостоятельное домашнее обучение**. Legal jurisdiction (country/region): **[FILL — not specified by Controller]**.
+- Intended participant range: **APPROVED — school grades 5 through 11**.
+- Intended pilot size (maximum simultaneous/total participants): **[FILL — not specified by Controller]**.
+- Responsible support role: **APPROVED — parent(s)/guardian(s) who provide authorization at the start of learning**.
+- Incident-response role: **APPROVED — parent(s)/guardian(s) who provide authorization at the start of learning**.
 
 ## B. Authorization model
 
@@ -35,7 +35,7 @@ Choose and approve one model appropriate to the intended setting:
 ### Option B3 — other
 Describe the exact authorization basis/process: [DECIDE]
 
-Selected authorization model: [DECIDE]
+Selected authorization model: **APPROVED — B1, guardian authorization before enrollment**.
 
 ## C. Data retention and deletion
 
@@ -48,8 +48,8 @@ Recommended minimal-risk pilot defaults for Controller approval or replacement:
 - Deletion scope: local SQLite DB, any operator-created backup containing that learner, and any copied diagnostic material containing learner data.
 - Issue trackers/screenshots/log excerpts must not contain learner personal data.
 
-Approve these defaults: YES / NO
-If NO, replacement retention/deletion policy: [DECIDE]
+Approve these defaults: **YES — APPROVED**
+Approved retention/deletion policy: **local learner data retained only for the active pilot plus 30 days; delete earlier on withdrawal/request; synthetic/test backups only unless separately approved**.
 
 ## D. External transfer / network policy
 
@@ -61,8 +61,8 @@ Recommended Stage 8 pilot restriction:
 - No learner-data upload to analytics/telemetry service.
 - If any unexpected outbound connection or external learner-data destination is observed, STOP the pilot until separately reviewed.
 
-Approve this restriction: YES / NO
-If NO, describe each allowed external destination, fields, purpose, authorization and retention/deletion path: [DECIDE]
+Approve this restriction: **YES — APPROVED**
+Approved network/data restriction: **no production child sync, no public recovery, no external AI/LLM call with learner data, and no external telemetry/analytics carrying learner data**.
 
 ## E. Support and incident handling
 
@@ -74,8 +74,8 @@ Recommended minimal process:
 4. Learner personal data is removed/redacted from GitHub issues, screenshots and shared logs.
 5. If applicable under the approved setting/jurisdiction, the operator handles participant/guardian notification and any required legal notification.
 
-Approve this process: YES / NO
-If NO, replacement process: [DECIDE]
+Approve this process: **YES — APPROVED**, with parent(s)/guardian(s) who provide authorization acting as the support/incident role.
+Replacement process: N/A.
 
 ## F. Controller authorization to write approved decisions into Stage 8 records
 
@@ -86,7 +86,7 @@ After the Controller supplies/approves A–E, the assistant may:
 - update issue #3 with the approved Controller decisions;
 - keep operational PR-10 BLOCKED until actual synthetic backup/restore and exact-build external-transfer checks are performed.
 
-Controller decision: [PENDING]
+Controller decision: **PARTIALLY APPROVED / RECORDED** — A–E approved as above except legal jurisdiction and maximum pilot size remain unresolved. Human content reviewer: **Controller (user) or another reviewer explicitly appointed by the Controller**.
 
 ## What this does not approve
 
