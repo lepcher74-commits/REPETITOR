@@ -11,6 +11,12 @@ Status: NOT EXECUTED. Use only invented test records, never a real child's profi
 
 ## A. Local data, backup, restore and withdrawal rehearsal
 
+Optional helper after A1 has created a synthetic data directory with the exact packaged build:
+
+`python scripts/stage8_synthetic_operator_rehearsal.py --data-dir <SYNTHETIC_DATA_DIR> --expected-build-sha 983d04c564879f9ff8b6de110497901279073aeb --observed-build-sha 983d04c564879f9ff8b6de110497901279073aeb --evidence-json <PATH_TO_SANITIZED_EVIDENCE_JSON> --delete-synthetic-data`
+
+The helper automates integrity/schema verification, backup, restore and deletion verification for synthetic data. It does **not** replace A1 packaged-app launch, operator observation, incident tabletop, exact-build network observation, or human sign-off.
+
 | Step | Operator action | Expected observation | Actual observation / sanitized evidence | Result |
 |---|---|---|---|---|
 | A1 | Launch pinned offline build with a **separate synthetic** data directory; create an invented learner session. | Data remains within intended operator-managed local locations. | [FILL] | NOT TESTED |
