@@ -691,3 +691,11 @@ Provenance mechanism previously PASS — Pilot Build 36858892837. После run
 - Packet proposes minimal-risk defaults for Controller approval/replacement but does not mark them approved.
 - Linked the packet from the manual audit packet in 9dcc52d... and referenced it in PR-10 issue #3.
 - Operational PR-10 remains BLOCKED until Controller decisions are supplied and actual rehearsal/network checks are performed. PR-08 remains manual-only; final candidate remains NOT NOMINATED.
+
+
+## 2026-10-07 — Controller PR-10 decisions reconciled
+- Controller approved the pilot setting as самостоятельное домашнее обучение, participant scope as school grades 5–11, B1 guardian authorization before enrollment, local retention for active pilot + 30 days with earlier withdrawal/request deletion, synthetic/test backups only unless separately approved, and prohibition of production child sync/public recovery/external AI-LLM with learner data/external learner-data telemetry/analytics.
+- Support and incident-response role approved as the parent(s)/legal guardian(s) providing authorization at the start of learning. Human content reviewer may be the Controller or another reviewer explicitly appointed by the Controller.
+- Applied decisions to STAGE_8_CONTROLLER_DECISION_PACKET.md (7503dae...), STAGE_8_OPERATOR_DATA_DECISION_WORKSHEET.md (050e897...), PILOT_DATA_OPERATIONS_TEMPLATE.md (aa4ee40...) and PILOT_MANUAL_GATE_RECORD.md (a326e0e...).
+- Deliberately left legal jurisdiction (country/region), numeric pilot-size maximum, exact-build operational network observation, backup/restore rehearsal, human 135-row content review and PR-08 accessibility observations unresolved/not tested.
+- Operational policy rows that were genuinely decided by the Controller are marked PASS in PILOT_MANUAL_GATE_RECORD; overall manual gate remains BLOCKED.
