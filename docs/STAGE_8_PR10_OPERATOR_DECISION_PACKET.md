@@ -1,6 +1,6 @@
 # Stage 8 PR-10 — operator decision packet (draft, not authorization)
 
-Status: PREPARED / AWAITING OPERATOR. Jurisdiction planning assumption: Russian pilot, to be confirmed by actual operator and counsel. This packet is a decision aid, not evidence of legal compliance or consent.
+Status: PARTIALLY APPROVED / EXECUTION PENDING. Controller-approved setting: independent home learning; participant scope: school grades 5–11. Legal jurisdiction (country/region) and numeric pilot-size maximum remain unresolved. This packet is a decision aid, not evidence of legal compliance or consent.
 
 ## 1. Required named decisions
 
@@ -8,14 +8,14 @@ Record each decision in `PILOT_MANUAL_GATE_RECORD.md` and `PILOT_DATA_OPERATIONS
 
 | Decision | Operator must supply | Gate condition |
 |---|---|---|
-| Pilot owner | Actual organization/person, controller/operator responsibilities and escalation owner | Identified and accepted |
-| Population | Actual participant age range, grade and intended platforms/locations | Bounded and recorded |
-| Guardian authority | Documented process establishing that an authorizing adult has the requisite authority for each participating child, plus withdrawal path | Reviewed and approved; email verification alone insufficient |
-| Pilot support | Reachable support channel, coverage hours and incident owner | Tested before admission |
+| Pilot owner | APPROVED role: parent/legal guardian conducting independent home learning; no separate organization-operator | Identified and accepted |
+| Population | APPROVED: school grades 5–11; numeric maximum and actual jurisdiction/location remain to be recorded | Partially bounded |
+| Guardian authority | APPROVED B1: explicit parent/legal-guardian authorization before enrollment, recorded outside child-facing app; withdrawal via parent/legal guardian | Policy approved; per-participant execution pending |
+| Pilot support | APPROVED role: parent(s)/legal guardian(s) providing authorization; actual contact/channel and rehearsal still required | Execution pending |
 | Local data | Data inventory, storage device ownership, access controls, retention trigger/period and secure disposal workflow | Documented and rehearsed with synthetic data |
 | Incident response | Reporting route, device-loss response, access restriction, evidence handling, notification decision owner | Tabletop walkthrough documented |
 | Content review | Reviewer of every learner-visible grade-6 pilot prompt, hint, explanation, feedback and progression message, with issue disposition | Completed on exact candidate content |
-| Network scope | Offline-only default, explicit inventory of any intended outbound telemetry/AI/sync/recovery | No unreviewed endpoint or child transfer |
+| Network scope | APPROVED policy: no production child sync/public recovery/external AI-LLM with learner data/external learner-data telemetry or analytics | Exact-build observation pending |
 
 ## 2. Proposed safe pilot admission workflow (requires approval)
 
